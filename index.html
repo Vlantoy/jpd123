@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JPD123</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ═══════════════ HOME ═══════════════ -->
+  <div id="view-home" class="view active">
+    <div class="h-top">
+      <div class="h-brand">JPD123</div>
+      <div class="h-sub">Chọn phần để bắt đầu</div>
+    </div>
+
+    <div class="h-grid">
+      <div class="h-block">
+        <div class="h-info">
+          <div class="h-jp">語彙</div>
+          <div class="h-vn">Từ vựng</div>
+          <div class="h-cnt" id="count-vocab"></div>
+        </div>
+        <div class="h-modes">
+          <button class="h-mode-btn h-mode-review" id="mode-vocab-review">Ôn tập <span id="due-vocab" class="h-due-badge"></span></button>
+          <button class="h-mode-btn h-mode-select" id="mode-vocab-select">Tự chọn</button>
+        </div>
+      </div>
+      <div class="h-block">
+        <div class="h-info">
+          <div class="h-jp">漢字</div>
+          <div class="h-vn">Kanji</div>
+          <div class="h-cnt" id="count-kanji"></div>
+        </div>
+        <div class="h-modes">
+          <button class="h-mode-btn h-mode-review" id="mode-kanji-review">Ôn tập <span id="due-kanji" class="h-due-badge"></span></button>
+          <button class="h-mode-btn h-mode-select" id="mode-kanji-select">Tự chọn</button>
+        </div>
+      </div>
+      <div class="h-block">
+        <div class="h-info">
+          <div class="h-jp">文法</div>
+          <div class="h-vn">Ngữ pháp</div>
+          <div class="h-cnt" id="count-grammar"></div>
+        </div>
+        <div class="h-modes">
+          <button class="h-mode-btn h-mode-select" id="mode-grammar-open" style="width:100%">Xem bài</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-stats">
+      <div class="h-stat"><b id="s-due">0</b><span>Đến hạn</span></div>
+      <div class="h-stat"><b id="s-new">0</b><span>Mới</span></div>
+      <div class="h-stat" id="stat-mature"><b id="s-mature">0</b><span>Thuộc lòng</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ LIST ════════════════ -->
+  <div id="view-list" class="view">
+    <div class="s-top">
+      <button class="icon-btn" id="list-back">←</button>
+      <div class="s-mid">
+        <span id="list-title">Từ vựng</span>
+        <small id="list-cnt"></small>
+      </div>
+      <div style="width:40px"></div>
+    </div>
+
+    <div class="list-search">
+      <input type="search" id="list-search" placeholder="🔍  Tìm kiếm..." autocomplete="off">
+      <div class="list-sel-bar">
+        <label class="sel-toggle">
+          <input type="checkbox" id="select-all-cb"> Chọn tất cả
+        </label>
+      </div>
+    </div>
+
+    <div id="list-items" class="list-items"></div>
+
+    <div id="list-study-bar" class="list-study-bar hidden">
+      <div class="lsb-btns">
+        <button id="list-flash-btn">⚡ Xem thẻ</button>
+        <button id="list-srs-btn">↺ Học SRS</button>
+      </div>
+      <div id="sel-count-lbl" class="lsb-count">0 đã chọn</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ STUDY ═══════════════ -->
+  <div id="view-study" class="view">
+    <div class="s-top">
+      <button class="icon-btn" id="study-back">←</button>
+      <div class="s-mid">
+        <span id="study-title">Từ vựng</span>
+        <small id="study-progress"></small>
+      </div>
+      <button class="icon-btn" id="speak-btn" title="Phát âm">🔊</button>
+    </div>
+
+    <div id="card-area" class="card-area">
+      <div class="card-flip" id="card-flip">
+        <div class="cf-inner" id="cf-inner">
+          <div class="cf-face cf-front">
+            <div id="c-front" class="c-front">—</div>
+          </div>
+          <div class="cf-face cf-back">
+            <div id="c-back" class="c-back">—</div>
+            <div id="c-level-badge" class="c-level-badge"></div>
+          </div>
+        </div>
+      </div>
+      <div id="tap-hint" class="tap-hint">nhấn để lật</div>
+    </div>
+
+    <div id="rating-bar" class="rating-bar">
+      <button class="rate-btn r-again" data-score="0">Lại<br><small id="ri-0">1 phút</small></button>
+      <button class="rate-btn r-hard"  data-score="2">Khó<br><small id="ri-2">1 phút</small></button>
+      <button class="rate-btn r-good"  data-score="3">Ổn<br><small id="ri-3">5 phút</small></button>
+      <button class="rate-btn r-easy"  data-score="5">Dễ<br><small id="ri-5">30 phút</small></button>
+    </div>
+    <div id="flash-bar" class="flash-bar">
+      <button id="flash-prev-btn" class="flash-nav-btn" disabled>←</button>
+      <span id="flash-pos" class="flash-pos"></span>
+      <button id="flash-next-btn" class="flash-nav-btn">→</button>
+    </div>
+    <div id="retry-panel" class="retry-panel hidden">
+      <button id="retry-panel-header" class="retry-panel-header">
+        <span id="retry-panel-count">⏳ 0 từ</span>
+        <span class="retry-panel-arrow">▸</span>
+      </button>
+      <div id="retry-panel-body" class="retry-panel-body"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ GRAMMAR ═══════════════ -->
+  <div id="view-grammar" class="view">
+    <div class="s-top">
+      <button class="icon-btn" id="grammar-back">←</button>
+      <div class="s-mid"><span>Ngữ pháp</span></div>
+      <div style="width:40px"></div>
+    </div>
+    <div id="grammar-content" class="g-list"></div>
+  </div>
+
+  <script src="vocab_data.js"></script>
+  <script src="app.js"></script>
+  <div id="debug-panel" class="debug-panel hidden"></div>
+</body>
+</html>

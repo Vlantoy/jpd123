@@ -1,0 +1,3578 @@
+[
+  {
+    "front": "私 (わたし)",
+    "back": "Tôi"
+  },
+  {
+    "front": "名前 (なまえ)",
+    "back": "Tên"
+  },
+  {
+    "front": "国 (くに)",
+    "back": "Đất nước"
+  },
+  {
+    "front": "日本 (にほん)",
+    "back": "Nhật Bản"
+  },
+  {
+    "front": "アメリカ",
+    "back": "Mỹ"
+  },
+  {
+    "front": "イタリア",
+    "back": "Ý"
+  },
+  {
+    "front": "オーストラリア",
+    "back": "Úc"
+  },
+  {
+    "front": "韓国 (かんこく)",
+    "back": "Hàn Quốc"
+  },
+  {
+    "front": "タイ",
+    "back": "Thái Lan"
+  },
+  {
+    "front": "中国 (ちゅうごく)",
+    "back": "Trung Quốc"
+  },
+  {
+    "front": "ロシア",
+    "back": "Nga"
+  },
+  {
+    "front": "高校 (こうこう)",
+    "back": "Trường trung học phổ thông"
+  },
+  {
+    "front": "大学 (だいがく)",
+    "back": "Trường đại học"
+  },
+  {
+    "front": "日本語学校 (にほんごがっこう)",
+    "back": "Trường tiếng Nhật"
+  },
+  {
+    "front": "仕事 (しごと)",
+    "back": "Công việc"
+  },
+  {
+    "front": "学生 (がくせい)",
+    "back": "Học sinh"
+  },
+  {
+    "front": "先生 (せんせい)",
+    "back": "Thầy/Cô giáo"
+  },
+  {
+    "front": "教師 (きょうし)",
+    "back": "Giáo viên"
+  },
+  {
+    "front": "会社員 (かいしゃいん)",
+    "back": "Nhân viên văn phòng"
+  },
+  {
+    "front": "社員 (しゃいん)",
+    "back": "Nhân viên"
+  },
+  {
+    "front": "さん",
+    "back": "Anh/Chị/Ông/Bà/Bạn"
+  },
+  {
+    "front": "人 (じん)",
+    "back": "Người"
+  },
+  {
+    "front": "どちら",
+    "back": "Ở đâu / Phía nào"
+  },
+  {
+    "front": "はじめまして",
+    "back": "Xin chào"
+  },
+  {
+    "front": "こちらこそ",
+    "back": "Tôi cũng vậy"
+  },
+  {
+    "front": "あのう",
+    "back": "Anh / chị ơi / Xin lỗi cho hỏi"
+  },
+  {
+    "front": "すみません",
+    "back": "Xin lỗi"
+  },
+  {
+    "front": "そうですか",
+    "back": "Thế à"
+  },
+  {
+    "front": "はい",
+    "back": "Dạ vâng"
+  },
+  {
+    "front": "いいえ",
+    "back": "Không"
+  },
+  {
+    "front": "誕生日 (たんじょうび)",
+    "back": "Ngày sinh / Sinh nhật"
+  },
+  {
+    "front": "ブラジル",
+    "back": "Brazil"
+  },
+  {
+    "front": "月 (がつ)",
+    "back": "Tháng"
+  },
+  {
+    "front": "日 (にち／か)",
+    "back": "Ngày"
+  },
+  {
+    "front": "歳 (さい)",
+    "back": "Tuổi"
+  },
+  {
+    "front": "いつ",
+    "back": "Lúc nào / Khi nào"
+  },
+  {
+    "front": "趣味 (しゅみ)",
+    "back": "Sở thích"
+  },
+  {
+    "front": "スポーツ",
+    "back": "Thể thao"
+  },
+  {
+    "front": "サッカー",
+    "back": "Bóng đá"
+  },
+  {
+    "front": "テニス",
+    "back": "Tennis"
+  },
+  {
+    "front": "水泳 (すいえい)",
+    "back": "Bơi lội"
+  },
+  {
+    "front": "映画 (えいが)",
+    "back": "Phim ảnh"
+  },
+  {
+    "front": "音楽 (おんがく)",
+    "back": "Âm nhạc"
+  },
+  {
+    "front": "読書 (どくしょ)",
+    "back": "Đọc sách"
+  },
+  {
+    "front": "旅行 (りょこう)",
+    "back": "Du lịch"
+  },
+  {
+    "front": "料理 (りょうり)",
+    "back": "Nấu ăn / Món ăn"
+  },
+  {
+    "front": "何 (なん)",
+    "back": "Cái gì"
+  },
+  {
+    "front": "あ",
+    "back": "A / Á"
+  },
+  {
+    "front": "ここ／こちら",
+    "back": "Đây / Chỗ này / Phía này"
+  },
+  {
+    "front": "そこ／そちら",
+    "back": "Kia / Chỗ đó / Phía đó"
+  },
+  {
+    "front": "あそこ／あちら",
+    "back": "Đó / Chỗ kia / Phía kia"
+  },
+  {
+    "front": "インフォメーション",
+    "back": "Quầy thông tin"
+  },
+  {
+    "front": "ATM",
+    "back": "Máy rút tiền tự động"
+  },
+  {
+    "front": "エスカレーター",
+    "back": "Thang cuốn"
+  },
+  {
+    "front": "エレベーター",
+    "back": "Thang máy"
+  },
+  {
+    "front": "きつえんじょ",
+    "back": "Nơi hút thuốc"
+  },
+  {
+    "front": "トイレ",
+    "back": "Nhà vệ sinh"
+  },
+  {
+    "front": "レジ",
+    "back": "Quầy thu ngân"
+  },
+  {
+    "front": "きっさてん",
+    "back": "Quán giải khát"
+  },
+  {
+    "front": "スーパー",
+    "back": "Siêu thị"
+  },
+  {
+    "front": "Cửa",
+    "back": "hàng 100 Yên"
+  },
+  {
+    "front": "レストラン",
+    "back": "Nhà hàng / Quán ăn"
+  },
+  {
+    "front": "地下 (ちか)",
+    "back": "Ngầm / Dưới lòng đất"
+  },
+  {
+    "front": "カメラ",
+    "back": "Máy ảnh"
+  },
+  {
+    "front": "携帯電話 (けいたいでんわ)",
+    "back": "Điện thoại di động"
+  },
+  {
+    "front": "電子辞書 (でんしじしょ)",
+    "back": "Kim từ điển"
+  },
+  {
+    "front": "パソコン",
+    "back": "Máy tính cá nhân"
+  },
+  {
+    "front": "くつ",
+    "back": "Giầy"
+  },
+  {
+    "front": "消しゴム (けしゴム)",
+    "back": "Tẩy"
+  },
+  {
+    "front": "ペン",
+    "back": "Bút"
+  },
+  {
+    "front": "トイレットペーパー",
+    "back": "Giấy vệ sinh"
+  },
+  {
+    "front": "本 (ほん)",
+    "back": "Sách"
+  },
+  {
+    "front": "油 (あぶra)",
+    "back": "Dầu"
+  },
+  {
+    "front": "ケーキ",
+    "back": "Bánh ngọt"
+  },
+  {
+    "front": "米 (こめ)",
+    "back": "Gạo"
+  },
+  {
+    "front": "卵 (たまご)",
+    "back": "Trứng"
+  },
+  {
+    "front": "パン",
+    "back": "Bánh mỳ"
+  },
+  {
+    "front": "水 (みず)",
+    "back": "Nước"
+  },
+  {
+    "front": "店員 (てんいん)",
+    "back": "Nhân viên bán hàng"
+  },
+  {
+    "front": "階 (かい)",
+    "back": "Tầng"
+  },
+  {
+    "front": "屋 (や)",
+    "back": "Cửa hàng / Hiệu"
+  },
+  {
+    "front": "どこ",
+    "back": "Ở đâu / Nơi nào / Chỗ nào"
+  },
+  {
+    "front": "いらっしゃいませ",
+    "back": "Kính chào quý khách"
+  },
+  {
+    "front": "これ",
+    "back": "Cái này"
+  },
+  {
+    "front": "それ",
+    "back": "Cái đó"
+  },
+  {
+    "front": "あれ",
+    "back": "Cái kia"
+  },
+  {
+    "front": "この",
+    "back": "Cái này"
+  },
+  {
+    "front": "その",
+    "back": "Cái đó"
+  },
+  {
+    "front": "あの",
+    "back": "Cái kia"
+  },
+  {
+    "front": "かばん",
+    "back": "Cặp / Túi xách"
+  },
+  {
+    "front": "ズボン",
+    "back": "Quần dài"
+  },
+  {
+    "front": "Tシャツ",
+    "back": "Áo phông"
+  },
+  {
+    "front": "時計 (とけい)",
+    "back": "Đồng hồ"
+  },
+  {
+    "front": "円 (えん)",
+    "back": "Yên"
+  },
+  {
+    "front": "いくら",
+    "back": "Bao nhiêu tiền"
+  },
+  {
+    "front": "じゃ",
+    "back": "Thế thì / Thôi thì"
+  },
+  {
+    "front": "魚 (さかな)",
+    "back": "Cá"
+  },
+  {
+    "front": "肉 (にく)",
+    "back": "Thịt"
+  },
+  {
+    "front": "牛肉 (ぎゅうにく)",
+    "back": "Thịt bò"
+  },
+  {
+    "front": "鶏肉 (とりにく)",
+    "back": "Thịt gà"
+  },
+  {
+    "front": "豚肉 (ぶたにく)",
+    "back": "Thịt lợn"
+  },
+  {
+    "front": "野菜 (やさい)",
+    "back": "Rau"
+  },
+  {
+    "front": "イチゴ",
+    "back": "Quả dâu"
+  },
+  {
+    "front": "リンゴ",
+    "back": "Quả táo"
+  },
+  {
+    "front": "カレー",
+    "back": "Món cà-ri"
+  },
+  {
+    "front": "スープ",
+    "back": "Canh / Súp"
+  },
+  {
+    "front": "とんかつ",
+    "back": "Món thịt lợn chiên xù"
+  },
+  {
+    "front": "ハンバーグ",
+    "back": "Món thịt băm viên"
+  },
+  {
+    "front": "ご飯 (ごはん)",
+    "back": "Cơm"
+  },
+  {
+    "front": "ライス",
+    "back": "Cơm / Gạo"
+  },
+  {
+    "front": "ジュース",
+    "back": "Nước ngọt / Nước trái cây"
+  },
+  {
+    "front": "コーヒー",
+    "back": "Cà phê"
+  },
+  {
+    "front": "紅茶 (こうちゃ)",
+    "back": "Trà đen"
+  },
+  {
+    "front": "茶 (ちゃ)",
+    "back": "Trà / Nước chè"
+  },
+  {
+    "front": "ビール",
+    "back": "Bia"
+  },
+  {
+    "front": "ワイン",
+    "back": "Rượu vang"
+  },
+  {
+    "front": "インド",
+    "back": "Ấn Độ"
+  },
+  {
+    "front": "ドイツ",
+    "back": "Đức"
+  },
+  {
+    "front": "フランス",
+    "back": "Pháp"
+  },
+  {
+    "front": "財布 (さいふ)",
+    "back": "Ví tiền"
+  },
+  {
+    "front": "英語 (えいご)",
+    "back": "Tiếng Anh"
+  },
+  {
+    "front": "語 (ご)",
+    "back": "Tiếng"
+  },
+  {
+    "front": "つ",
+    "back": "Cái / Chiếc"
+  },
+  {
+    "front": "だれ",
+    "back": "Ai"
+  },
+  {
+    "front": "どうぞ",
+    "back": "Xin mời"
+  },
+  {
+    "front": "今 (いま)",
+    "back": "Bây giờ"
+  },
+  {
+    "front": "午前 (ごぜん)",
+    "back": "Buổi sáng / AM"
+  },
+  {
+    "front": "午後 (ごご)",
+    "back": "Buổi chiều / PM"
+  },
+  {
+    "front": "昼 (ひる)",
+    "back": "Buổi trưa"
+  },
+  {
+    "front": "銀行 (ぎんこう)",
+    "back": "Ngân hàng"
+  },
+  {
+    "front": "体育館 (たいいくかん)",
+    "back": "Nhà thi đấu / Nhà tập thể dục"
+  },
+  {
+    "front": "図書館 (としょかん)",
+    "back": "Thư viện"
+  },
+  {
+    "front": "病院 (びょういん)",
+    "back": "Bệnh viện"
+  },
+  {
+    "front": "郵便局 (ゆうびんきょく)",
+    "back": "Bưu điện"
+  },
+  {
+    "front": "授業 (じゅぎょう)",
+    "back": "Giờ học"
+  },
+  {
+    "front": "テスト",
+    "back": "Bài kiểm tra"
+  },
+  {
+    "front": "休み (やすみ)",
+    "back": "Nghỉ / Ngày nghỉ"
+  },
+  {
+    "front": "時間 (じかん)",
+    "back": "Thời gian / Giờ giấc"
+  },
+  {
+    "front": "時 (じ)",
+    "back": "Giờ"
+  },
+  {
+    "front": "分 (ふん)",
+    "back": "Phút"
+  },
+  {
+    "front": "時半 (じはん)",
+    "back": "Giờ rưỡi"
+  },
+  {
+    "front": "曜日 (ようび)",
+    "back": "Thứ"
+  },
+  {
+    "front": "スケジュール",
+    "back": "Kế hoạch / Lịch"
+  },
+  {
+    "front": "アルバイト",
+    "back": "Việc làm thêm"
+  },
+  {
+    "front": "スキー",
+    "back": "Trượt tuyết"
+  },
+  {
+    "front": "パーティー",
+    "back": "Bữa tiệc"
+  },
+  {
+    "front": "バーベキュー",
+    "back": "Tiệc nướng ngoài trời"
+  },
+  {
+    "front": "花火 (はなび)",
+    "back": "Pháo hoa"
+  },
+  {
+    "front": "花見 (はなみ)",
+    "back": "Ngắm hoa"
+  },
+  {
+    "front": "祭り (まつり)",
+    "back": "Lễ hội"
+  },
+  {
+    "front": "海 (うみ)",
+    "back": "Biển"
+  },
+  {
+    "front": "公園 (こうえん)",
+    "back": "Công viên"
+  },
+  {
+    "front": "桜 (さくら)",
+    "back": "Hoa anh đào"
+  },
+  {
+    "front": "酒 (さけ)",
+    "back": "Rượu"
+  },
+  {
+    "front": "すし",
+    "back": "Món sushi"
+  },
+  {
+    "front": "バス",
+    "back": "Xe buýt"
+  },
+  {
+    "front": "弁当 (べんとう)",
+    "back": "Cơm hộp"
+  },
+  {
+    "front": "留学生 (りゅうがくせい)",
+    "back": "Du học sinh"
+  },
+  {
+    "front": "1年 (いちねん)",
+    "back": "1 năm"
+  },
+  {
+    "front": "春 (はる)",
+    "back": "Mùa xuân"
+  },
+  {
+    "front": "夏 (なつ)",
+    "back": "Mùa hè"
+  },
+  {
+    "front": "秋 (あき)",
+    "back": "Mùa thu"
+  },
+  {
+    "front": "冬 (ふゆ)",
+    "back": "Mùa đông"
+  },
+  {
+    "front": "ゴールデンウイーク",
+    "back": "Tuần lễ vàng"
+  },
+  {
+    "front": "何 (なに)",
+    "back": "Cái gì"
+  },
+  {
+    "front": "行きます (いきます)",
+    "back": "Đi"
+  },
+  {
+    "front": "帰ります (かえります)",
+    "back": "Về / Trở về"
+  },
+  {
+    "front": "飲みます (のみます)",
+    "back": "Uống"
+  },
+  {
+    "front": "食べます (たべます)",
+    "back": "Ăn"
+  },
+  {
+    "front": "見ます (みます)",
+    "back": "Xem / Nhìn"
+  },
+  {
+    "front": "します (します)",
+    "back": "Làm / Chơi"
+  },
+  {
+    "front": "いいですね",
+    "back": "Hay quá nhỉ"
+  },
+  {
+    "front": "えっ",
+    "back": "Ơ / Hả"
+  },
+  {
+    "front": "へえ",
+    "back": "Chà / Wow"
+  },
+  {
+    "front": "朝 (あさ)",
+    "back": "Buổi sáng"
+  },
+  {
+    "front": "夜 (よる)",
+    "back": "Buổi tối / Đêm"
+  },
+  {
+    "front": "毎日 (まいにち)",
+    "back": "Hàng ngày"
+  },
+  {
+    "front": "毎朝 (まいあさ)",
+    "back": "Hàng sáng"
+  },
+  {
+    "front": "毎晩 (まいばん)",
+    "back": "Mỗi tối"
+  },
+  {
+    "front": "朝ご飯 (あさごはん)",
+    "back": "Bữa sáng"
+  },
+  {
+    "front": "昼ごはん (ひるごはん)",
+    "back": "Bữa trưa"
+  },
+  {
+    "front": "家 (うち)",
+    "back": "Nhà"
+  },
+  {
+    "front": "会社 (かいしゃ)",
+    "back": "Công ty"
+  },
+  {
+    "front": "学校 (がっこう)",
+    "back": "Trường học"
+  },
+  {
+    "front": "コンビニ",
+    "back": "Cửa hàng tiện lợi"
+  },
+  {
+    "front": "牛乳 (ぎゅうにゅう)",
+    "back": "Sữa bò"
+  },
+  {
+    "front": "果物 (くだもの)",
+    "back": "Hoa quả / Trái cây"
+  },
+  {
+    "front": "サラダ",
+    "back": "Món salad"
+  },
+  {
+    "front": "チーズ",
+    "back": "Pho-mát"
+  },
+  {
+    "front": "インターネット",
+    "back": "Mạng internet"
+  },
+  {
+    "front": "新聞 (しんぶん)",
+    "back": "Báo"
+  },
+  {
+    "front": "テレビ",
+    "back": "Ti vi"
+  },
+  {
+    "front": "CD (シーディー)",
+    "back": "CD"
+  },
+  {
+    "front": "DVD (ディーブイディー)",
+    "back": "DVD"
+  },
+  {
+    "front": "何も (なにも)",
+    "back": "Cái gì cũng"
+  },
+  {
+    "front": "どこも",
+    "back": "Đâu cũng"
+  },
+  {
+    "front": "買います (かいます)",
+    "back": "Mua"
+  },
+  {
+    "front": "聞きます (ききます)",
+    "back": "Nghe / Hỏi"
+  },
+  {
+    "front": "働きます (はたらきます)",
+    "back": "Làm việc / Lao động"
+  },
+  {
+    "front": "読みます (よみます)",
+    "back": "Đọc"
+  },
+  {
+    "front": "起きます (おきます)",
+    "back": "Thức dậy"
+  },
+  {
+    "front": "寝ます (ねます)",
+    "back": "Ngủ"
+  },
+  {
+    "front": "勉強します (べんきょうします)",
+    "back": "Học"
+  },
+  {
+    "front": "来ます (きます)",
+    "back": "Đến / Tới"
+  },
+  {
+    "front": "北 (きた)",
+    "back": "Phía bắc"
+  },
+  {
+    "front": "南 (みなみ)",
+    "back": "Phía nam"
+  },
+  {
+    "front": "東 (ひがし)",
+    "back": "Phía đông"
+  },
+  {
+    "front": "西 (にし)",
+    "back": "Phía tây"
+  },
+  {
+    "front": "真ん中 (まんなか)",
+    "back": "Chính giữa"
+  },
+  {
+    "front": "車 (くるま)",
+    "back": "Ô tô"
+  },
+  {
+    "front": "新幹線 (しんかんせん)",
+    "back": "Tàu cao tốc Shinkansen"
+  },
+  {
+    "front": "電車 (でんしゃ)",
+    "back": "Tàu điện"
+  },
+  {
+    "front": "飛行機 (ひこうき)",
+    "back": "Máy bay"
+  },
+  {
+    "front": "駅 (えき)",
+    "back": "Nhà ga"
+  },
+  {
+    "front": "町 (まち)",
+    "back": "Thành phố / Thị trấn"
+  },
+  {
+    "front": "時間 (じかん)",
+    "back": "Tiếng"
+  },
+  {
+    "front": "時間半 (じかんはん)",
+    "back": "Tiếng rưỡi"
+  },
+  {
+    "front": "歩いて (あるいて)",
+    "back": "Đi bộ"
+  },
+  {
+    "front": "くらい",
+    "back": "Khoảng"
+  },
+  {
+    "front": "どのくらい",
+    "back": "Bao lâu"
+  },
+  {
+    "front": "温泉 (おんせん)",
+    "back": "Suối nước nóng"
+  },
+  {
+    "front": "川 (かわ)",
+    "back": "Sông"
+  },
+  {
+    "front": "山 (やま)",
+    "back": "Núi"
+  },
+  {
+    "front": "教会 (きょうかい)",
+    "back": "Nhà thờ"
+  },
+  {
+    "front": "城 (しろ)",
+    "back": "Lâu đài / Thành"
+  },
+  {
+    "front": "神社 (じんじゃ)",
+    "back": "Đền"
+  },
+  {
+    "front": "寺 (てら)",
+    "back": "Chùa"
+  },
+  {
+    "front": "ビル",
+    "back": "Tòa nhà"
+  },
+  {
+    "front": "ところ",
+    "back": "Nơi / Chỗ"
+  },
+  {
+    "front": "人 (ひと)",
+    "back": "Người"
+  },
+  {
+    "front": "緑 (みどり)",
+    "back": "Màu xanh / Cây xanh"
+  },
+  {
+    "front": "あります (あります)",
+    "back": "Có"
+  },
+  {
+    "front": "新しい (あたらしい)",
+    "back": "Mới"
+  },
+  {
+    "front": "古い (ふるい)",
+    "back": "Cũ"
+  },
+  {
+    "front": "いい",
+    "back": "Tốt"
+  },
+  {
+    "front": "多い (おおい)",
+    "back": "Nhiều"
+  },
+  {
+    "front": "少ない (すくない)",
+    "back": "Ít"
+  },
+  {
+    "front": "大きい (おおきい)",
+    "back": "To / Lớn"
+  },
+  {
+    "front": "小さい (ちいさい)",
+    "back": "Nhỏ / Bé"
+  },
+  {
+    "front": "高い (たかい)",
+    "back": "Cao / Đắt"
+  },
+  {
+    "front": "低い (ひくい)",
+    "back": "Thấp"
+  },
+  {
+    "front": "きれい",
+    "back": "Đẹp / Sạch sẽ"
+  },
+  {
+    "front": "静か (しずか)",
+    "back": "Yên tĩnh"
+  },
+  {
+    "front": "にぎやか (にぎやか)",
+    "back": "Náo nhiệt / Nhộn nhịp"
+  },
+  {
+    "front": "有名 (ゆうめい)",
+    "back": "Nổi tiếng"
+  },
+  {
+    "front": "どんな",
+    "back": "Như thế nào"
+  },
+  {
+    "front": "そして",
+    "back": "Và"
+  },
+  {
+    "front": "雨 (あめ)",
+    "back": "Mưa"
+  },
+  {
+    "front": "雪 (ゆき)",
+    "back": "Tuyết"
+  },
+  {
+    "front": "日 (ひ)",
+    "back": "Ngày / Mặt trời"
+  },
+  {
+    "front": "メロン",
+    "back": "Dưa gang"
+  },
+  {
+    "front": "暖かい (あたたかい)",
+    "back": "Ấm áp"
+  },
+  {
+    "front": "涼しい (すずしい)",
+    "back": "Mát mẻ"
+  },
+  {
+    "front": "暑い (あつい)",
+    "back": "Nóng bực"
+  },
+  {
+    "front": "寒い (さむい)",
+    "back": "Lạnh / Rết"
+  },
+  {
+    "front": "天気がいい (てんきがいい)",
+    "back": "Thời tiết đẹp"
+  },
+  {
+    "front": "天気がわるい (てんきがわるい)",
+    "back": "Thời tiết xấu"
+  },
+  {
+    "front": "温かい (あたたかい)",
+    "back": "Ấm"
+  },
+  {
+    "front": "熱い (あつい)",
+    "back": "Nóng"
+  },
+  {
+    "front": "冷たい (つめたい)",
+    "back": "Lạnh / Mát"
+  },
+  {
+    "front": "おいしい",
+    "back": "Ngon"
+  },
+  {
+    "front": "甘い (あまい)",
+    "back": "Ngọt"
+  },
+  {
+    "front": "辛い (からい)",
+    "back": "Cay"
+  },
+  {
+    "front": "苦い (にがい)",
+    "back": "Đắng"
+  },
+  {
+    "front": "すっぱい",
+    "back": "Chua"
+  },
+  {
+    "front": "一年中 (いちねんじゅう)",
+    "back": "Suốt 1 năm"
+  },
+  {
+    "front": "あまり",
+    "back": "Không... lắm"
+  },
+  {
+    "front": "少し (すこし)",
+    "back": "Một chút / Ít"
+  },
+  {
+    "front": "とても",
+    "back": "Rất"
+  },
+  {
+    "front": "どう",
+    "back": "Thế nào"
+  },
+  {
+    "front": "そうですね",
+    "back": "Câu nói thể hiện sự đồng tình"
+  },
+  {
+    "front": "今日 (きょう)",
+    "back": "Hôm nay"
+  },
+  {
+    "front": "明日 (あした)",
+    "back": "Ngày mai"
+  },
+  {
+    "front": "あさって",
+    "back": "Ngày kia"
+  },
+  {
+    "front": "昨日 (きのう)",
+    "back": "Hôm qua"
+  },
+  {
+    "front": "おととい",
+    "back": "Hôm kia"
+  },
+  {
+    "front": "先週 (せんしゅう)",
+    "back": "Tuần trước"
+  },
+  {
+    "front": "週末 (しゅummatsu)",
+    "back": "Cuối tuần"
+  },
+  {
+    "front": "家 (いえ)",
+    "back": "Nhà"
+  },
+  {
+    "front": "部屋 (へや)",
+    "back": "Căn phòng"
+  },
+  {
+    "front": "デパート",
+    "back": "Trung tâm thương mại"
+  },
+  {
+    "front": "美術館 (びじゅつかん)",
+    "back": "Bảo tàng mỹ thuật"
+  },
+  {
+    "front": "ゲーム",
+    "back": "Trò chơi"
+  },
+  {
+    "front": "家族 (かぞく)",
+    "back": "Gia định"
+  },
+  {
+    "front": "恋人 (こいびと)",
+    "back": "Người yêu"
+  },
+  {
+    "front": "友達 (ともだち)",
+    "back": "Bạn bè"
+  },
+  {
+    "front": "ルームメイト",
+    "back": "Bạn cùng phòng"
+  },
+  {
+    "front": "どこか",
+    "back": "Nơi nào đó"
+  },
+  {
+    "front": "会います (あいます)",
+    "back": "Gặp gỡ"
+  },
+  {
+    "front": "作ります (つくります)",
+    "back": "Làm / Chế tạo"
+  },
+  {
+    "front": "買い物します (かいものします)",
+    "back": "Mua sắm"
+  },
+  {
+    "front": "食事します (しょくじします)",
+    "back": "Dùng bữa / Ăn uống"
+  },
+  {
+    "front": "洗濯します (せんたくします)",
+    "back": "Giặt giũ"
+  },
+  {
+    "front": "掃除します (そうじします)",
+    "back": "Hút bụi / Lau dọn"
+  },
+  {
+    "front": "それから",
+    "back": "Sau đó"
+  },
+  {
+    "front": "一人で (ひとりで)",
+    "back": "Một mình"
+  },
+  {
+    "front": "今朝 (けさ)",
+    "back": "Sáng nay"
+  },
+  {
+    "front": "先月 (せんげつ)",
+    "back": "Tháng trước"
+  },
+  {
+    "front": "去年 (きょねん)",
+    "back": "Năm ngoái"
+  },
+  {
+    "front": "風邪 (かぜ)",
+    "back": "Cảm cúm"
+  },
+  {
+    "front": "天気 (てんき)",
+    "back": "Thời tiết"
+  },
+  {
+    "front": "晩ご飯 (ばんごはん)",
+    "back": "Cơm tối"
+  },
+  {
+    "front": "服 (ふく)",
+    "back": "Quần áo"
+  },
+  {
+    "front": "登ります (のぼります)",
+    "back": "Leo / Trèo"
+  },
+  {
+    "front": "入ります (はいります)",
+    "back": "Vào / Bước vào"
+  },
+  {
+    "front": "忙しい (いそがしい)",
+    "back": "Bận rộn"
+  },
+  {
+    "front": "おもしろい",
+    "back": "Thú vị / Hay"
+  },
+  {
+    "front": "気持ちがいい (きもちがいい)",
+    "back": "Sảng khoái"
+  },
+  {
+    "front": "安い (やすい)",
+    "back": "Rẻ"
+  },
+  {
+    "front": "楽しい (たのしい)",
+    "back": "Vui vẻ"
+  },
+  {
+    "front": "難しい (むずかしい)",
+    "back": "Khó"
+  },
+  {
+    "front": "簡単 (かんたん)",
+    "back": "Dễ / Đơn giản"
+  },
+  {
+    "front": "大変 (たいへん)",
+    "back": "Vất vả / Khổ sở"
+  },
+  {
+    "front": "暇 (ひま)",
+    "back": "Rảnh rỗi"
+  },
+  {
+    "front": "どうして",
+    "back": "Tại sao"
+  },
+  {
+    "front": "今度 (こんど)",
+    "back": "Lần này / Lần tới"
+  },
+  {
+    "front": "今晩 (こんばん)",
+    "back": "Tối nay"
+  },
+  {
+    "front": "今年 (ことし)",
+    "back": "Năm nay"
+  },
+  {
+    "front": "来年 (らいねん)",
+    "back": "Sang năm"
+  },
+  {
+    "front": "アニメ",
+    "back": "Hoạt hình"
+  },
+  {
+    "front": "絵 (え)",
+    "back": "Tranh"
+  },
+  {
+    "front": "景色 (けしき)",
+    "back": "Phong cảnh"
+  },
+  {
+    "front": "自転車 (じてんしゃ)",
+    "back": "Xe đạp"
+  },
+  {
+    "front": "写真 (しゃしん)",
+    "back": "Ảnh"
+  },
+  {
+    "front": "撮ります (とります)",
+    "back": "Chụp / Quay"
+  },
+  {
+    "front": "借ります (かります)",
+    "back": "Vay / Mượn"
+  },
+  {
+    "front": "ほしい",
+    "back": "Muốn có"
+  },
+  {
+    "front": "好き (すき)",
+    "back": "Thích"
+  },
+  {
+    "front": "嫌い (きらい)",
+    "back": "Ghét"
+  },
+  {
+    "front": "今週 (こんしゅう)",
+    "back": "Tuần này"
+  },
+  {
+    "front": "来週 (らいしゅう)",
+    "back": "Tuần sau"
+  },
+  {
+    "front": "今月 (こんげつ)",
+    "back": "Tháng này"
+  },
+  {
+    "front": "来月 (らいげつ)",
+    "back": "Tháng sau"
+  },
+  {
+    "front": "カラオケ",
+    "back": "Hát karaoke"
+  },
+  {
+    "front": "コンサート",
+    "back": "Buổi hòa nhạc"
+  },
+  {
+    "front": "試合 (しあい)",
+    "back": "Trận đấu"
+  },
+  {
+    "front": "セール",
+    "back": "Giảm giá"
+  },
+  {
+    "front": "チケット",
+    "back": "Vé"
+  },
+  {
+    "front": "地図 (ちず)",
+    "back": "Bản đồ"
+  },
+  {
+    "front": "ドライブ",
+    "back": "Lái xe"
+  },
+  {
+    "front": "水着 (みずぎ)",
+    "back": "Đồ bơi"
+  },
+  {
+    "front": "野球 (やきゅう)",
+    "back": "Bóng chày"
+  },
+  {
+    "front": "約束 (やくそく)",
+    "back": "Hứa / Hẹn"
+  },
+  {
+    "front": "用事 (ようじ)",
+    "back": "Việc bận"
+  },
+  {
+    "front": "枚 (まい)",
+    "back": "Tờ / Chiếc"
+  },
+  {
+    "front": "残念 (ざんねん)",
+    "back": "Tiếc / Đáng tiếc"
+  },
+  {
+    "front": "一緒に (いっしょに)",
+    "back": "Cùng với"
+  },
+  {
+    "front": "また今度 (またこんど)",
+    "back": "Hẹn lần sau"
+  },
+  {
+    "front": "わあ",
+    "back": "Oa"
+  },
+  {
+    "front": "食べ物 (たべもの)",
+    "back": "Đồ ăn"
+  },
+  {
+    "front": "飲み物 (のみもの)",
+    "back": "Đồ uống"
+  },
+  {
+    "front": "焼き肉 (やきにく)",
+    "back": "Thịt nướng"
+  },
+  {
+    "front": "ラーメン",
+    "back": "Mỳ Nhật"
+  },
+  {
+    "front": "食べ放題 (たべほうだい)",
+    "back": "Ăn buffet"
+  },
+  {
+    "front": "コース",
+    "back": "Suất ăn / Khóa học"
+  },
+  {
+    "front": "居酒屋 (いざかや)",
+    "back": "Quán rượu"
+  },
+  {
+    "front": "映画館 (えいがかん)",
+    "back": "Rạp chiếu phim"
+  },
+  {
+    "front": "地下鉄 (ちかてつ)",
+    "back": "Tàu điện ngầm"
+  },
+  {
+    "front": "歌手 (かしゅ)",
+    "back": "Ca sỹ"
+  },
+  {
+    "front": "季節 (きせつ)",
+    "back": "Mùa"
+  },
+  {
+    "front": "コメディー",
+    "back": "Hài kịch"
+  },
+  {
+    "front": "ジャズ",
+    "back": "Nhạc jazz"
+  },
+  {
+    "front": "ツアー",
+    "back": "Tour du lịch"
+  },
+  {
+    "front": "どちらも",
+    "back": "Bên nào cũng"
+  },
+  {
+    "front": "近い (ちかい)",
+    "back": "Gần"
+  },
+  {
+    "front": "遠い (とおい)",
+    "back": "Xa"
+  },
+  {
+    "front": "早い (はやい)",
+    "back": "Sớm"
+  },
+  {
+    "front": "広い (ひろい)",
+    "back": "Rộng"
+  },
+  {
+    "front": "いちばん",
+    "back": "Nhất / Số 1"
+  },
+  {
+    "front": "全部 (ぜんぶ)",
+    "back": "Toàn bộ / Tất cả"
+  },
+  {
+    "front": "そうですねえ",
+    "back": "À thì... / Ừ thì..."
+  },
+  {
+    "front": "お好み焼き (おこのみやき)",
+    "back": "Bánh xèo Nhật"
+  },
+  {
+    "front": "すき焼き (すきやき)",
+    "back": "Món nhúng bò"
+  },
+  {
+    "front": "遊びます (あそびます)",
+    "back": "Chơi / Chơi đùa"
+  },
+  {
+    "front": "ぜひ",
+    "back": "Nhất định"
+  },
+  {
+    "front": "まだ",
+    "back": "Vẫn / Chưa"
+  },
+  {
+    "front": "もう",
+    "back": "Đã / Rồi"
+  },
+  {
+    "front": "そうしましょう",
+    "back": "Làm như thế đi"
+  },
+  {
+    "front": "わかりました",
+    "back": "Tôi hiểu rồi"
+  },
+  {
+    "front": "改札 (かいさつ)",
+    "back": "Soát vé"
+  },
+  {
+    "front": "木 (き)",
+    "back": "Cây / Gỗ"
+  },
+  {
+    "front": "交番 (こうばん)",
+    "back": "Đồn cảnh sát"
+  },
+  {
+    "front": "自動販売機 (じどうはんばいき)",
+    "back": "Máy bán hàng tự động"
+  },
+  {
+    "front": "バス停 (バスてい)",
+    "back": "Trạm xe buýt"
+  },
+  {
+    "front": "ポスト",
+    "back": "Thùng thư / Hòm thư"
+  },
+  {
+    "front": "花 (はな)",
+    "back": "Hoa"
+  },
+  {
+    "front": "犬 (いぬ)",
+    "back": "Con chó"
+  },
+  {
+    "front": "間 (あいだ)",
+    "back": "Giữa / Ở giữa"
+  },
+  {
+    "front": "上 (うえ)",
+    "back": "Trên / Bên trên"
+  },
+  {
+    "front": "下 (した)",
+    "back": "Dưới / Phía dưới"
+  },
+  {
+    "front": "近く (ちかく)",
+    "back": "Gần"
+  },
+  {
+    "front": "隣 (となり)",
+    "back": "Bên cạnh"
+  },
+  {
+    "front": "中 (なか)",
+    "back": "Trong / Bên trong"
+  },
+  {
+    "front": "外 (そと)",
+    "back": "Ngoài / Bên ngoài"
+  },
+  {
+    "front": "前 (まえ)",
+    "back": "Trước / Phía trước"
+  },
+  {
+    "front": "後ろ (うしろ)",
+    "back": "Sau / Phía sau"
+  },
+  {
+    "front": "横 (よこ)",
+    "back": "Bên cạnh / Chiều ngang"
+  },
+  {
+    "front": "迎えに行きます (むかえにいきます)",
+    "back": "Đi đón"
+  },
+  {
+    "front": "います (います)",
+    "back": "Có mặt / Có"
+  },
+  {
+    "front": "もしもし",
+    "back": "A lô"
+  },
+  {
+    "front": "いす",
+    "back": "Ghế"
+  },
+  {
+    "front": "テーブル",
+    "back": "Bàn"
+  },
+  {
+    "front": "電子レンジ (でんしレンジ)",
+    "back": "Lò vi sóng"
+  },
+  {
+    "front": "冷蔵庫 (れいぞうこ)",
+    "back": "Tủ lạnh"
+  },
+  {
+    "front": "砂糖 (さとう)",
+    "back": "Đường"
+  },
+  {
+    "front": "塩 (しお)",
+    "back": "Muối"
+  },
+  {
+    "front": "しょうゆ",
+    "back": "Xì dầu"
+  },
+  {
+    "front": "コップ",
+    "back": "Cốc"
+  },
+  {
+    "front": "皿 (さら)",
+    "back": "Đĩa"
+  },
+  {
+    "front": "スプーン",
+    "back": "Thìa / Muỗng"
+  },
+  {
+    "front": "ナイフ",
+    "back": "Dao"
+  },
+  {
+    "front": "フォーク",
+    "back": "Dĩa"
+  },
+  {
+    "front": "はし",
+    "back": "Đũa"
+  },
+  {
+    "front": "漢字 (かんじ)",
+    "back": "Chữ Hán"
+  },
+  {
+    "front": "どれ",
+    "back": "Cái nào"
+  },
+  {
+    "front": "どの",
+    "back": "～ nào"
+  },
+  {
+    "front": "洗います (あらいます)",
+    "back": "Giặt / Rửa / Tắm"
+  },
+  {
+    "front": "置きます (おきます)",
+    "back": "Đặt / Để"
+  },
+  {
+    "front": "書きます (かきます)",
+    "back": "Viết"
+  },
+  {
+    "front": "貸します (かします)",
+    "back": "Cho mượn"
+  },
+  {
+    "front": "切ります (きります)",
+    "back": "Cắt / Gọt"
+  },
+  {
+    "front": "使います (つかいます)",
+    "back": "Dùng / Sử dụng"
+  },
+  {
+    "front": "手伝います (ててだいます)",
+    "back": "Giúp / Giúp đỡ"
+  },
+  {
+    "front": "取ります (とります)",
+    "back": "Cầm / Lấy"
+  },
+  {
+    "front": "持って行きます (もっていきます)",
+    "back": "Mang đi"
+  },
+  {
+    "front": "わかります (わかります)",
+    "back": "Hiểu / Biết"
+  },
+  {
+    "front": "出します (だします)",
+    "back": "Nộp / Lấy ra"
+  },
+  {
+    "front": "入れます (いれます)",
+    "back": "Cho vào / Bỏ vào"
+  },
+  {
+    "front": "教えます (おしえます)",
+    "back": "Dạy / Chỉ bảo"
+  },
+  {
+    "front": "たくさん",
+    "back": "Nhiều"
+  },
+  {
+    "front": "すみませんが",
+    "back": "Xin lỗi..."
+  },
+  {
+    "front": "いいですよ",
+    "back": "Được đấy"
+  },
+  {
+    "front": "歌 (うた)",
+    "back": "Bài hát"
+  },
+  {
+    "front": "ギター",
+    "back": "Đàn ghi ta"
+  },
+  {
+    "front": "台所 (だいどころ)",
+    "back": "Nhà bếp"
+  },
+  {
+    "front": "たばこ",
+    "back": "Thuốc lá"
+  },
+  {
+    "front": "電話 (でんわ)",
+    "back": "Điện thoại"
+  },
+  {
+    "front": "ピザ",
+    "back": "Bánh pizza"
+  },
+  {
+    "front": "窓 (まど)",
+    "back": "Cửa sổ"
+  },
+  {
+    "front": "歌います (うたいます)",
+    "back": "Hát"
+  },
+  {
+    "front": "吸います (すいます)",
+    "back": "Hút"
+  },
+  {
+    "front": "話します (はなします)",
+    "back": "Nói chuyện"
+  },
+  {
+    "front": "弾きます (ひきます)",
+    "back": "Chơi nhạc cụ"
+  },
+  {
+    "front": "持ちます (もちます)",
+    "back": "Cầm / Mang"
+  },
+  {
+    "front": "開けます (あけます)",
+    "back": "Mở"
+  },
+  {
+    "front": "閉めます (しめます)",
+    "back": "Đóng"
+  },
+  {
+    "front": "かけます (かけます)",
+    "back": "Gọi điện thoại"
+  },
+  {
+    "front": "持って来ます (もってきます)",
+    "back": "Mang đến"
+  },
+  {
+    "front": "両親 (りょうしん)",
+    "back": "Bố mẹ"
+  },
+  {
+    "front": "父 (ちち)",
+    "back": "Bố"
+  },
+  {
+    "front": "母 (はは)",
+    "back": "Mẹ"
+  },
+  {
+    "front": "兄弟 (きょうだい)",
+    "back": "Anh chị em"
+  },
+  {
+    "front": "兄 (あに)",
+    "back": "Anh trai"
+  },
+  {
+    "front": "姉 (あね)",
+    "back": "Chị gái"
+  },
+  {
+    "front": "弟 (おとうと)",
+    "back": "Em trai"
+  },
+  {
+    "front": "妹 (いもうと)",
+    "back": "Em gái"
+  },
+  {
+    "front": "夫 (おっと)",
+    "back": "Chồng"
+  },
+  {
+    "front": "妻 (つま)",
+    "back": "Vợ"
+  },
+  {
+    "front": "子ども (こども)",
+    "back": "Con / Trẻ con"
+  },
+  {
+    "front": "息子 (むすこ)",
+    "back": "Con trai"
+  },
+  {
+    "front": "娘 (むすめ)",
+    "back": "Con gái"
+  },
+  {
+    "front": "お父さん (おとうさん)",
+    "back": "Bố"
+  },
+  {
+    "front": "お母さん (おかあさん)",
+    "back": "Mẹ"
+  },
+  {
+    "front": "お兄さん (おにいさん)",
+    "back": "Anh trai"
+  },
+  {
+    "front": "お姉さん (おねえさん)",
+    "back": "Chị gái"
+  },
+  {
+    "front": "弟さん (おとうとさん)",
+    "back": "Em trai"
+  },
+  {
+    "front": "妹さん (いもうとさん)",
+    "back": "Em gái"
+  },
+  {
+    "front": "お子さん (おこさん)",
+    "back": "Con"
+  },
+  {
+    "front": "ペット",
+    "back": "Thú nuôi"
+  },
+  {
+    "front": "猫 (ねこ)",
+    "back": "Con mèo"
+  },
+  {
+    "front": "ピアノ",
+    "back": "Đàn piano"
+  },
+  {
+    "front": "医者 (いしゃ)",
+    "back": "Bác sỹ"
+  },
+  {
+    "front": "高校生 (こうこうせい)",
+    "back": "Học sinh cấp ba"
+  },
+  {
+    "front": "大学生 (だいがくせい)",
+    "back": "Sinh viên đại học"
+  },
+  {
+    "front": "にん",
+    "back": "Người"
+  },
+  {
+    "front": "ひき",
+    "back": "Con"
+  },
+  {
+    "front": "住みます (すみます)",
+    "back": "Sống / Sinh sống"
+  },
+  {
+    "front": "ご主人 (ごしゅじん)",
+    "back": "Chồng"
+  },
+  {
+    "front": "奥さん (おくさん)",
+    "back": "Vợ"
+  },
+  {
+    "front": "先輩 (せんぱい)",
+    "back": "Tiền bối"
+  },
+  {
+    "front": "後輩 (こうはい)",
+    "back": "Hậu bối"
+  },
+  {
+    "front": "うさぎ",
+    "back": "Con thỏ"
+  },
+  {
+    "front": "体 (からだ)",
+    "back": "Thân thể / Cơ thể"
+  },
+  {
+    "front": "足 (あし)",
+    "back": "Chân"
+  },
+  {
+    "front": "顔 (かお)",
+    "back": "Mặt"
+  },
+  {
+    "front": "髪 (かみ)",
+    "back": "Tóc"
+  },
+  {
+    "front": "口 (くち)",
+    "back": "Miệng"
+  },
+  {
+    "front": "鼻 (はな)",
+    "back": "Mũi"
+  },
+  {
+    "front": "目 (め)",
+    "back": "Mắt"
+  },
+  {
+    "front": "耳 (みみ)",
+    "back": "Tai"
+  },
+  {
+    "front": "頭がいい (あたまがいい)",
+    "back": "Thông minh"
+  },
+  {
+    "front": "かっこいい",
+    "back": "Bảnh bao / Đẹp trai"
+  },
+  {
+    "front": "かわいい",
+    "back": "Đáng yêu / Dễ thương"
+  },
+  {
+    "front": "背が高い (せがたかい)",
+    "back": "Cao"
+  },
+  {
+    "front": "長い (ながい)",
+    "back": "Dài"
+  },
+  {
+    "front": "短い (みじかい)",
+    "back": "Ngắn"
+  },
+  {
+    "front": "優しい (やさしい)",
+    "back": "Hiền lành"
+  },
+  {
+    "front": "黒い (くろい)",
+    "back": "Đen"
+  },
+  {
+    "front": "白い (しろい)",
+    "back": "Trắng"
+  },
+  {
+    "front": "茶色い (ちゃいろい)",
+    "back": "Màu nâu"
+  },
+  {
+    "front": "元気 (げんき)",
+    "back": "Khỏe mạnh"
+  },
+  {
+    "front": "親切 (しんせつ)",
+    "back": "Tốt bụng"
+  },
+  {
+    "front": "まじめ",
+    "back": "Chăm chỉ / Cần mẫn"
+  },
+  {
+    "front": "上手 (じょうず)",
+    "back": "Giỏi"
+  },
+  {
+    "front": "下手 (へた)",
+    "back": "Kém"
+  },
+  {
+    "front": "カード",
+    "back": "Thẻ / Thiệp"
+  },
+  {
+    "front": "傘 (かさ)",
+    "back": "Ô"
+  },
+  {
+    "front": "金 (かね)",
+    "back": "Tiền"
+  },
+  {
+    "front": "靴下 (くつした)",
+    "back": "Đôi tất"
+  },
+  {
+    "front": "辞書 (じしょ)",
+    "back": "Từ điển"
+  },
+  {
+    "front": "チョコレート",
+    "back": "Sô cô la"
+  },
+  {
+    "front": "手紙 (てがみ)",
+    "back": "Thư"
+  },
+  {
+    "front": "ネックレス",
+    "back": "Vòng cổ"
+  },
+  {
+    "front": "ノート",
+    "back": "Vở"
+  },
+  {
+    "front": "プレゼント",
+    "back": "Quà / Món quà"
+  },
+  {
+    "front": "メール",
+    "back": "Thư điện tử"
+  },
+  {
+    "front": "祖母 (そぼ)",
+    "back": "Bà"
+  },
+  {
+    "front": "クリスマス",
+    "back": "Giáng sinh"
+  },
+  {
+    "front": "結婚式 (けっこんしき)",
+    "back": "Lễ cưới"
+  },
+  {
+    "front": "バレンタインデー",
+    "back": "Ngày tình nhân"
+  },
+  {
+    "front": "何か (なにか)",
+    "back": "Cái gì đó"
+  },
+  {
+    "front": "送ります (おくります)",
+    "back": "Gửi / Tiễn"
+  },
+  {
+    "front": "もらいます (もらいます)",
+    "back": "Nhận"
+  },
+  {
+    "front": "あげます (あげる)",
+    "back": "Tặng / Biếu"
+  },
+  {
+    "front": "くれます (くれる)",
+    "back": "Cho mình"
+  },
+  {
+    "front": "電話します (でんわします)",
+    "back": "Gọi điện thoại"
+  },
+  {
+    "front": "もうすぐ",
+    "back": "Sắp / Sắp sửa"
+  },
+  {
+    "front": "よかったですね",
+    "back": "Tốt quá nhỉ"
+  },
+  {
+    "front": "アクション",
+    "back": "Hành động"
+  },
+  {
+    "front": "菓子 (かし)",
+    "back": "Bánh kẹo"
+  },
+  {
+    "front": "切手 (きって)",
+    "back": "Tem"
+  },
+  {
+    "front": "クラシック",
+    "back": "Nhạc cổ điển"
+  },
+  {
+    "front": "ポップス",
+    "back": "Nhạc Pop"
+  },
+  {
+    "front": "小説 (しょうせつ)",
+    "back": "Tiểu thuyết"
+  },
+  {
+    "front": "漫画 (まんが)",
+    "back": "Truyện tranh"
+  },
+  {
+    "front": "釣り (つり)",
+    "back": "Câu cá"
+  },
+  {
+    "front": "ドラマ",
+    "back": "Phim truyền hình"
+  },
+  {
+    "front": "プール",
+    "back": "Bể bơi"
+  },
+  {
+    "front": "最近 (さいきん)",
+    "back": "Gần đây"
+  },
+  {
+    "front": "週間 (しゅうかん)",
+    "back": "Tuần"
+  },
+  {
+    "front": "か月 (かげつ)",
+    "back": "Tháng"
+  },
+  {
+    "front": "年 (ねん)",
+    "back": "Năm"
+  },
+  {
+    "front": "回 (かい)",
+    "back": "Lần"
+  },
+  {
+    "front": "冊 (さつ)",
+    "back": "Quyển"
+  },
+  {
+    "front": "杯 (はい)",
+    "back": "Ly / Cốc"
+  },
+  {
+    "front": "本 (ほん)",
+    "back": "Cái / Chiếc / Cây"
+  },
+  {
+    "front": "料理 (りょうり)",
+    "back": "Món..."
+  },
+  {
+    "front": "泳ぎます (およぎます)",
+    "back": "Bơi"
+  },
+  {
+    "front": "描きます (かきます)",
+    "back": "Vẽ / Tả"
+  },
+  {
+    "front": "集めます (あつめます)",
+    "back": "Thu thập / Tập hợp"
+  },
+  {
+    "front": "運転します (うんてんします)",
+    "back": "Lái xe"
+  },
+  {
+    "front": "特に (とくに)",
+    "back": "Đặc biệt"
+  },
+  {
+    "front": "いつも",
+    "back": "Luôn luôn"
+  },
+  {
+    "front": "よく",
+    "back": "Thường / Hay / Rất"
+  },
+  {
+    "front": "ときどき",
+    "back": "Thỉnh thoảng"
+  },
+  {
+    "front": "全然 (ぜんぜん)",
+    "back": "Hoàn toàn không"
+  },
+  {
+    "front": "でも",
+    "back": "Nhưng / Tuy nhiên"
+  },
+  {
+    "front": "だけ",
+    "back": "Chỉ"
+  },
+  {
+    "front": "イベント",
+    "back": "Sự kiện"
+  },
+  {
+    "front": "コンテスト",
+    "back": "Cuộc thi"
+  },
+  {
+    "front": "書道 (しょどう)",
+    "back": "Thư pháp"
+  },
+  {
+    "front": "ダイビング",
+    "back": "Sự lặn"
+  },
+  {
+    "front": "ダンス",
+    "back": "Khiêu vũ"
+  },
+  {
+    "front": "クラブ",
+    "back": "Câu lạc bộ..."
+  },
+  {
+    "front": "教室 (きょうしつ)",
+    "back": "Lớp học..."
+  },
+  {
+    "front": "習います (ならいます)",
+    "back": "Học"
+  },
+  {
+    "front": "乗ります (のります)",
+    "back": "Lên xe"
+  },
+  {
+    "front": "申し込みます (もうしこみます)",
+    "back": "Đăng ký"
+  },
+  {
+    "front": "できます (できる)",
+    "back": "Có thể"
+  },
+  {
+    "front": "参加します (さんかします)",
+    "back": "Tham gia"
+  },
+  {
+    "front": "すごい",
+    "back": "Tuyệt vời / Kinh khủng"
+  },
+  {
+    "front": "いろいろ",
+    "back": "Nhiều / Đa dạng"
+  },
+  {
+    "front": "上手に (じょうずに)",
+    "back": "Thành thạo"
+  },
+  {
+    "front": "受付 (うけつけ)",
+    "back": "Quầy lễ tân"
+  },
+  {
+    "front": "外国人登録証 (がいこくじんとうろくしょう)",
+    "back": "Chứng nhận người nước ngoài"
+  },
+  {
+    "front": "住所 (じゅうしょ)",
+    "back": "Địa chỉ"
+  },
+  {
+    "front": "宿題 (しゅくだい)",
+    "back": "Bài tập về nhà"
+  },
+  {
+    "front": "電話番号 (でんわばんごう)",
+    "back": "Số điện thoại"
+  },
+  {
+    "front": "番 (ばん)",
+    "back": "Số"
+  },
+  {
+    "front": "言います (いいます)",
+    "back": "Nói"
+  },
+  {
+    "front": "払います (はらいます)",
+    "back": "Trả / Chi trả"
+  },
+  {
+    "front": "降ります (おります)",
+    "back": "Xuống xe"
+  },
+  {
+    "front": "見せます (みせます)",
+    "back": "Cho xem"
+  },
+  {
+    "front": "予約します (よやくします)",
+    "back": "Đặt trước"
+  },
+  {
+    "front": "どうやって",
+    "back": "Làm thế nào"
+  },
+  {
+    "front": "音 (おと)",
+    "back": "Âm thanh"
+  },
+  {
+    "front": "声 (こえ)",
+    "back": "Giọng nói"
+  },
+  {
+    "front": "薬 (くすり)",
+    "back": "Thuốc"
+  },
+  {
+    "front": "右 (みぎ)",
+    "back": "Bên phải"
+  },
+  {
+    "front": "左 (ひだり)",
+    "back": "Bên trái"
+  },
+  {
+    "front": "角 (かど)",
+    "back": "Góc đường"
+  },
+  {
+    "front": "交差点 (こうさてん)",
+    "back": "Ngã tư"
+  },
+  {
+    "front": "信号 (しんごう)",
+    "back": "Đèn giao thông"
+  },
+  {
+    "front": "橋 (はし)",
+    "back": "Cầu"
+  },
+  {
+    "front": "道 (みち)",
+    "back": "Đường"
+  },
+  {
+    "front": "つ目 (つめ)",
+    "back": "Thứ..."
+  },
+  {
+    "front": "探します (さがします)",
+    "back": "Tìm kiếm"
+  },
+  {
+    "front": "曲がります (まがります)",
+    "back": "Rẽ / Quẹo"
+  },
+  {
+    "front": "渡ります (わたります)",
+    "back": "Qua / Băng qua"
+  },
+  {
+    "front": "聞こえます (きこえます)",
+    "back": "Nghe thấy"
+  },
+  {
+    "front": "見えます (みえます)",
+    "back": "Nhìn thấy"
+  },
+  {
+    "front": "まっすぐ",
+    "back": "Thẳng"
+  },
+  {
+    "front": "ちょっと",
+    "back": "Một chút"
+  },
+  {
+    "front": "ええと",
+    "back": "À / Ờ"
+  },
+  {
+    "front": "カーテン",
+    "back": "Rèm"
+  },
+  {
+    "front": "客 (きゃく)",
+    "back": "Khách"
+  },
+  {
+    "front": "ごみ",
+    "back": "Rác"
+  },
+  {
+    "front": "手 (て)",
+    "back": "Tay"
+  },
+  {
+    "front": "荷物 (にもつ)",
+    "back": "Hành lý / Bưu phẩm"
+  },
+  {
+    "front": "パンフレット",
+    "back": "Tờ rơi"
+  },
+  {
+    "front": "他 (ほか)",
+    "back": "Khác"
+  },
+  {
+    "front": "皆さん (みなさん)",
+    "back": "Mọi người"
+  },
+  {
+    "front": "土産 (おみやげ)",
+    "back": "Quà lưu niệm"
+  },
+  {
+    "front": "押します (おします)",
+    "back": "Ấn / Đẩy"
+  },
+  {
+    "front": "座ります (すわります)",
+    "back": "Ngồi"
+  },
+  {
+    "front": "立ちます (たちます)",
+    "back": "Đứng"
+  },
+  {
+    "front": "なくします (なくす)",
+    "back": "Làm mất"
+  },
+  {
+    "front": "持って帰ります (もってかえります)",
+    "back": "Mang về"
+  },
+  {
+    "front": "遅れます (おくれます)",
+    "back": "Muộn / Chậm trễ"
+  },
+  {
+    "front": "捨てます (すてます)",
+    "back": "Vứt / Vứt bỏ"
+  },
+  {
+    "front": "集合します (しゅうごうします)",
+    "back": "Tập trung"
+  },
+  {
+    "front": "危ない (あぶない)",
+    "back": "Nguy hiểm"
+  },
+  {
+    "front": "大切 (たいせつ)",
+    "back": "Quan trọng / Quý giá"
+  },
+  {
+    "front": "迷惑 (めいわく)",
+    "back": "Phiền phức"
+  },
+  {
+    "front": "動物園 (どうぶつえん)",
+    "back": "Vườn bách thú"
+  },
+  {
+    "front": "クマ",
+    "back": "Con gấu"
+  },
+  {
+    "front": "コアラ",
+    "back": "Con gấu Koala"
+  },
+  {
+    "front": "サル",
+    "back": "Con khỉ"
+  },
+  {
+    "front": "ゾウ",
+    "back": "Con voi"
+  },
+  {
+    "front": "鳥 (とり)",
+    "back": "Con chim"
+  },
+  {
+    "front": "パンダ",
+    "back": "Con gấu trúc"
+  },
+  {
+    "front": "ペンギン",
+    "back": "Chim cánh cụt"
+  },
+  {
+    "front": "入り口 (いりぐち)",
+    "back": "Cửa vào"
+  },
+  {
+    "front": "出口 (でぐち)",
+    "back": "Cửa ra"
+  },
+  {
+    "front": "えさ",
+    "back": "Mồi / Thức ăn động vật"
+  },
+  {
+    "front": "おなか",
+    "back": "Bụng"
+  },
+  {
+    "front": "観覧車 (かんらんしゃ)",
+    "back": "Vòng đu quay"
+  },
+  {
+    "front": "バナナ",
+    "back": "Chuối"
+  },
+  {
+    "front": "ボール",
+    "back": "Bóng"
+  },
+  {
+    "front": "たち",
+    "back": "Các / Bọn"
+  },
+  {
+    "front": "歩きます (あるきます)",
+    "back": "Đi bộ"
+  },
+  {
+    "front": "飛びます (とびます)",
+    "back": "Bay"
+  },
+  {
+    "front": "なります (なる)",
+    "back": "Trở nên / Trở thành"
+  },
+  {
+    "front": "休みます (やすみます)",
+    "back": "Nghỉ"
+  },
+  {
+    "front": "やります (やる)",
+    "back": "Cho / Làm"
+  },
+  {
+    "front": "おなかがすきます (すく)",
+    "back": "Đói"
+  },
+  {
+    "front": "のどがかわきます (かわく)",
+    "back": "Khát"
+  },
+  {
+    "front": "疲れます (つかれます)",
+    "back": "Mệt"
+  },
+  {
+    "front": "痛い (いたい)",
+    "back": "Đau"
+  },
+  {
+    "front": "暗い (くらい)",
+    "back": "Tối"
+  },
+  {
+    "front": "そろそろ",
+    "back": "Đến lúc phải / Sắp"
+  },
+  {
+    "front": "本当だ (ほんとうだ)",
+    "back": "Đúng thế thật"
+  },
+  {
+    "front": "頭 (あたま)",
+    "back": "Đầu"
+  },
+  {
+    "front": "会話 (かいわ)",
+    "back": "Hội thoại"
+  },
+  {
+    "front": "作文 (さくぶん)",
+    "back": "Tập làm văn"
+  },
+  {
+    "front": "クラスメイト",
+    "back": "Bạn cùng lớp"
+  },
+  {
+    "front": "雑誌 (ざっし)",
+    "back": "Tạp chí"
+  },
+  {
+    "front": "ジョギング",
+    "back": "Chạy bộ"
+  },
+  {
+    "front": "生活 (せいかつ)",
+    "back": "Cuộc sống / Sinh hoạt"
+  },
+  {
+    "front": "店長 (てんちょう)",
+    "back": "Chủ cửa hàng"
+  },
+  {
+    "front": "日記 (にっき)",
+    "back": "Nhật kí"
+  },
+  {
+    "front": "初め (はじめ)",
+    "back": "Đầu / Ban đầu"
+  },
+  {
+    "front": "一人暮らし (ひとりぐらし)",
+    "back": "Sống một mình"
+  },
+  {
+    "front": "ひらがな",
+    "back": "Chữ Hiragana"
+  },
+  {
+    "front": "平日 (へいじつ)",
+    "back": "Ngày thường"
+  },
+  {
+    "front": "毎週 (まいしゅう)",
+    "back": "Hàng tuần"
+  },
+  {
+    "front": "終わります (おわります)",
+    "back": "Kết thúc"
+  },
+  {
+    "front": "通います (かよいます)",
+    "back": "Đi học / Đi làm"
+  },
+  {
+    "front": "ひきます (ひく)",
+    "back": "Bị cảm"
+  },
+  {
+    "front": "慣れます (なれます)",
+    "back": "Quen"
+  },
+  {
+    "front": "忘れます (わすれます)",
+    "back": "Quên"
+  },
+  {
+    "front": "散歩します (さんぽします)",
+    "back": "Đi dạo"
+  },
+  {
+    "front": "寂しい (さびしい)",
+    "back": "Buồn / Cô đơn"
+  },
+  {
+    "front": "眠い (ねむい)",
+    "back": "Buồn ngủ"
+  },
+  {
+    "front": "たいてい",
+    "back": "Đại khái / Đại để"
+  },
+  {
+    "front": "なかなか",
+    "back": "Mãi mà"
+  },
+  {
+    "front": "ええ",
+    "back": "Ừ / Vâng"
+  },
+  {
+    "front": "オリンピック",
+    "back": "Olympic"
+  },
+  {
+    "front": "外国 (がいこく)",
+    "back": "Nước ngoài"
+  },
+  {
+    "front": "小学生 (しょうがくせい)",
+    "back": "Học sinh cấp 1"
+  },
+  {
+    "front": "中学生 (ちゅうがくせい)",
+    "back": "Học sinh cấp 2"
+  },
+  {
+    "front": "選手 (せんしゅ)",
+    "back": "Tuyển thủ / Cầu thủ"
+  },
+  {
+    "front": "祖父 (そふ)",
+    "back": "Ông"
+  },
+  {
+    "front": "始めます (はじめます)",
+    "back": "Bắt đầu"
+  },
+  {
+    "front": "別れます (わかれます)",
+    "back": "Chia tay"
+  },
+  {
+    "front": "卒業します (そつきょうします)",
+    "back": "Tốt nghiệp"
+  },
+  {
+    "front": "入学します (にゅうがくします)",
+    "back": "Nhập học"
+  },
+  {
+    "front": "だんだん",
+    "back": "Dần dần"
+  },
+  {
+    "front": "初めて (はじめて)",
+    "back": "Lần đầu tiên"
+  },
+  {
+    "front": "それで",
+    "back": "Vì thế / Vì vậy"
+  },
+  {
+    "front": "エアコン",
+    "back": "Điều hòa"
+  },
+  {
+    "front": "ニュース",
+    "back": "Tin tức"
+  },
+  {
+    "front": "消します (けします)",
+    "back": "Tắt"
+  },
+  {
+    "front": "つけます (つける)",
+    "back": "Bật"
+  },
+  {
+    "front": "引越しします (ひっこしします)",
+    "back": "Chuyển nhà"
+  },
+  {
+    "front": "うん",
+    "back": "Vâng / Dạ"
+  },
+  {
+    "front": "ううん",
+    "back": "Không"
+  },
+  {
+    "front": "ごめん",
+    "back": "Xin lỗi"
+  },
+  {
+    "front": "そっか",
+    "back": "Thế à"
+  },
+  {
+    "front": "また",
+    "back": "Lại"
+  },
+  {
+    "front": "けが",
+    "back": "Vết thương"
+  },
+  {
+    "front": "食欲 (しょくよく)",
+    "back": "Sự thèm ăn"
+  },
+  {
+    "front": "調子 (ちょうし)",
+    "back": "Tình trạng sức khỏe"
+  },
+  {
+    "front": "熱 (ねつ)",
+    "back": "Sốt / Nhiệt độ"
+  },
+  {
+    "front": "病気 (びょうき)",
+    "back": "Bệnh / Ốm"
+  },
+  {
+    "front": "のど",
+    "back": "Họng"
+  },
+  {
+    "front": "歯 (は)",
+    "back": "Răng"
+  },
+  {
+    "front": "飲み会 (のみかい)",
+    "back": "Bữa nhậu"
+  },
+  {
+    "front": "度 (ど)",
+    "back": "Độ"
+  },
+  {
+    "front": "治ります (なおります)",
+    "back": "Khỏi"
+  },
+  {
+    "front": "悪い (わるい)",
+    "back": "Xấu / Tồi"
+  },
+  {
+    "front": "気持ちが悪い (きもちがわるい)",
+    "back": "Khó chịu"
+  },
+  {
+    "front": "大丈夫 (だいじょうぶ)",
+    "back": "Ổn / Không sao"
+  },
+  {
+    "front": "早く (はやく)",
+    "back": "Sớm"
+  },
+  {
+    "front": "おかげさまで",
+    "back": "Ơn trời / Nhờ trời"
+  },
+  {
+    "front": "お大事に (おだいじに)",
+    "back": "Chúc chóng khỏe"
+  },
+  {
+    "front": "シャワー",
+    "back": "Vòi hoa sen"
+  },
+  {
+    "front": "睡眠 (すいみん)",
+    "back": "Giấc ngủ"
+  },
+  {
+    "front": "歯医者 (はいしゃ)",
+    "back": "Nha sĩ"
+  },
+  {
+    "front": "やけど",
+    "back": "Bỏng"
+  },
+  {
+    "front": "こと",
+    "back": "Việc"
+  },
+  {
+    "front": "もの",
+    "back": "Vật / Đồ vật"
+  },
+  {
+    "front": "以上 (いじょう)",
+    "back": "Trên / Hơn"
+  },
+  {
+    "front": "塗ります (ぬります)",
+    "back": "Sơn / Bôi"
+  },
+  {
+    "front": "浴びます (あびます)",
+    "back": "Tắm"
+  },
+  {
+    "front": "出かけます (でかけます)",
+    "back": "Đi ra ngoài"
+  },
+  {
+    "front": "運動します (うんどうします)",
+    "back": "Tập thể dục"
+  },
+  {
+    "front": "固い (かたい)",
+    "back": "Cứng"
+  },
+  {
+    "front": "柔らかい (やわらかい)",
+    "back": "Mềm"
+  },
+  {
+    "front": "体にいい (からだにいい)",
+    "back": "Tốt cho sức khỏe"
+  },
+  {
+    "front": "自分で (じぶんで)",
+    "back": "Tự mình"
+  },
+  {
+    "front": "できるだけ",
+    "back": "Cố gắng hết sức"
+  },
+  {
+    "front": "ゆっくり",
+    "back": "Thong thả / Từ từ"
+  },
+  {
+    "front": "薬剤師 (やくざいし)",
+    "back": "Dược sĩ"
+  },
+  {
+    "front": "上着 (うわぎ)",
+    "back": "Áo khoác"
+  },
+  {
+    "front": "コンタクトレンズ",
+    "back": "Kính áp tròng"
+  },
+  {
+    "front": "説明書 (せつめいしょ)",
+    "back": "Sách hướng dẫn"
+  },
+  {
+    "front": "風呂 (ふろ)",
+    "back": "Bồn tắm"
+  },
+  {
+    "front": "保険証 (ほけんしょう)",
+    "back": "Thẻ bảo hiểm"
+  },
+  {
+    "front": "待合室 (まちあいしつ)",
+    "back": "Phòng chờ"
+  },
+  {
+    "front": "薬局 (やっきょく)",
+    "back": "Hiệu thuốc"
+  },
+  {
+    "front": "脱ぎます (ぬぎます)",
+    "back": "Cởi"
+  },
+  {
+    "front": "走ります (はしります)",
+    "back": "Chạy"
+  },
+  {
+    "front": "待ちます (まちます)",
+    "back": "Đợi / Chờ"
+  },
+  {
+    "front": "磨きます (みがきます)",
+    "back": "Đánh răng / Giày"
+  },
+  {
+    "front": "横になります (よこになります)",
+    "back": "Nằm"
+  },
+  {
+    "front": "準備します (じゅんびします)",
+    "back": "Chuẩn bị"
+  },
+  {
+    "front": "かゆい",
+    "back": "Ngứa"
+  },
+  {
+    "front": "紅葉 (こうよう)",
+    "back": "Lá đỏ"
+  },
+  {
+    "front": "サービス",
+    "back": "Dịch vụ"
+  },
+  {
+    "front": "相撲 (すもう)",
+    "back": "Vật Sumo"
+  },
+  {
+    "front": "ホテル",
+    "back": "Khách sạn"
+  },
+  {
+    "front": "知ります (しります)",
+    "back": "Biết"
+  },
+  {
+    "front": "デートします (デートします)",
+    "back": "Hẹn hò"
+  },
+  {
+    "front": "男の人 (おとこのひと)",
+    "back": "Đàn ông"
+  },
+  {
+    "front": "女の人 (おんなのひと)",
+    "back": "Phụ nữ"
+  },
+  {
+    "front": "店 (みせ)",
+    "back": "Cửa hàng"
+  },
+  {
+    "front": "遊園地 (ゆうえんち)",
+    "back": "Khu vui chơi"
+  },
+  {
+    "front": "ジェットコースター",
+    "back": "Tàu lượn"
+  },
+  {
+    "front": "電気製品 (でんきせいひん)",
+    "back": "Đồ điện"
+  },
+  {
+    "front": "サングラス",
+    "back": "Kính mát"
+  },
+  {
+    "front": "眼鏡 (めがね)",
+    "back": "Kính"
+  },
+  {
+    "front": "シャツ",
+    "back": "Áo sơ mi"
+  },
+  {
+    "front": "スカート",
+    "back": "Váy"
+  },
+  {
+    "front": "ネクタイ",
+    "back": "Cà vạt"
+  },
+  {
+    "front": "帽子 (ぼうし)",
+    "back": "Mũ"
+  },
+  {
+    "front": "人気 (にんき)",
+    "back": "Được yêu thích"
+  },
+  {
+    "front": "売ります (うります)",
+    "back": "Bán"
+  },
+  {
+    "front": "かぶります (かぶる)",
+    "back": "Đội mũ"
+  },
+  {
+    "front": "泊まります (とまります)",
+    "back": "Trọ lại / Nghỉ lại"
+  },
+  {
+    "front": "はきます (はく)",
+    "back": "Đi giày / Mặc quần"
+  },
+  {
+    "front": "着ます (きます)",
+    "back": "Mặc áo"
+  },
+  {
+    "front": "青い (あおい)",
+    "back": "Xanh"
+  },
+  {
+    "front": "赤い (あかい)",
+    "back": "Đỏ"
+  },
+  {
+    "front": "黄色い (きいろい)",
+    "back": "Vàng"
+  },
+  {
+    "front": "若い (わかい)",
+    "back": "Trẻ"
+  },
+  {
+    "front": "新鮮 (しんせん)",
+    "back": "Tươi / Mới"
+  },
+  {
+    "front": "材料 (ざいりょう)",
+    "back": "Nguyên liệu / Vật liệu"
+  },
+  {
+    "front": "場所 (ばしょ)",
+    "back": "Địa điểm"
+  },
+  {
+    "front": "バスケットボール",
+    "back": "Bóng rổ"
+  },
+  {
+    "front": "浴衣 (ゆかた)",
+    "back": "Áo Yukata"
+  },
+  {
+    "front": "どこか",
+    "back": "Chỗ nào đó"
+  },
+  {
+    "front": "練習します (れんしゅうします)",
+    "back": "Luyện tập"
+  },
+  {
+    "front": "みんなで",
+    "back": "Tất cả mọi người cùng"
+  },
+  {
+    "front": "うどん",
+    "back": "Mỳ udon"
+  },
+  {
+    "front": "そば",
+    "back": "Mỳ soba"
+  },
+  {
+    "front": "カイロ",
+    "back": "Túi sưởi bỏ túi"
+  },
+  {
+    "front": "こたつ",
+    "back": "Bàn sưởi"
+  },
+  {
+    "front": "字 (じ)",
+    "back": "Chữ"
+  },
+  {
+    "front": "食券 (しょっけん)",
+    "back": "Phiếu ăn"
+  },
+  {
+    "front": "お釣り (おつり)",
+    "back": "Tiền thừa"
+  },
+  {
+    "front": "電気 (でんき)",
+    "back": "Điện / Đèn"
+  },
+  {
+    "front": "ドア",
+    "back": "Cửa ra vào"
+  },
+  {
+    "front": "唐辛子 (とうがらし)",
+    "back": "Ớt"
+  },
+  {
+    "front": "風鈴 (ふうりん)",
+    "back": "Chuông gió"
+  },
+  {
+    "front": "布団 (ふとん)",
+    "back": "Chăn"
+  },
+  {
+    "front": "ポケット",
+    "back": "Túi quần / Áo"
+  },
+  {
+    "front": "ボタン",
+    "back": "Nút bấm / Khuy áo"
+  },
+  {
+    "front": "湯 (ゆ)",
+    "back": "Nước nóng"
+  },
+  {
+    "front": "湯たんぽ (ゆたんぽ)",
+    "back": "Túi chườm"
+  },
+  {
+    "front": "レバー",
+    "back": "Cần gạt"
+  },
+  {
+    "front": "開きます (あきます)",
+    "back": "Mở"
+  },
+  {
+    "front": "触ります (さわります)",
+    "back": "Sờ / Chạm"
+  },
+  {
+    "front": "つきます (つく)",
+    "back": "Bật / Sáng"
+  },
+  {
+    "front": "回します (まわします)",
+    "back": "Xoay / Quay"
+  },
+  {
+    "front": "出ます (でます)",
+    "back": "Chảy ra / Chạy ra"
+  },
+  {
+    "front": "あれ",
+    "back": "Ơ / Gì vậy nhỉ"
+  },
+  {
+    "front": "いただきます",
+    "back": "Xin mời"
+  },
+  {
+    "front": "ごちそうさまでした",
+    "back": "Cảm ơn vì bữa ăn ngon"
+  },
+  {
+    "front": "以下 (いか)",
+    "back": "Dưới đây"
+  },
+  {
+    "front": "玄関 (げんかん)",
+    "back": "Hiên nhà / Sảnh"
+  },
+  {
+    "front": "シートベルト",
+    "back": "Dây an toàn"
+  },
+  {
+    "front": "制服 (せいふく)",
+    "back": "Đồng phục"
+  },
+  {
+    "front": "バイク",
+    "back": "Xe máy"
+  },
+  {
+    "front": "ヘルメット",
+    "back": "Mũ bảo hiểm"
+  },
+  {
+    "front": "パスポート",
+    "back": "Hộ chiếu"
+  },
+  {
+    "front": "身分証 (みぶんしょう)",
+    "back": "Chứng minh thư"
+  },
+  {
+    "front": "料金 (りょうきん)",
+    "back": "Phí / Cước"
+  },
+  {
+    "front": "入場料 (にゅうじょうりょう)",
+    "back": "Phí vào cửa"
+  },
+  {
+    "front": "並びます (ならびます)",
+    "back": "Xếp hàng"
+  },
+  {
+    "front": "止めます (とめます)",
+    "back": "Dừng / Đỗ"
+  },
+  {
+    "front": "分けます (わけます)",
+    "back": "Chia"
+  },
+  {
+    "front": "きちんと",
+    "back": "Chỉnh chu / Cẩn thận"
+  },
+  {
+    "front": "そうなんですか",
+    "back": "Vậy à"
+  },
+  {
+    "front": "ほら",
+    "back": "Này nhìn này"
+  },
+  {
+    "front": "田舎 (いなか)",
+    "back": "Quê / Nông thôn"
+  },
+  {
+    "front": "都会 (とかい)",
+    "back": "Thành thị"
+  },
+  {
+    "front": "空気 (くくき)",
+    "back": "Không khí"
+  },
+  {
+    "front": "交通 (こうつう)",
+    "back": "Giao thông"
+  },
+  {
+    "front": "時給 (じきゅう)",
+    "back": "Lương theo giờ"
+  },
+  {
+    "front": "自由 (じゆう)",
+    "back": "Tự do"
+  },
+  {
+    "front": "デザイン",
+    "back": "Thiết kế"
+  },
+  {
+    "front": "番組 (ばんぐみ)",
+    "back": "Chương trình"
+  },
+  {
+    "front": "ファストフード",
+    "back": "Đồ ăn nhanh"
+  },
+  {
+    "front": "ファッション",
+    "back": "Thời trang"
+  },
+  {
+    "front": "フリープラン",
+    "back": "Tour tự do"
+  },
+  {
+    "front": "思います (おもいます)",
+    "back": "Nghĩ rằng"
+  },
+  {
+    "front": "化粧します (けしょうします)",
+    "back": "Trang điểm"
+  },
+  {
+    "front": "経験します (けえけんします)",
+    "back": "Trải nghiệm"
+  },
+  {
+    "front": "うるさい",
+    "back": "Ầm ĩ / Ồn ào"
+  },
+  {
+    "front": "おしゃれ (おしゃれ)",
+    "back": "Ăn diện / Hợp thời trang"
+  },
+  {
+    "front": "複雑 (ふくざつ)",
+    "back": "Phức tạp"
+  },
+  {
+    "front": "便利 (べんり)",
+    "back": "Tiện lợi"
+  },
+  {
+    "front": "不便 (ふべん)",
+    "back": "Bất tiện"
+  },
+  {
+    "front": "いつでも",
+    "back": "Bất cứ khi nào"
+  },
+  {
+    "front": "うーん",
+    "back": "Ừ thì..."
+  },
+  {
+    "front": "について",
+    "back": "Về..."
+  },
+  {
+    "front": "ガラス",
+    "back": "Kính / Cốc thủy tinh"
+  },
+  {
+    "front": "曇り (くもり)",
+    "back": "Trời nhiều mây"
+  },
+  {
+    "front": "台風 (たいふう)",
+    "back": "Bão"
+  },
+  {
+    "front": "地震 (じしん)",
+    "back": "Động đất"
+  },
+  {
+    "front": "事故 (じこ)",
+    "back": "Sự cố / Tai nạn"
+  },
+  {
+    "front": "大会 (たいかい)",
+    "back": "Đại hội"
+  },
+  {
+    "front": "チーム",
+    "back": "Đội"
+  },
+  {
+    "front": "中止 (ちゅうし)",
+    "back": "Hoãn / Dừng"
+  },
+  {
+    "front": "フリーマーケット",
+    "back": "Chợ trời"
+  },
+  {
+    "front": "本当 (ほんとう)",
+    "back": "Sự thật"
+  },
+  {
+    "front": "昔 (むかし)",
+    "back": "Ngày xưa"
+  },
+  {
+    "front": "無料 (むりょう)",
+    "back": "Miễn phí"
+  },
+  {
+    "front": "夕方 (ゆうがた)",
+    "back": "Chiều tối"
+  },
+  {
+    "front": "死にます (しにます)",
+    "back": "Chết"
+  },
+  {
+    "front": "亡くなります (なくなります)",
+    "back": "Mất / Hết"
+  },
+  {
+    "front": "止まります (とまります)",
+    "back": "Dừng"
+  },
+  {
+    "front": "始まります (はじまります)",
+    "back": "Bắt đầu"
+  },
+  {
+    "front": "降ります (ふります)",
+    "back": "Rơi"
+  },
+  {
+    "front": "勝ちます (かちます)",
+    "back": "Thắng"
+  },
+  {
+    "front": "負けます (まけます)",
+    "back": "Thua"
+  },
+  {
+    "front": "倒れます (たおれます)",
+    "back": "Đổ"
+  },
+  {
+    "front": "割れます (われます)",
+    "back": "Vỡ"
+  },
+  {
+    "front": "結婚します (けっこんします)",
+    "back": "Kết hôn"
+  },
+  {
+    "front": "入院します (にゅういんします)",
+    "back": "Nhập viện"
+  },
+  {
+    "front": "怖い (こわい)",
+    "back": "Đáng sợ / Sợ"
+  },
+  {
+    "front": "心配 (しんぱい)",
+    "back": "Lo lắng"
+  },
+  {
+    "front": "風 (かぜ)",
+    "back": "Gió"
+  },
+  {
+    "front": "ストラップ",
+    "back": "Dây đeo điện thoại"
+  },
+  {
+    "front": "席 (せき)",
+    "back": "Chỗ ngồi"
+  },
+  {
+    "front": "急ぎます (いそぎます)",
+    "back": "Vội vàng"
+  },
+  {
+    "front": "混みます (こみます)",
+    "back": "Đông"
+  },
+  {
+    "front": "間に合います (まにあいます)",
+    "back": "Kịp"
+  },
+  {
+    "front": "やみます (やむ)",
+    "back": "Tạnh mưa"
+  },
+  {
+    "front": "晴れます (はれます)",
+    "back": "Trời nắng ấm"
+  },
+  {
+    "front": "パーセント",
+    "back": "Phần trăm"
+  },
+  {
+    "front": "引き (びき)",
+    "back": "Giảm giá"
+  },
+  {
+    "front": "強い (つよい)",
+    "back": "Mạnh"
+  },
+  {
+    "front": "きっと",
+    "back": "Chắc chắn"
+  },
+  {
+    "front": "たぶん",
+    "back": "Có lẽ"
+  },
+  {
+    "front": "もし",
+    "back": "Nếu"
+  },
+  {
+    "front": "集まります (あつまります)",
+    "back": "Tập trung / Tụ họp"
+  },
+  {
+    "front": "閉まります (しまります)",
+    "back": "Đóng"
+  },
+  {
+    "front": "すきます (すく)",
+    "back": "Vắng / Rỗng"
+  },
+  {
+    "front": "落ちます (おちます)",
+    "back": "Rơi"
+  },
+  {
+    "front": "消えます (きえます)",
+    "back": "Tắt / Biến mất"
+  },
+  {
+    "front": "壊れます (こわれます)",
+    "back": "Hỏng"
+  },
+  {
+    "front": "汚れます (よgofuremasu)",
+    "back": "Bẩn / Vấy bẩn"
+  }
+]

@@ -1,0 +1,1046 @@
+Phía Bắc
+きた
+
+
+Phía Nam
+みなみ
+
+
+Phía Đông
+ひがし
+
+
+Phía Tây
+にし
+
+
+Chính giữa
+まんなか
+
+
+Ô tô
+くるま
+
+
+Tàu cao tốc
+しんかんせん
+
+
+Tàu điện
+でんしゃ
+
+
+Máy bay
+ひこうき
+
+
+Nhà ga
+えき
+
+
+Thành phố, thị trấn
+まち
+
+
+Tiếng
+じかん
+
+
+Phút
+ふん
+
+
+Tiếng rưỡi
+じかんはん
+
+
+Đi bộ
+あるいて
+
+
+Khoảng
+くらい
+
+
+Bao lâu
+どのくらい
+
+
+Xe đạp
+じてんしゃ
+
+
+Chocolate
+チョコレート
+
+
+Bảo tàng mỹ thuật
+びじゅつかん
+
+
+Núi
+やま
+
+
+Sông
+かわ
+
+
+Suối nước nóng
+おんせん
+
+
+Nhà thờ
+きょうかい
+
+
+Lâu đài
+おしろ
+
+
+Đền
+じんじゃ
+
+
+Chùa
+おてら
+
+
+Toà nhà
+ビル
+
+
+Mới
+あたらしい
+
+
+Cũ
+ふるい
+
+
+Tốt
+いい
+
+
+Không tốt
+よくない
+
+
+Xấu, tệ
+わるい
+
+
+Nhiều
+おおい
+
+
+Ít
+すくない
+
+
+Rẻ
+やすい
+
+
+To, lớn
+おおきい
+
+
+Nhỏ, bé
+ちいさい
+
+
+Cao, đắt
+たかい
+
+
+Thấp
+ひくい
+
+
+Đẹp/Sạch sẽ
+きれい
+
+
+Đẹp trai
+ハンサム
+
+
+Yên tĩnh
+しずか
+
+
+Náo nhiệt
+にぎやか
+
+
+Nổi tiếng
+ゆうめい
+
+
+Nắng
+はれ
+
+
+Mây (thời tiết)
+くもり
+
+
+Mưa
+あめ
+
+
+Tuyết
+ゆき
+
+
+Dưa gang (dưa lưới)
+メロン
+
+
+Ấm áp
+あたたかい
+
+
+Mát mẻ
+すずしい
+
+
+Lạnh (thời tiết)
+さむい
+
+
+Lạnh (cảm giác)
+つめたい
+
+
+Nóng
+あつい
+
+
+Ngon
+おいしい
+
+
+Dở (món ăn)
+まずい
+
+
+Ngọt
+あまい
+
+
+Cay
+からい
+
+
+Chua
+すっぱい
+
+
+Đắng
+にがい
+
+
+Ngày / Mặt trời
+ひ
+
+
+Thời tiết đẹp
+てんきがいい
+
+
+Thời tiết xấu
+てんきがわるい
+
+
+Suốt 1 năm
+いちねんじゅう
+
+
+Không ~ lắm
+あまり
+
+
+Một chút, ít
+すこし
+
+
+Rất
+とても
+
+
+Thế nào
+どう
+
+
+Đồng tình với người khác
+そうですね
+
+
+Cực kỳ, vô cùng
+たいへん
+
+
+Hoàn toàn, không
+ぜんぜん
+
+
+Tốt bụng
+しんせつ
+
+
+Nơi, chỗ
+ところ
+
+
+Người
+ひと
+
+
+Màu xanh, cây xanh
+みどり
+
+
+Có
+あります
+
+
+Và
+そして
+
+
+Hôm nay
+きょう
+
+
+Ngày mai
+あした
+
+
+Ngày kia
+あっさて
+
+
+Hôm qua
+きのう
+
+
+Hôm kia
+おととい
+
+
+Tuần trước
+せんしゅう
+
+
+Cuối tuần
+しゅうまつ
+
+
+Nhà
+いえ
+
+
+Căn phòng
+へや
+
+
+Trung tâm thương mại
+デパート
+
+
+Trò chơi
+ゲーム
+
+
+Gia đình
+かぞく
+
+
+Người yêu
+こいびと
+
+
+Bạn bè
+ともだち
+
+
+Bạn cùng phòng
+ルームメイト
+
+
+Nơi nào đó
+どこか（へ）
+
+
+Gặp gỡ
+あいます
+
+
+Làm, chế tạo
+つくります
+
+
+Mua sắm
+かいものします
+
+
+Dùng bữa, ăn uống
+しょくじします
+
+
+Giặt giũ
+せんたくします
+
+
+Hút bụi, lau dọn nhà cửa
+そうじします
+
+
+Sau đó
+それから
+
+
+Một mình
+ひとりで
+
+
+Bữa cơm tối
+ばんごはん
+
+
+Cảm cúm
+かぜ
+
+
+Thời tiết
+てんき
+
+
+Quần áo
+ふく
+
+
+Leo trèo
+のぼります
+
+
+Vào, bước vào
+はいります
+
+
+Vất vả
+たいへん
+
+
+Thú vị
+おもしろい
+
+
+Chán
+つまらない
+
+
+Cảm thấy sảng khoái
+きもちがいい
+
+
+Vui vẻ
+たのしい
+
+
+Khó
+むずかしい
+
+
+Dễ
+やさしい
+
+
+Bận
+いそがしい
+
+
+Rảnh rỗi
+ひま
+
+
+Tranh
+え
+
+
+Phim hoạt hình
+アニメ
+
+
+Chụp ảnh
+とります
+
+
+Vay, mượn
+かります
+
+
+Muốn có
+ほしい
+
+
+Thích
+すき
+
+
+Ghét
+きらい
+
+
+Tháng này
+こんげつ
+
+
+Tháng sau
+らいげつ
+
+
+Đi
+いきます
+
+
+Đến
+きます
+
+
+Về
+かえります
+
+
+Buổi trưa
+ひる
+
+
+Sáng nay
+けさ
+
+
+Tháng trước
+せんげつ
+
+
+Năm ngoái
+きょねん
+
+
+Dễ, đơn giản
+かんたん
+
+
+Tại sao
+どうして
+
+
+Lần tới
+こんど
+
+
+Tối nay
+こんばん
+
+
+Năm nay
+ことし
+
+
+Sang năm
+らいねん
+
+
+Phong cảnh
+けしき
+
+
+Ảnh
+しゃしん
+
+
+Tuần này
+こんしゅう
+
+
+Tuần sau
+らいしゅう
+
+
+Tiền
+おかね
+
+
+nhiều (trạng từ)
+たくさん
+
+
+Ngày nghỉ
+やすみ
+
+
+Buổi tối
+よる
+
+
+Buồn ngủ
+ねむい
+
+
+Úc
+オーストラリア
+
+
+Giáo viên
+きょうし
+
+
+Sở thích
+しゅみ
+
+
+Thể thao
+スポーツ
+
+
+Bóng đá
+サッカー
+
+
+Bơi lội
+すいえい
+
+
+Quầy thông tin
+インフォメーション
+
+
+Thang máy
+エレベーター
+
+
+Thang cuốn
+エスカレーター
+
+
+Nơi hút thuốc
+きつえんしょ
+
+
+Quán giải khát
+きっさてん
+
+
+Ngầm, dưới lòng đất
+ちか
+
+
+Kim từ điển
+でんしじしょ
+
+
+Tẩy
+けしごむ
+
+
+Dầu
+あぶら
+
+
+Gạo
+こめ
+
+
+Nhân viên bán hàng
+てんいん
+
+
+Kính chào quý khách
+いらっしゃいませ
+
+
+Cửa hàng ~, Hiệu ~
+～や
+
+
+Quần dài
+ズボン
+
+
+Cặp, túi xách
+かばん
+
+
+Áo phông
+Tシャツ
+
+
+Đồng hồ
+とけい
+
+
+Bao nhiêu tiền
+いくら
+
+
+Rau
+やさい
+
+
+Quả dâu
+いちご
+
+
+Quả táo
+りんご
+
+
+Món cà-ri
+カレー
+
+
+Món thịt lợn chiên xù
+とんかつ
+
+
+Cà phê
+コーヒー
+
+
+Trà đen
+こうちゃ
+
+
+Trà, nước chè
+おちゃ
+
+
+Đức
+ドイツ
+
+
+Ví tiền
+さいふ
+
+
+Ai
+だれ
+
+
+Nhà thi đấu, nhà tập thể dục
+たいいくかん
+
+
+Thư viện
+としょかん
+
+
+Bệnh viện
+びょういん
+
+
+Bưu điện
+ゆうびんきょく
+
+
+Giờ học
+じゅぎょう
+
+
+Việc làm thêm
+アルバイト
+
+
+Kế hoạch, lịch
+スケジュール
+
+
+Bữa tiệc
+パーティー
+
+
+Tiệc nước ngoài trời
+バーベキュー
+
+
+Pháo hoa
+はなび
+
+
+Ở cùng gia đình bản địa
+ホームステイ
+
+
+Lễ hội
+まつり
+
+
+Mùa xuân
+はる
+
+
+Mùa hè
+なつ
+
+
+Mùa thu
+あき
+
+
+Mùa đông
+ふゆ
+
+
+Sữa bò
+ぎゅうにゅう
+
+
+Hoa quả, trái cây
+くだもの
+
+
+Mạng internet
+インターネット
+
+
+Làm việc, lao động
+はたらきます
+
+
+Đọc
+よみます
+
+
+Ngủ
+ねます
+
+
+Phim (điện ảnh)
+えいが
+
+
+Mỗi tháng
+まいつき
+
+
+Hát karaoke
+カラオケ
+
+
+Hoà nhạc
+コンサート
+
+
+Trận đấu
+しあい
+
+
+Giảm giá
+セール
+
+
+Vé
+チケット
+
+
+Bản đồ
+ちず
+
+
+Lái xe
+ドライブ
+
+
+Đồ bơi
+みずぎ
+
+
+Bóng chày
+やきゅう
+
+
+Hứa, hẹn
+やくそく
+
+
+Việc bận
+ようじ
+
+
+Cách đếm vật mỏng, phẳng
+～まい
+
+
+Tiếc
+ざんねん
+
+
+Cùng với
+いっしょに
+
+
+Hay đấy, được đấy
+いいですね
+
+
+Xin lỗi
+すみません
+
+
+Hẹn anh lần sau
+またこんど
+
+
+Đồ ăn
+たべもの
+
+
+Đồ uống
+のみもの
+
+
+Thịt nướng
+やきにく
+
+
+Mỳ Nhật
+ラーメン
+
+
+Ăn buffet
+たべほうだい
+
+
+Suất ăn / Khoá học
+コース
+
+
+Quán rượu
+いざかや
+
+
+Rạp chiếu phim
+えいがかん
+
+
+Tàu điện ngầm
+ちかてつ
+
+
+Ca sỹ
+かしゅ
+
+
+Mùa
+きせつ
+
+
+Hài kịch
+コメディー
+
+
+Nhạc jazz
+ジャズ
+
+
+Tour du lịch
+ツアー
+
+
+Bên nào, phương nào
+どちら
+
+
+Bên nào cũng
+どちらも
+
+
+Gần
+ちかい
+
+
+Xa
+とおい
+
+
+Sớm
+はやい
+
+
+Rộng
+ひろい
+
+
+Nhất
+いちばん
+
+
+Toàn bộ
+ぜんぶ
+
+
+Câu nói ngập ngừng khi suy nghĩ để trả lời câu hỏi
+そうですねえ
+
+
+Món bánh xèo Nhật
+おこのみやき
+
+
+Món nhúng có thịt bò và rau
+すきやき
+
+
+Chơi
+あそびます
+
+
+Nhất định
+ぜひ
+
+
+Vẫn, chưa
+まだ
+
+
+Đã, rồi
+もう
+
+
+Làm như thế đi
+そうしましょう
+
+
+Tôi hiểu rồi
+わかりました
+
+
+Bé, chật
+せまい
+
+
+Hơn/Kém một chút
+ちょっと
+
+
+Hơn/Kém Rất nhiều
+ずっと
+
+
+Giỏi
+じょうず
+
+
+Thuốc
+くすり
+
+
+Trễ
+おそい
+
+
+Hokkaido
+ほっかいどう
