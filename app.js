@@ -754,16 +754,15 @@ function renderGrammar() {
 
     // Wrap each .grammar-point into a collapsible sub-section
     body.querySelectorAll('.grammar-point').forEach(gp => {
-      const h3 = gp.querySelector(':scope > h3');
-      if (!h3) return;
+      const titleEl = gp.querySelector(':scope > h3') || gp.querySelector(':scope > h4');
+      if (!titleEl) return;
       const secDet = document.createElement('details');
       secDet.className = 'g-section';
-      secDet.open = true;
       const secSum = document.createElement('summary');
       secSum.className = 'g-section-head';
-      secSum.innerHTML = h3.innerHTML;
+      secSum.innerHTML = titleEl.innerHTML;
       secDet.appendChild(secSum);
-      h3.remove();
+      titleEl.remove();
       const secBody = document.createElement('div');
       secBody.className = 'g-section-body';
       while (gp.firstChild) secBody.appendChild(gp.firstChild);
