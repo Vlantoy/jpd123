@@ -914,6 +914,12 @@ async function init() {
 
   // ── Grammar
   $id('grammar-back').addEventListener('click', () => showView('view-home'));
+
+  // ── Help modal
+  const helpModal = $id('help-modal');
+  $id('help-btn').addEventListener('click', () => helpModal.classList.remove('hidden'));
+  $id('help-close').addEventListener('click', () => helpModal.classList.add('hidden'));
+  helpModal.addEventListener('click', e => { if (e.target === helpModal) helpModal.classList.add('hidden'); });
 }
 
 // ── Debug ────────────────────────────────────────────────

@@ -15,8 +15,11 @@
   <!-- ═══════════════ HOME ═══════════════ -->
   <div id="view-home" class="view active">
     <div class="h-top">
-      <div class="h-brand">JPD123</div>
-      <div class="h-sub">Chọn phần để bắt đầu</div>
+      <div>
+        <div class="h-brand">JPD123</div>
+        <div class="h-sub">Chọn phần để bắt đầu</div>
+      </div>
+      <button id="help-btn" class="help-btn" title="Hướng dẫn sử dụng">?</button>
     </div>
 
     <div class="h-grid">
@@ -146,6 +149,56 @@
       <div style="width:40px"></div>
     </div>
     <div id="grammar-content" class="g-list"></div>
+  </div>
+
+  <!-- ═══════════════ HELP MODAL ═══════════════ -->
+  <div id="help-modal" class="help-modal hidden">
+    <div class="help-box">
+      <div class="help-header">
+        <span class="help-title">Hướng dẫn sử dụng</span>
+        <button id="help-close" class="help-close">✕</button>
+      </div>
+      <div class="help-body">
+        <section>
+          <h3>📚 Các phần học</h3>
+          <p><b>語彙 Từ vựng</b> — Flashcard từ vựng tiếng Nhật.</p>
+          <p><b>漢字 Kanji</b> — Flashcard chữ Kanji.</p>
+          <p><b>文法 Ngữ pháp</b> — Tra cứu ngữ pháp theo bài.</p>
+        </section>
+        <section>
+          <h3>🔄 Chế độ học</h3>
+          <p><b>Ôn tập</b> — Học theo thuật toán SRS (thẻ đến hạn + thẻ mới). Con số đỏ là số thẻ đến hạn.</p>
+          <p><b>Tự chọn</b> — Chọn thủ công các từ muốn ôn, rồi nhấn <i>Xem thẻ</i> hoặc <i>Học SRS</i>.</p>
+        </section>
+        <section>
+          <h3>🃏 Cách dùng thẻ</h3>
+          <p>Nhấn vào thẻ (hoặc <b>Space</b>) để lật xem mặt sau.</p>
+          <p>Sau khi lật, chọn mức độ nhớ:</p>
+          <ul>
+            <li><b style="color:#ef4444">Lại</b> — Không nhớ, ôn lại sau 1 phút.</li>
+            <li><b style="color:#f97316">Khó</b> — Nhớ nhưng còn vấp, ôn lại sớm.</li>
+            <li><b style="color:#22c55e">Ổn</b> — Nhớ bình thường.</li>
+            <li><b style="color:#3b82f6">Dễ</b> — Nhớ rất rõ, hẹn lại lâu hơn.</li>
+          </ul>
+        </section>
+        <section>
+          <h3>⏳ Hàng chờ ôn lại</h3>
+          <p>Các từ bấm <b>Lại / Khó</b> sẽ vào hàng chờ đếm ngược. Khi hết giờ chúng tự quay lại bài học. Panel nhỏ ở dưới màn hình học cho biết bao nhiêu từ đang chờ.</p>
+        </section>
+        <section>
+          <h3>🔊 Phát âm</h3>
+          <p>Nhấn nút 🔊 ở góc trên phải màn hình học để nghe phát âm.</p>
+        </section>
+        <section>
+          <h3>💡 Phím tắt</h3>
+          <ul>
+            <li><b>Space</b> — Lật thẻ</li>
+            <li><b>1 / 2 / 3 / 4</b> — Chọn Lại / Khó / Ổn / Dễ sau khi lật</li>
+            <li><b>← →</b> — Chuyển thẻ (chế độ Xem thẻ)</li>
+          </ul>
+        </section>
+      </div>
+    </div>
   </div>
 
   <script src="vocab_data.js"></script>
