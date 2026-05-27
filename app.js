@@ -752,6 +752,25 @@ function renderGrammar() {
     body.innerHTML = lesson.html;
     body.querySelectorAll('script').forEach(s => s.remove());
 
+    // Wrap each .grammar-point into a collapsible sub-section
+    body.querySelectorAll('.grammar-point').forEach(gp => {
+      const h3 = gp.querySelector(':scope > h3');
+      if (!h3) return;
+      const secDet = document.createElement('details');
+      secDet.className = 'g-section';
+      secDet.open = true;
+      const secSum = document.createElement('summary');
+      secSum.className = 'g-section-head';
+      secSum.innerHTML = h3.innerHTML;
+      secDet.appendChild(secSum);
+      h3.remove();
+      const secBody = document.createElement('div');
+      secBody.className = 'g-section-body';
+      while (gp.firstChild) secBody.appendChild(gp.firstChild);
+      secDet.appendChild(secBody);
+      gp.replaceWith(secDet);
+    });
+
     det.append(sum, body);
     c.appendChild(det);
   });

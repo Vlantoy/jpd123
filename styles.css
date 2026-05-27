@@ -775,18 +775,52 @@ summary.g-lesson-head::after {
 }
 details[open] > summary.g-lesson-head::after { transform: rotate(90deg); }
 
+/* ── Grammar sub-section (I, II, III…) ──────────────────────── */
+details.g-section {
+  border: 1px solid #e8e8e4;
+  border-radius: 12px;
+  margin: 0 0 10px;
+  overflow: hidden;
+  background: #fff;
+}
+summary.g-section-head {
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #1d4ed8;
+  background: #eff6ff;
+}
+summary.g-section-head::-webkit-details-marker { display: none; }
+summary.g-section-head::after {
+  content: '›';
+  font-size: 18px;
+  color: #93c5fd;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+details[open] > summary.g-section-head::after { transform: rotate(90deg); }
+.g-section-body { padding: 14px 16px; }
+
 .g-lesson-body {
-  padding: 16px 20px 24px;
+  padding: 12px 12px 16px;
   border-top: 1px solid #f0f0ec;
   font-size: 13.5px;
   line-height: 1.75;
-  background: #fafaf8;
+  background: #f4f4f2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* ── Grammar injected HTML styles ───────────────────────────── */
 .g-lesson-body h1,
 .g-lesson-body h2 { display: none; }
-.g-lesson-body h3 { font-size: 15px; font-weight: 700; margin: 20px 0 8px; }
+.g-lesson-body h3 { font-size: 13px; font-weight: 700; margin: 14px 0 6px; color: #1e40af; }
 .g-lesson-body h4 { font-size: 13px; font-weight: 600; margin: 14px 0 6px; color: #333; }
 .g-lesson-body h5 { font-size: 13px; font-weight: 600; margin: 10px 0 4px; }
 
