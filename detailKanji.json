@@ -1,0 +1,572 @@
+[
+  {
+    "kanji": "東京",
+    "hiragana": "とうきょう",
+    "romaji": "Tokyo",
+    "meaning": "Tokyo (Đông Kinh)"
+  },
+  {
+    "kanji": "東",
+    "hiragana": "ひがし",
+    "romaji": "higashi",
+    "meaning": "Phía Đông"
+  },
+  {
+    "kanji": "前",
+    "hiragana": "まえ",
+    "romaji": "mae",
+    "meaning": "Phía trước, trước"
+  },
+  {
+    "kanji": "お名前",
+    "hiragana": "おなまえ",
+    "romaji": "onamae",
+    "meaning": "Tên (kính ngữ)"
+  },
+  {
+    "kanji": "午前",
+    "hiragana": "ごぜん",
+    "romaji": "gozen",
+    "meaning": "Buổi sáng (A.M.)"
+  },
+  {
+    "kanji": "国",
+    "hiragana": "くに",
+    "romaji": "kuni",
+    "meaning": "Đất nước, quốc gia"
+  },
+  {
+    "kanji": "中国",
+    "hiragana": "ちゅうごく",
+    "romaji": "chuugoku",
+    "meaning": "Trung Quốc"
+  },
+  {
+    "kanji": "男の人",
+    "hiragana": "おトこのひと",
+    "romaji": "otoko no hito",
+    "meaning": "Người đàn ông (NAM NHÂN)"
+  },
+  {
+    "kanji": "女の人",
+    "hiragana": "おんなのひと",
+    "romaji": "onna no hito",
+    "meaning": "Người phụ nữ (NỮ NHÂN)"
+  },
+  {
+    "kanji": "～区",
+    "hiragana": "～く",
+    "romaji": "~ku",
+    "meaning": "Quận (KHU)"
+  },
+  {
+    "kanji": "～市",
+    "hiragana": "～し",
+    "romaji": "~shi",
+    "meaning": "Thành phố (THỊ)"
+  },
+  {
+    "kanji": "先生",
+    "hiragana": "せんせい",
+    "romaji": "sensei",
+    "meaning": "Thầy cô giáo, bác sĩ (TIÊN SANH)"
+  },
+  {
+    "kanji": "先月",
+    "hiragana": "せんげつ",
+    "romaji": "sengetsu",
+    "meaning": "Tháng trước (TIÊN NGUYỆT)"
+  },
+  {
+    "kanji": "先",
+    "hiragana": "さき",
+    "romaji": "saki",
+    "meaning": "Trước đây, phía trước, tương lai"
+  },
+  {
+    "kanji": "先週",
+    "hiragana": "せんしゅう",
+    "romaji": "senshuu",
+    "meaning": "Tuần trước (TIÊN CHU)"
+  },
+  {
+    "kanji": "1週間",
+    "hiragana": "いっしゅうかん",
+    "romaji": "isshuukan",
+    "meaning": "1 tuần (thời gian)"
+  },
+  {
+    "kanji": "毎日",
+    "hiragana": "まいにち",
+    "romaji": "mainichi",
+    "meaning": "Mỗi ngày, hàng ngày"
+  },
+  {
+    "kanji": "毎週",
+    "hiragana": "まいしゅう",
+    "romaji": "maishu",
+    "meaning": "Mỗi tuần, hàng tuần"
+  },
+  {
+    "kanji": "毎月",
+    "hiragana": "まいげつ / まいつき",
+    "romaji": "maigetsu / maitsuki",
+    "meaning": "Mỗi tháng, hàng tháng"
+  },
+  {
+    "kanji": "毎年",
+    "hiragana": "まいとし / まいねん",
+    "romaji": "maitoshi / mainen",
+    "meaning": "Mỗi năm, hàng năm"
+  },
+  {
+    "kanji": "午後",
+    "hiragana": "ごご",
+    "romaji": "gogo",
+    "meaning": "Buổi chiều (P.M.)"
+  },
+  {
+    "kanji": "後ろ",
+    "hiragana": "うしろ",
+    "romaji": "ushiro",
+    "meaning": "Phía sau, đằng sau"
+  },
+  {
+    "kanji": "後",
+    "hiragana": "あと",
+    "romaji": "ato",
+    "meaning": "Sau đó, lát nữa, còn lại"
+  },
+  {
+    "kanji": "見ます",
+    "hiragana": "みます",
+    "romaji": "mimasu",
+    "meaning": "Nhìn, xem, ngắm"
+  },
+  {
+    "kanji": "見せます",
+    "hiragana": "みせます",
+    "romaji": "misemasu",
+    "meaning": "Cho xem, cho thấy"
+  },
+  {
+    "kanji": "見えます",
+    "hiragana": "みえます",
+    "romaji": "miemasu",
+    "meaning": "Nhìn thấy (tự nhiên đập vào mắt)"
+  },
+  {
+    "kanji": "見学",
+    "hiragana": "けんがく",
+    "romaji": "kengaku",
+    "meaning": "Tham quan học tập, kiến học"
+  },
+  {
+    "kanji": "食べます",
+    "hiragana": "たべます",
+    "romaji": "tabemasu",
+    "meaning": "Ăn"
+  },
+  {
+    "kanji": "食事",
+    "hiragana": "しょくじ",
+    "romaji": "shokuji",
+    "meaning": "Bữa ăn, dùng bữa"
+  },
+  {
+    "kanji": "食べ物",
+    "hiragana": "たべもの",
+    "romaji": "tabemono",
+    "meaning": "Đồ ăn, thức ăn"
+  },
+  {
+    "kanji": "飲みます",
+    "hiragana": "のみます",
+    "romaji": "nomimasu",
+    "meaning": "Uống"
+  },
+  {
+    "kanji": "飲み物",
+    "hiragana": "のみもの",
+    "romaji": "nomimono",
+    "meaning": "Đồ uống, thức uống"
+  },
+  {
+    "kanji": "飲食",
+    "hiragana": "いんしょく",
+    "romaji": "inshoku",
+    "meaning": "Ăn uống (ẨM THỰC)"
+  },
+  {
+    "kanji": "買います",
+    "hiragana": "かいます",
+    "romaji": "kaimasu",
+    "meaning": "Mua"
+  },
+  {
+    "kanji": "買い物",
+    "hiragana": "かいもの",
+    "romaji": "kaimono",
+    "meaning": "Mua sắm"
+  },
+  {
+    "kanji": "動物",
+    "hiragana": "どうぶつ",
+    "romaji": "doubutsu",
+    "meaning": "Động vật"
+  },
+  {
+    "kanji": "荷物",
+    "hiragana": "にもつ",
+    "romaji": "nimotsu",
+    "meaning": "Hành lý, bưu kiện"
+  },
+  {
+    "kanji": "物",
+    "hiragana": "もの",
+    "romaji": "mono",
+    "meaning": "Đồ vật, thứ, vật"
+  },
+  {
+    "kanji": "行きます",
+    "hiragana": "いきます",
+    "romaji": "ikimasu",
+    "meaning": "Đi"
+  },
+  {
+    "kanji": "旅行",
+    "hiragana": "りょこう",
+    "romaji": "ryokou",
+    "meaning": "Du lịch"
+  },
+  {
+    "kanji": "休みます",
+    "hiragana": "やすみます",
+    "romaji": "yasumimasu",
+    "meaning": "Nghỉ ngơi, xin nghỉ học/nghỉ làm"
+  },
+  {
+    "kanji": "休み",
+    "hiragana": "やすみ",
+    "romaji": "yasumi",
+    "meaning": "Ngày nghỉ, giờ nghỉ"
+  },
+  {
+    "kanji": "休日",
+    "hiragana": "きゅうじつ",
+    "romaji": "kyuujitsu",
+    "meaning": "Ngày nghỉ, ngày lễ"
+  },
+  {
+    "kanji": "今",
+    "hiragana": "いま",
+    "romaji": "ima",
+    "meaning": "Bây giờ"
+  },
+  {
+    "kanji": "今週",
+    "hiragana": "こんしゅう",
+    "romaji": "konshuu",
+    "meaning": "Tuần này"
+  },
+  {
+    "kanji": "今月",
+    "hiragana": "こんげつ",
+    "romaji": "kongetsu",
+    "meaning": "Tháng này"
+  },
+  {
+    "kanji": "今日",
+    "hiragana": "きょう",
+    "romaji": "kyou",
+    "meaning": "Hôm nay"
+  },
+  {
+    "kanji": "今年",
+    "hiragana": "ことし",
+    "romaji": "kotoshi",
+    "meaning": "Năm nay"
+  },
+  {
+    "kanji": "来ます",
+    "hiragana": "きます",
+    "romaji": "kimasu",
+    "meaning": "Đến (thể lịch sự)"
+  },
+  {
+    "kanji": "来る",
+    "hiragana": "くる",
+    "romaji": "kuru",
+    "meaning": "Đến (thể từ điển)"
+  },
+  {
+    "kanji": "来ない",
+    "hiragana": "こない",
+    "romaji": "konai",
+    "meaning": "Không đến (thể phủ định ngắn)"
+  },
+  {
+    "kanji": "来週",
+    "hiragana": "らいしゅう",
+    "romaji": "raishuu",
+    "meaning": "Tuần sau"
+  },
+  {
+    "kanji": "来月",
+    "hiragana": "らいげつ",
+    "romaji": "raigetsu",
+    "meaning": "Tháng sau"
+  },
+  {
+    "kanji": "来年",
+    "hiragana": "らいねん",
+    "romaji": "rainen",
+    "meaning": "Năm sau"
+  },
+  {
+    "kanji": "帰ります",
+    "hiragana": "かえります",
+    "romaji": "kaerimasu",
+    "meaning": "Trở về (nhà, nước)"
+  },
+  {
+    "kanji": "日帰り",
+    "hiragana": "ひがえり",
+    "romaji": "higaeri",
+    "meaning": "Đi về trong ngày"
+  },
+  {
+    "kanji": "帰国",
+    "hiragana": "きこく",
+    "romaji": "kikoku",
+    "meaning": "Về nước (QUY QUỐC)"
+  },
+  {
+    "kanji": "会います",
+    "hiragana": "あいます",
+    "romaji": "aimasu",
+    "meaning": "Gặp gỡ"
+  },
+  {
+    "kanji": "会社",
+    "hiragana": "かいしゃ",
+    "romaji": "kaisha",
+    "meaning": "Công ty"
+  },
+  {
+    "kanji": "会話",
+    "hiragana": "かいわ",
+    "romaji": "kaiwa",
+    "meaning": "Hội thoại, đàm thoại"
+  },
+  {
+    "kanji": "社会",
+    "hiragana": "しゃかい",
+    "romaji": "shakai",
+    "meaning": "Xã hội"
+  },
+  {
+    "kanji": "聞きます",
+    "hiragana": "ききます",
+    "romaji": "kikimasu",
+    "meaning": "Nghe, hỏi"
+  },
+  {
+    "kanji": "新聞",
+    "hiragana": "しんぶん",
+    "romaji": "shinbun",
+    "meaning": "Tờ báo (TÂN VĂN)"
+  },
+  {
+    "kanji": "聞こえます",
+    "hiragana": "きこえます",
+    "romaji": "kikoemasu",
+    "meaning": "Nghe thấy (âm thanh tự lọt vào tai)"
+  },
+  {
+    "kanji": "読みます",
+    "hiragana": "よみます",
+    "romaji": "yomimasu",
+    "meaning": "Đọc"
+  },
+  {
+    "kanji": "書きます",
+    "hiragana": "かきます",
+    "romaji": "kakimasu",
+    "meaning": "Viết, vẽ"
+  },
+  {
+    "kanji": "辞書",
+    "hiragana": "じしょ",
+    "romaji": "jisho",
+    "meaning": "Từ điển"
+  },
+  {
+    "kanji": "図書館",
+    "hiragana": "としょかん",
+    "romaji": "toshokan",
+    "meaning": "Thư viện"
+  },
+  {
+    "kanji": "話します",
+    "hiragana": "はなします",
+    "romaji": "hanashimasu",
+    "meaning": "Nói chuyện, thảo luận"
+  },
+  {
+    "kanji": "話",
+    "hiragana": "はなし",
+    "romaji": "hanashi",
+    "meaning": "Câu chuyện, cuộc nói chuyện"
+  },
+  {
+    "kanji": "電話",
+    "hiragana": "でんわ",
+    "romaji": "denwa",
+    "meaning": "Điện thoại"
+  },
+  {
+    "kanji": "肉",
+    "hiragana": "にく",
+    "romaji": "niku",
+    "meaning": "Thịt"
+  },
+  {
+    "kanji": "力",
+    "hiragana": "ちから",
+    "romaji": "chikara",
+    "meaning": "Sức lực, sức mạnh"
+  },
+  {
+    "kanji": "入力",
+    "hiragana": "にゅうりょく",
+    "romaji": "nyuuryoku",
+    "meaning": "Nhập dữ liệu, đầu vào (NHẬP LỰC)"
+  },
+  {
+    "kanji": "電力",
+    "hiragana": "でんりょく",
+    "romaji": "denryoku",
+    "meaning": "Điện năng, công suất điện (ĐIỆN LỰC)"
+  },
+  {
+    "kanji": "田中さん",
+    "hiragana": "たなかさん",
+    "romaji": "tanaka-san",
+    "meaning": "Anh/Chị Tanaka (Họ người Nhật)"
+  },
+  {
+    "kanji": "言います",
+    "hiragana": "いいます",
+    "romaji": "iimasu",
+    "meaning": "Nói (ngôn từ)"
+  },
+  {
+    "kanji": "お寺",
+    "hiragana": "おてら",
+    "romaji": "otera",
+    "meaning": "Ngôi chùa"
+  },
+  {
+    "kanji": "牛肉",
+    "hiragana": "ぎゅうにく",
+    "romaji": "gyuuniku",
+    "meaning": "Thịt bò"
+  },
+  {
+    "kanji": "豚肉",
+    "hiragana": "ぶたにく",
+    "romaji": "butaniku",
+    "meaning": "Thịt heo / thịt lợn"
+  },
+  {
+    "kanji": "鶏肉",
+    "hiragana": "けいにく / とりにく",
+    "romaji": "keiniku / toriniku",
+    "meaning": "Thịt gà"
+  },
+  {
+    "kanji": "料理",
+    "hiragana": "りょうり",
+    "romaji": "ryouri",
+    "meaning": "Món ăn, nấu ăn"
+  },
+  {
+    "kanji": "料金",
+    "hiragana": "りょうきん",
+    "romaji": "ryoukin",
+    "meaning": "Chi phí, giá cước, tiền thù lao"
+  },
+  {
+    "kanji": "野菜",
+    "hiragana": "やさい",
+    "romaji": "yasai",
+    "meaning": "Rau củ"
+  },
+  {
+    "kanji": "１時半",
+    "hiragana": "いちじはん",
+    "romaji": "ichijihan",
+    "meaning": "1 giờ rưỡi"
+  },
+  {
+    "kanji": "半分",
+    "hiragana": "はんぶん",
+    "romaji": "hanbun",
+    "meaning": "Một nửa"
+  },
+  {
+    "kanji": "半額",
+    "hiragana": "はんがく",
+    "romaji": "hangaku",
+    "meaning": "Nửa giá, giảm giá 50%"
+  },
+  {
+    "kanji": "大学",
+    "hiragana": "だいがく",
+    "romaji": "daigaku",
+    "meaning": "Trường đại học"
+  },
+  {
+    "kanji": "大きい",
+    "hiragana": "おおきい",
+    "romaji": "ookii",
+    "meaning": "To, lớn"
+  },
+  {
+    "kanji": "大人",
+    "hiragana": "おとな",
+    "romaji": "otona",
+    "meaning": "Người lớn, người trưởng thành"
+  },
+  {
+    "kanji": "小学校",
+    "hiragana": "しょうがっこう",
+    "romaji": "shougakkou",
+    "meaning": "Trường tiểu học"
+  },
+  {
+    "kanji": "小さい",
+    "hiragana": "ちいさい",
+    "romaji": "chiisai",
+    "meaning": "Nhỏ, bé"
+  },
+  {
+    "kanji": "小人",
+    "hiragana": "こびと / しょうにん",
+    "romaji": "kobito / shounin",
+    "meaning": "Người lùn / Trẻ em (khi mua vé xe, vé xem phim)"
+  },
+  {
+    "kanji": "半日",
+    "hiragana": "はんにち",
+    "romaji": "hannichi",
+    "meaning": "Nửa ngày"
+  },
+  {
+    "kanji": "大会",
+    "hiragana": "たいかい",
+    "romaji": "taikai",
+    "meaning": "Đại hội, cuộc thi lớn"
+  }
+]

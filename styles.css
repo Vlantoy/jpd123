@@ -413,6 +413,50 @@ body {
   padding: 4px 16px 16px;
 }
 
+/* ── Lesson group ───────────────────────────────────────────── */
+.lesson-group { margin-bottom: 10px; }
+
+.lesson-group-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #f0f4ff;
+  border-radius: 14px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  font-size: 14px;
+  color: #2350a8;
+  border: 1.5px solid #d8e2fb;
+  transition: background 0.15s;
+}
+.lesson-group-header:hover { background: #e4ecff; }
+.lesson-group-header input[type="checkbox"] {
+  width: 16px; height: 16px; cursor: pointer; flex-shrink: 0;
+  accent-color: #2350a8;
+}
+.lesson-group-title { flex: 1; }
+.lesson-group-count { font-size: 12px; font-weight: 500; color: #7a96d8; }
+.lesson-group-arrow {
+  font-size: 12px; color: #aab8e0;
+  transition: transform 0.2s;
+}
+.lesson-group-header.open .lesson-group-arrow { transform: rotate(90deg); }
+
+.lesson-group-body { padding: 6px 0 0 0; }
+.lesson-group-body.hidden { display: none; }
+
+.sub-group { margin-bottom: 6px; }
+.sub-group-header {
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
 .li-row {
   display: flex;
   align-items: center;
@@ -430,6 +474,7 @@ body {
   background: #f0f6f3;
   border-color: #b8dcc9;
 }
+.li-row { cursor: pointer; }
 
 .li-badge {
   width: 8px;
@@ -460,23 +505,38 @@ body {
   text-overflow: ellipsis;
 }
 
-.li-check {
-  width: 22px;
-  height: 22px;
-  border: 1.5px solid #ddd;
-  border-radius: 7px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: #27864f;
-  transition: background 0.12s, border-color 0.12s;
+/* Kanji reading with hover tooltip */
+.kanji-reading {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  border-bottom: 1.5px dashed #aaa;
+  padding-bottom: 1px;
 }
-.li-check.checked {
-  background: #e8f5ee;
-  border-color: #9fd4b6;
+.kanji-reading::after {
+  content: attr(data-meaning);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e1e2e;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 200;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
+.kanji-reading:hover::after { opacity: 1; }
+/* In flashcard back — larger */
+.c-back .kanji-reading { font-size: inherit; border-bottom-width: 2px; }
+.c-back .kanji-reading::after { font-size: 16px; padding: 8px 18px; }
+
 
 .li-known-btn {
   border: none;
@@ -888,4 +948,205 @@ details[open] > summary.g-section-head::after { transform: rotate(90deg); }
   padding: 12px;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Desktop: full-width, scale up ──────────────────────────── */
+@media (min-width: 1024px) {
+  body { background: #e8e5e0; }
+
+  .view {
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+  }
+
+  /* Home */
+  .h-top   { padding: 48px 60px 24px; }
+  .h-brand { font-size: 32px; }
+  .h-sub   { font-size: 16px; }
+
+  .h-grid {
+    flex: 1;
+    min-height: 0;
+    align-content: center;
+    align-items: stretch;
+    gap: 24px;
+    padding: 20px 60px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .h-block  { padding: 48px 32px 32px; border-radius: 28px; min-height: 380px; }
+  .h-info   { gap: 12px; }
+  .h-jp     { font-size: 88px; }
+  .h-vn     { font-size: 17px; }
+  .h-cnt    { font-size: 14px; }
+  .h-mode-btn { padding: 14px 8px; font-size: 15px; border-radius: 16px; }
+
+  .h-stats  { gap: 80px; padding: 28px 60px 40px; flex-shrink: 0; }
+  .h-stat b { font-size: 40px; }
+  .h-stat span { font-size: 13px; }
+
+  /* Shared top bar */
+  .s-top    { padding: 20px 60px; }
+  .s-mid    { font-size: 22px; }
+  .icon-btn { width: 48px; height: 48px; font-size: 22px; }
+
+  /* Study card */
+  .card-area { padding: 16px 20px 96px; gap: 12px; }
+  .cf-face   { padding: 40px 36px; border-radius: 28px; gap: 18px; }
+  .card-flip { max-width: 680px; }
+
+  .rating-bar { padding: 24px 60px 48px; gap: 16px; }
+  .rate-btn   { padding: 20px 12px; font-size: 18px; border-radius: 20px; }
+  .rate-btn small { font-size: 12px; }
+
+  .flash-bar     { padding: 12px 40px 24px; gap: 32px; }
+  .flash-nav-btn { width: 52px; height: 52px; font-size: 22px; }
+  .flash-pos     { font-size: 15px; }
+
+  /* List view */
+  .list-search { padding: 16px 60px 10px; }
+  .list-sel-bar { padding: 8px 8px 4px; }
+  .list-search input { padding: 12px 20px; font-size: 16px; border-radius: 14px; }
+  .list-items  { padding: 4px 40px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .list-items.grouped { display: block; }
+  .li-row      { flex-wrap: wrap; padding: 16px 18px; border-radius: 14px; margin-bottom: 0; gap: 4px 10px; align-items: center; }
+  .li-text     { flex: 1 1 calc(100% - 24px); min-width: 0; }
+  .li-front    { font-size: 20px; }
+  .li-back     { font-size: 14px; }
+  .li-known-btn { margin-left: auto; font-size: 13px; padding: 5px 14px; border-radius: 10px; }
+  .lsb-btns button { padding: 15px 12px; font-size: 16px; }
+  .list-study-bar  { padding: 16px 60px 36px; }
+  /* Expanded detail panel and lesson/sub groups span full width in grid */
+  .li-expand, .lesson-group { grid-column: 1 / -1; }
+  /* Lesson groups on desktop get 2-col inner grid */
+  .lesson-group-body .sub-group-items { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .lesson-group-header { font-size: 16px; padding: 14px 20px; border-radius: 16px; }
+  .sub-group-header { font-size: 13px; padding: 8px 18px; }
+
+  /* Grammar */
+  .g-list { padding: 20px 60px 60px; }
+  summary.g-lesson-head { padding: 24px 28px; font-size: 18px; }
+  .g-lesson-body { font-size: 17px; padding: 18px 24px; }
+  .g-lesson-body table { font-size: 15px; }
+  .g-lesson-body td, .g-lesson-body th { padding: 10px 14px; }
+
+  /* Help modal */
+  .help-box   { max-width: 800px; border-radius: 28px 28px 0 0; }
+  .help-title { font-size: 20px; }
+  .help-body  { font-size: 17px; }
+
+  /* Retry panel */
+  .retry-panel { top: 70px; right: 24px; min-width: 160px; max-width: 260px; }
+}
+
+/* ── Tablet: 481px – 768px ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .h-top { padding: 20px 20px 12px; }
+  .h-brand { font-size: 20px; }
+
+  .h-grid {
+    gap: 10px;
+    padding: 0 16px 16px;
+  }
+  .h-block { padding: 20px 10px 14px; border-radius: 18px; }
+  .h-jp { font-size: 36px; }
+
+  .h-stats { gap: 28px; padding: 14px 20px 24px; }
+  .h-stat b { font-size: 22px; }
+
+  .card-area { padding: 16px 16px 10px; gap: 10px; }
+  .cf-face { padding: 28px 20px; border-radius: 20px; }
+
+  .rating-bar { padding: 12px 12px 24px; gap: 6px; }
+  .rate-btn { padding: 11px 4px; font-size: 12px; border-radius: 12px; }
+
+  .flash-bar { padding: 12px 12px 24px; gap: 16px; }
+  .flash-nav-btn { width: 46px; height: 46px; font-size: 20px; }
+
+  .list-items { padding: 4px 10px 16px; }
+  .li-row { padding: 11px 12px; }
+}
+
+/* ── Mobile: ≤ 480px ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .h-top { padding: 16px 16px 10px; }
+  .h-brand { font-size: 18px; }
+  .h-sub { font-size: 12px; }
+
+  /* Stack the 3 subject cards vertically */
+  .h-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 14px 14px;
+    overflow-y: auto;
+  }
+  .h-block {
+    flex-direction: row;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 16px;
+    gap: 12px;
+  }
+  .h-info {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+  .h-jp { font-size: 30px; }
+  .h-vn { font-size: 13px; }
+  .h-cnt { margin-top: 0; font-size: 11px; }
+  .h-modes {
+    flex-direction: column;
+    gap: 6px;
+    width: auto;
+    flex-shrink: 0;
+  }
+  .h-mode-btn { padding: 7px 10px; font-size: 11px; border-radius: 10px; }
+
+  .h-stats { gap: 18px; padding: 12px 16px 20px; }
+  .h-stat b { font-size: 20px; }
+  .h-stat span { font-size: 9px; }
+
+  /* Study card */
+  .card-area { padding: 12px 12px 8px; gap: 8px; }
+  .cf-face { padding: 24px 16px; gap: 12px; border-radius: 18px; }
+
+  .rating-bar { padding: 10px 10px 20px; gap: 5px; }
+  .rate-btn { padding: 10px 2px; font-size: 11px; border-radius: 10px; }
+  .rate-btn small { font-size: 9px; }
+
+  .flash-bar { padding: 10px 10px 20px; gap: 12px; }
+  .flash-nav-btn { width: 42px; height: 42px; font-size: 18px; }
+  .flash-pos { font-size: 13px; }
+
+  /* List view */
+  .s-top { padding: 10px 12px; }
+  .s-mid { font-size: 14px; }
+  .list-search { padding: 10px 14px 6px; }
+  .list-search input { padding: 9px 14px; font-size: 13px; }
+  .list-items { padding: 4px 8px 16px; }
+  .li-row { padding: 10px 10px; gap: 10px; border-radius: 12px; }
+  .li-front { font-size: 14px; }
+
+  .lsb-btns button { padding: 11px 8px; font-size: 13px; }
+  .list-study-bar { padding: 12px 14px 28px; }
+
+  /* Grammar */
+  .g-list { padding: 10px 10px 40px; }
+  summary.g-lesson-head { padding: 14px 16px; font-size: 13px; }
+  .g-lesson-body { padding: 10px 10px 14px; font-size: 13px; }
+  .g-lesson-body table { font-size: 11.5px; }
+  .g-lesson-body td, .g-lesson-body th { padding: 6px 8px; }
+
+  /* Help modal */
+  .help-box { border-radius: 20px 20px 0 0; }
+  .help-body { font-size: 13px; }
+
+  /* Retry panel */
+  .retry-panel { top: 52px; right: 8px; min-width: 110px; max-width: 180px; }
 }

@@ -28,6 +28,7 @@ let dragMovedRow   = false; // true when drag actually crossed to another row
 let listItems = [];
 let listFiltered = [];
 let selectedIds = new Set();
+let listGroupedMode = false; // true = show lesson-grouped picker
 // ── SRS (SM-2) ───────────────────────────────────────────────
 function getSRS() { return JSON.parse(localStorage.getItem(SRS_KEY) || '{}'); }
 function setSRS(s) { localStorage.setItem(SRS_KEY, JSON.stringify(s)); }
@@ -58,20 +59,15 @@ async function loadVocab() {
 }
 
 async function loadKanji() {
-  const raw  = await (await fetch('Kanji.txt')).text();
-  const text = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-  const blocks = text.split(/\n{2,}/).map(b => b.trim()).filter(Boolean);
-  const items = [];
-  blocks.forEach((block, i) => {
-    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
-    if (lines.length < 2) return;
-    const front = lines[0];
-    const raw = lines[1];
-    const m = raw.match(/^(.*?)[（(](.*?)[)）]/);
-    const back = m ? m[1].trim() + ' — ' + m[2].trim() : raw;
-    items.push({ id: 'k' + i, type: 'kanji', front, back });
-  });
-  return items;
+  const data = await (await fetch('detailKanji.json')).json();
+  return data.map((item, i) => ({
+    id: 'k' + i,
+    type: 'kanji',
+    front: item.kanji,
+    back: item.hiragana,
+    meaning: item.meaning,
+    romaji: item.romaji
+  }));
 }
 
 async function loadGrammar() {
@@ -94,6 +90,15 @@ async function loadGrammar() {
 
 // ── UI helpers ────────────────────────────────────────────────
 function $id(id) { return document.getElementById(id); }
+
+function setCardBack(item) {
+  const el = $id('c-back');
+  if (item && item.type === 'kanji' && item.meaning) {
+    el.innerHTML = '<span class="kanji-reading" data-meaning="' + item.meaning.replace(/"/g, '&quot;') + '">' + item.back + '</span>';
+  } else {
+    el.textContent = item ? item.back : '';
+  }
+}
 
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -225,15 +230,16 @@ function renderListRow(container, item, knownIds) {
     '<div class="li-badge ' + lvl + '"></div>' +
     '<div class="li-text">' +
       '<div class="li-front">' + item.front + '</div>' +
-      '<div class="li-back">'  + item.back  + '</div>' +
+      '<div class="li-back">' + (item.type === 'kanji' && item.meaning
+        ? '<span class="kanji-reading" data-meaning="' + item.meaning.replace(/"/g, '&quot;') + '">' + item.back + '</span>'
+        : item.back) + '</div>' +
       '<span class="li-status ' + chip.cls + '">' + chip.text + '</span>' +
     '</div>' +
-    '<button class="' + btnClass + '">' + btnText + '</button>' +
-    '<div class="li-check' + (sel ? ' checked' : '') + '">' + (sel ? '\u2713' : '') + '</div>';
-  row.querySelector('.li-text').addEventListener('click', e => {
-    e.stopPropagation();
-    if (dragMovedRow) return; // was a cross-row drag, not a tap
-    toggleListExpand(item.id);
+    '<button class="' + btnClass + '">' + btnText + '</button>';
+  row.addEventListener('click', e => {
+    if (e.target.closest('.li-known-btn')) return;
+    if (dragMovedRow) return;
+    toggleSelect(item.id);
   });
   row.querySelector('.li-known-btn').addEventListener('click', e => {
     e.stopPropagation();
@@ -256,11 +262,123 @@ function renderListRow(container, item, knownIds) {
   container.appendChild(row);
 }
 
+// ── Lesson-grouped helpers ──────────────────────────────────
+function lessonLabel(key) {
+  const m = key.match(/Lesson_(\d+)/);
+  return m ? 'B\u00e0i ' + parseInt(m[1], 10) : key;
+}
+function subLabel(key) {
+  // Sub_01_Noi_Chon_Huong_Vi -> Noi Chon Huong Vi
+  return key.replace(/^Sub_\d+_/, '').replace(/_/g, ' ');
+}
+
+function toggleSelectLesson(lessonKey) {
+  const items = listFiltered.filter(i => i.lesson === lessonKey);
+  const allSel = items.every(i => selectedIds.has(i.id));
+  items.forEach(i => {
+    if (allSel) selectedIds.delete(i.id);
+    else selectedIds.add(i.id);
+  });
+  items.forEach(i => {
+    const row = $id('list-items').querySelector('[data-id="' + i.id + '"]');
+    if (row) row.classList.toggle('selected', selectedIds.has(i.id));
+  });
+  const lgrp = $id('list-items').querySelector('[data-lesson="' + lessonKey + '"]');
+  if (lgrp) {
+    const cb = lgrp.querySelector('.lg-cb');
+    const newAllSel = items.every(i => selectedIds.has(i.id));
+    cb.checked = newAllSel;
+    cb.indeterminate = !newAllSel && items.some(i => selectedIds.has(i.id));
+  }
+  updateSelBar();
+}
+
+function renderListGrouped(items) {
+  const container = $id('list-items');
+  container.classList.add('grouped');
+  const knownIds = getKnownIds();
+  // Group by lesson
+  const byLesson = {};
+  items.forEach(item => {
+    (byLesson[item.lesson] = byLesson[item.lesson] || []).push(item);
+  });
+  Object.entries(byLesson).forEach(([lessonKey, lessonItems]) => {
+    const allSel = lessonItems.every(i => selectedIds.has(i.id));
+    const someSel = lessonItems.some(i => selectedIds.has(i.id));
+    const grp = document.createElement('div');
+    grp.className = 'lesson-group';
+    grp.dataset.lesson = lessonKey;
+
+    // Header
+    const hdr = document.createElement('div');
+    hdr.className = 'lesson-group-header';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.className = 'lg-cb';
+    cb.checked = allSel;
+    cb.indeterminate = !allSel && someSel;
+    cb.addEventListener('change', e => {
+      e.stopPropagation();
+      toggleSelectLesson(lessonKey);
+    });
+    const title = document.createElement('span');
+    title.className = 'lesson-group-title';
+    title.textContent = lessonLabel(lessonKey);
+    const cnt = document.createElement('span');
+    cnt.className = 'lesson-group-count';
+    cnt.textContent = lessonItems.length + ' t\u1eeb';
+    const arrow = document.createElement('span');
+    arrow.className = 'lesson-group-arrow';
+    arrow.textContent = '\u25b6';
+    hdr.appendChild(cb);
+    hdr.appendChild(title);
+    hdr.appendChild(cnt);
+    hdr.appendChild(arrow);
+
+    const body = document.createElement('div');
+    body.className = 'lesson-group-body hidden';
+
+    hdr.addEventListener('click', e => {
+      if (e.target === cb) return;
+      body.classList.toggle('hidden');
+      hdr.classList.toggle('open');
+    });
+
+    // Group by sub within lesson
+    const bySub = {};
+    lessonItems.forEach(item => {
+      (bySub[item.sub] = bySub[item.sub] || []).push(item);
+    });
+    Object.entries(bySub).forEach(([subKey, subItems]) => {
+      const sg = document.createElement('div');
+      sg.className = 'sub-group';
+      const sh = document.createElement('div');
+      sh.className = 'sub-group-header';
+      sh.textContent = subLabel(subKey);
+      const si = document.createElement('div');
+      si.className = 'sub-group-items';
+      subItems.forEach(item => renderListRow(si, item, knownIds));
+      sg.appendChild(sh);
+      sg.appendChild(si);
+      body.appendChild(sg);
+    });
+
+    grp.appendChild(hdr);
+    grp.appendChild(body);
+    container.appendChild(grp);
+  });
+}
+
 function renderList(items) {
   expandedListId = null;
   listFiltered = items;
   const container = $id('list-items');
   container.innerHTML = '';
+  container.classList.remove('grouped');
+  if (listGroupedMode) {
+    renderListGrouped(items);
+    return;
+  }
   const knownIds = getKnownIds();
   const activeItems = items.filter(item => srsLevel(item.id) !== 'mature');
   const matureItems  = items.filter(item => srsLevel(item.id) === 'mature');
@@ -299,14 +417,9 @@ function toggleSelect(id) {
   } else {
     selectedIds.add(id);
   }
-  // re-render only this row
   const row = $id('list-items').querySelector('[data-id="' + id + '"]');
   if (row) {
-    const sel = selectedIds.has(id);
-    row.classList.toggle('selected', sel);
-    const ck = row.querySelector('.li-check');
-    ck.textContent = sel ? '✓' : '';
-    ck.classList.toggle('checked', sel);
+    row.classList.toggle('selected', selectedIds.has(id));
   }
   updateSelBar();
 }
@@ -332,7 +445,8 @@ function updateSelBar() {
   srsBtn.disabled = srsCount === 0;
 }
 
-function showList(items, title) {
+function showList(items, title, grouped = false) {
+  listGroupedMode = grouped;
   listItems  = items;
   selectedIds = new Set();
   $id('list-title').textContent = title;
@@ -490,7 +604,7 @@ function showFlashCard() {
   }
   current = flashDeck[flashIndex];
   $id('c-front').textContent = current.front;
-  $id('c-back').textContent  = current.back;
+  setCardBack(current);
   $id('flash-pos').textContent = (flashIndex + 1) + ' / ' + flashDeck.length;
   $id('flash-prev-btn').disabled = flashIndex === 0;
   $id('flash-next-btn').disabled = flashIndex === flashDeck.length - 1;
@@ -599,7 +713,7 @@ function nextCard() {
   }
 
   $id('c-front').textContent = current.front;
-  $id('c-back').textContent  = current.back;
+  setCardBack(current);
   $id('study-progress').textContent =
     queue.length > 0 ? queue.length + ' còn lại' : 'cuối cùng';
 }
@@ -797,7 +911,7 @@ async function init() {
 
   // ── Home mode buttons
   $id('mode-vocab-review').addEventListener('click',  () => startStudy(allVocab, 'T\u1eeb v\u1ef1ng'));
-  $id('mode-vocab-select').addEventListener('click',  () => showList(allVocab, 'T\u1eeb v\u1ef1ng'));
+  $id('mode-vocab-select').addEventListener('click',  () => showList(allVocab, 'T\u1eeb v\u1ef1ng', true));
   $id('stat-mature').addEventListener('click', () => {
     const all = [...allVocab, ...allKanji].filter(i => srsLevel(i.id) === 'mature');
     if (all.length > 0) showList(all, 'Thu\u1ed9c l\u00f2ng');
@@ -819,7 +933,7 @@ async function init() {
   $id('list-search').addEventListener('input', () => {
     const q = $id('list-search').value.toLowerCase().trim();
     const result = q
-      ? listItems.filter(i => i.front.toLowerCase().includes(q) || i.back.toLowerCase().includes(q))
+      ? listItems.filter(i => i.front.toLowerCase().includes(q) || i.back.toLowerCase().includes(q) || (i.meaning && i.meaning.toLowerCase().includes(q)))
       : listItems;
     renderList(result);
   });
@@ -847,14 +961,12 @@ async function init() {
 
   listEl.addEventListener('mousedown', e => {
     const row = e.target.closest('.li-row');
-    if (!row || e.target.closest('.li-known-btn, .li-check')) return;
+    if (!row || e.target.closest('.li-known-btn')) return;
     pointerDown = true; dragActive = false; dragLastId = null; dragMovedRow = false;
     const id = row.dataset.id;
     pointerStartId = id; dragLastId = id;
     dragValue = !selectedIds.has(id);
     pointerStartX = e.clientX; pointerStartY = e.clientY;
-    if (!e.target.closest('.li-text')) activateDrag(); // non-text: select immediately
-    e.preventDefault();
   });
   document.addEventListener('mousemove', e => {
     if (!pointerDown || dragActive) return;
@@ -874,7 +986,7 @@ async function init() {
 
   listEl.addEventListener('touchstart', e => {
     const row = e.target.closest('.li-row');
-    if (!row || e.target.closest('.li-known-btn, .li-check')) return;
+    if (!row || e.target.closest('.li-known-btn')) return;
     pointerDown = true; dragActive = false; dragLastId = null; dragMovedRow = false;
     const id = row.dataset.id;
     pointerStartId = id; dragLastId = id;

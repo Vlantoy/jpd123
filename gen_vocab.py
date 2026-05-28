@@ -1,21 +1,47 @@
-import re
+import re, json
 
-with open('New words list - Dekiru Nihongo Beginner.txt', encoding='utf-8') as f:
-    text = f.read()
+def esc(s):
+    return s.replace('\\', '\\\\').replace("'", "\\'")
 
-text = text.replace('\r\n', '\n').replace('\r', '\n')
-blocks = [b.strip() for b in re.split(r'\n{2,}', text) if b.strip()]
+def strip_cite(s):
+    """Remove [cite: ...] annotations injected by AI tools."""
+    return re.sub(r'\s*\[cite:[^\]]*\]', '', s).strip()
+
+with open('detailVocab.json', encoding='utf-8') as f:
+    raw = f.read()
+
+# Strip [cite: ...] before parsing JSON
+raw = re.sub(r'\s*\[cite:[^\]]*\]', '', raw)
+data = json.loads(raw)
+
 pairs = []
-for b in blocks:
-    lines = [l.strip() for l in b.split('\n') if l.strip()]
-    if len(lines) >= 2:
-        pairs.append({'front': lines[1], 'back': lines[0]})
+idx = 0
+for lesson_key, subs in data.items():
+    for sub_key, words in subs.items():
+        for word in words:
+            hiragana  = word.get('hiragana', '').strip()
+            vietnamese = word.get('vietnamese', '').strip()
+            kanji     = word.get('japanese', '').strip()
+            if not hiragana or not vietnamese:
+                continue
+            pairs.append({
+                'id':     'v%d' % idx,
+                'front':  hiragana,
+                'back':   vietnamese,
+                'kanji':  kanji,
+                'lesson': lesson_key,
+                'sub':    sub_key,
+            })
+            idx += 1
 
 js_items = []
-for i, p in enumerate(pairs):
-    front = p['front'].replace('\\', '\\\\').replace("'", "\\'")
-    back = p['back'].replace('\\', '\\\\').replace("'", "\\'")
-    js_items.append("  {id:'v%d',type:'vocab',front:'%s',back:'%s'}" % (i, front, back))
+for p in pairs:
+    js_items.append(
+        "  {id:'%s',type:'vocab',front:'%s',back:'%s',kanji:'%s',lesson:'%s',sub:'%s'}" % (
+            p['id'], esc(p['front']), esc(p['back']),
+            esc(p['kanji']), esc(p['lesson']), esc(p['sub'])
+        )
+    )
 
 out = 'const VOCAB_DATA = [\n' + ',\n'.join(js_items) + '\n];'
 with open('vocab_data.js', 'w', encoding='utf-8') as f:
