@@ -24,10 +24,12 @@ let retryTimer = null;
 let retryPanelOpen = false;
 let expandedListId = null;  // currently expanded list row detail
 let dragMovedRow   = false; // true when drag actually crossed to another row
+let cardTransitioning = false; // true during flip-back animation between cards
 // list view state
 let listItems = [];
 let listFiltered = [];
 let selectedIds = new Set();
+let lastClickedId = null; // for shift+click range selection
 let listGroupedMode = false; // true = show lesson-grouped picker
 // ── SRS (SM-2) ───────────────────────────────────────────────
 function getSRS() { return JSON.parse(localStorage.getItem(SRS_KEY) || '{}'); }
@@ -41,14 +43,24 @@ function cardSRS(id) {
 function applyRating(id, q) {
   const all = getSRS();
   let s = all[id] ?? { ease: 2.5, interval: 0, reps: 0, lapses: 0, due: 0 };
-  if (q < 3) {
-    s.reps = 0; s.interval = 1; s.lapses++;
+  if (q === 0) {
+    // Again — lapse: reset reps, drop interval, due will be managed by learning step countdown
+    s.reps = 0; s.interval = 0; s.lapses++;
+    s.ease = Math.max(1.3, s.ease - 0.2);
+    s.due = Date.now();
+  } else if (q === 2) {
+    // Hard — keep reps, slightly bump interval, reduce ease (Anki-style, NOT a lapse)
+    s.reps++;
+    s.interval = s.reps === 1 ? 1 : Math.max(1, Math.round(s.interval * 1.2));
+    s.ease = Math.max(1.3, s.ease - 0.15);
+    s.due = Date.now() + s.interval * 864e5;
   } else {
+    // Good (3) / Easy (5)
     s.reps++;
     s.interval = s.reps === 1 ? 1 : s.reps === 2 ? 6 : Math.round(s.interval * s.ease);
     s.ease = Math.max(1.3, s.ease + 0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+    s.due = Date.now() + s.interval * 864e5;
   }
-  s.due = Date.now() + s.interval * 864e5;
   all[id] = s;
   setSRS(all);
 }
@@ -104,6 +116,22 @@ function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   $id(id).classList.add('active');
 }
+
+// Flip card back to front instantly (no animation — avoids revealing new card's back)
+function doFlipBack(onDone) {
+  const inner = $id('cf-inner');
+  if (inner.classList.contains('flipped')) {
+    inner.style.transitionDuration = '0s';
+    inner.classList.remove('flipped');
+    void inner.offsetWidth; // force reflow so the 0s duration is committed
+    inner.style.transitionDuration = '';
+  }
+  cardTransitioning = false;
+  if (onDone) onDone();
+}
+
+// Flip card back to front, calling cb when done
+function flipBackThen(cb) { doFlipBack(cb); }
 
 // ── Home stats ─────────────────────────────────────────────────
 function refreshStats() {
@@ -239,7 +267,7 @@ function renderListRow(container, item, knownIds) {
   row.addEventListener('click', e => {
     if (e.target.closest('.li-known-btn')) return;
     if (dragMovedRow) return;
-    toggleSelect(item.id);
+    toggleSelect(item.id, e.shiftKey);
   });
   row.querySelector('.li-known-btn').addEventListener('click', e => {
     e.stopPropagation();
@@ -291,6 +319,48 @@ function toggleSelectLesson(lessonKey) {
     cb.indeterminate = !newAllSel && items.some(i => selectedIds.has(i.id));
   }
   updateSelBar();
+}
+
+function toggleSelectSub(lessonKey, subKey) {
+  const items = listFiltered.filter(i => i.lesson === lessonKey && i.sub === subKey);
+  const allSel = items.every(i => selectedIds.has(i.id));
+  items.forEach(i => {
+    if (allSel) selectedIds.delete(i.id);
+    else selectedIds.add(i.id);
+  });
+  items.forEach(i => {
+    const row = $id('list-items').querySelector('[data-id="' + i.id + '"]');
+    if (row) row.classList.toggle('selected', selectedIds.has(i.id));
+  });
+  updateSelBar();
+}
+
+function updateGroupCheckboxes() {
+  if (!listGroupedMode) return;
+  const byLesson = {};
+  listFiltered.forEach(item => { (byLesson[item.lesson] = byLesson[item.lesson] || []).push(item); });
+  Object.entries(byLesson).forEach(([lessonKey, lessonItems]) => {
+    const lgrp = $id('list-items').querySelector('.lesson-group[data-lesson="' + lessonKey + '"]');
+    if (!lgrp) return;
+    const lgCb = lgrp.querySelector(':scope > .lesson-group-header .lg-cb');
+    if (lgCb) {
+      const la = lessonItems.every(i => selectedIds.has(i.id));
+      const ls = lessonItems.some(i => selectedIds.has(i.id));
+      lgCb.checked = la; lgCb.indeterminate = !la && ls;
+    }
+    const bySub = {};
+    lessonItems.forEach(item => { (bySub[item.sub] = bySub[item.sub] || []).push(item); });
+    Object.entries(bySub).forEach(([subKey, subItems]) => {
+      const sg = lgrp.querySelector('.sub-group[data-sub="' + CSS.escape(subKey) + '"]');
+      if (!sg) return;
+      const sgCb = sg.querySelector('.sg-cb');
+      if (sgCb) {
+        const sa = subItems.every(i => selectedIds.has(i.id));
+        const ss = subItems.some(i => selectedIds.has(i.id));
+        sgCb.checked = sa; sgCb.indeterminate = !sa && ss;
+      }
+    });
+  });
 }
 
 function renderListGrouped(items) {
@@ -352,11 +422,50 @@ function renderListGrouped(items) {
     Object.entries(bySub).forEach(([subKey, subItems]) => {
       const sg = document.createElement('div');
       sg.className = 'sub-group';
+      sg.dataset.sub = subKey;
+
+      const allSubSel = subItems.every(i => selectedIds.has(i.id));
+      const someSubSel = subItems.some(i => selectedIds.has(i.id));
+
       const sh = document.createElement('div');
-      sh.className = 'sub-group-header';
-      sh.textContent = subLabel(subKey);
+      sh.className = 'sub-group-header open';
+
+      const sgCb = document.createElement('input');
+      sgCb.type = 'checkbox';
+      sgCb.className = 'sg-cb';
+      sgCb.checked = allSubSel;
+      sgCb.indeterminate = !allSubSel && someSubSel;
+      sgCb.addEventListener('change', e => {
+        e.stopPropagation();
+        toggleSelectSub(lessonKey, subKey);
+      });
+
+      const sgTitle = document.createElement('span');
+      sgTitle.className = 'sg-title';
+      sgTitle.textContent = subLabel(subKey);
+
+      const sgCnt = document.createElement('span');
+      sgCnt.className = 'sg-count';
+      sgCnt.textContent = subItems.length + ' từ';
+
+      const sgArrow = document.createElement('span');
+      sgArrow.className = 'sg-arrow';
+      sgArrow.textContent = '▶';
+
+      sh.appendChild(sgCb);
+      sh.appendChild(sgTitle);
+      sh.appendChild(sgCnt);
+      sh.appendChild(sgArrow);
+
       const si = document.createElement('div');
       si.className = 'sub-group-items';
+
+      sh.addEventListener('click', e => {
+        if (e.target === sgCb) return;
+        si.classList.toggle('hidden');
+        sh.classList.toggle('open');
+      });
+
       subItems.forEach(item => renderListRow(si, item, knownIds));
       sg.appendChild(sh);
       sg.appendChild(si);
@@ -411,7 +520,27 @@ function renderList(items) {
   }
 }
 
-function toggleSelect(id) {
+function toggleSelect(id, shiftKey) {
+  if (shiftKey && lastClickedId && lastClickedId !== id) {
+    const allRows = [...document.querySelectorAll('#list-items .li-row')];
+    const ids = allRows.map(r => r.dataset.id);
+    const lastIdx = ids.indexOf(lastClickedId);
+    const currIdx = ids.indexOf(id);
+    if (lastIdx !== -1 && currIdx !== -1) {
+      const start = Math.min(lastIdx, currIdx);
+      const end   = Math.max(lastIdx, currIdx);
+      const targetState = !selectedIds.has(id);
+      for (let i = start; i <= end; i++) {
+        const rid = ids[i];
+        if (targetState) selectedIds.add(rid);
+        else selectedIds.delete(rid);
+        allRows[i].classList.toggle('selected', selectedIds.has(rid));
+      }
+      lastClickedId = id;
+      updateSelBar();
+      return;
+    }
+  }
   if (selectedIds.has(id)) {
     selectedIds.delete(id);
   } else {
@@ -421,6 +550,7 @@ function toggleSelect(id) {
   if (row) {
     row.classList.toggle('selected', selectedIds.has(id));
   }
+  lastClickedId = id;
   updateSelBar();
 }
 
@@ -443,12 +573,14 @@ function updateSelBar() {
   const srsBtn = $id('list-srs-btn');
   srsBtn.textContent = srsCount > 0 ? '\u21ba H\u1ecdc SRS (' + srsCount + ')' : '\u21ba H\u1ecdc SRS';
   srsBtn.disabled = srsCount === 0;
+  updateGroupCheckboxes();
 }
 
 function showList(items, title, grouped = false) {
   listGroupedMode = grouped;
   listItems  = items;
   selectedIds = new Set();
+  lastClickedId = null;
   $id('list-title').textContent = title;
   const unit = title === 'Kanji' ? ' chữ' : ' từ';
   $id('list-cnt').textContent = items.length + unit;
@@ -586,13 +718,13 @@ function startFlashcard(items, title) {
 }
 
 function showFlashCard() {
-  flipped = false;
-  $id('cf-inner').classList.remove('flipped');
   $id('rating-bar').classList.remove('visible');
-  $id('flash-bar').classList.add('visible');
-  $id('tap-hint').classList.remove('hidden');
+  flipped = false;
   $id('c-level-badge').textContent = '';
   $id('c-level-badge').className = 'c-level-badge';
+  $id('tap-hint').classList.remove('hidden');
+
+  // Update content first (while back is showing, front update is invisible)
   if (flashDeck.length === 0) {
     current = null;
     $id('c-front').textContent = '— không có thẻ —';
@@ -600,14 +732,17 @@ function showFlashCard() {
     $id('flash-pos').textContent = '0 / 0';
     $id('flash-prev-btn').disabled = true;
     $id('flash-next-btn').disabled = true;
-    return;
+  } else {
+    current = flashDeck[flashIndex];
+    $id('c-front').textContent = current.front;
+    setCardBack(current);
+    $id('flash-pos').textContent = (flashIndex + 1) + ' / ' + flashDeck.length;
+    $id('flash-prev-btn').disabled = flashIndex === 0;
+    $id('flash-next-btn').disabled = flashIndex === flashDeck.length - 1;
   }
-  current = flashDeck[flashIndex];
-  $id('c-front').textContent = current.front;
-  setCardBack(current);
-  $id('flash-pos').textContent = (flashIndex + 1) + ' / ' + flashDeck.length;
-  $id('flash-prev-btn').disabled = flashIndex === 0;
-  $id('flash-next-btn').disabled = flashIndex === flashDeck.length - 1;
+
+  // Then flip back (reveals new front content)
+  doFlipBack(() => { $id('flash-bar').classList.add('visible'); });
 }
 
 function clearRetryState() {
@@ -692,15 +827,14 @@ function renderRetryTray() {
 }
 
 function nextCard() {
-  cardShownAt = Date.now();
-  flipped = false;
-  $id('cf-inner').classList.remove('flipped');
   $id('rating-bar').classList.remove('visible');
   $id('flash-bar').classList.remove('visible');
-  $id('tap-hint').classList.remove('hidden');
+  flipped = false;
   $id('c-level-badge').textContent = '';
   $id('c-level-badge').className = 'c-level-badge';
 
+  // Determine next card and update content before flipping
+  cardShownAt = Date.now();
   current = queue.shift() ?? null;
 
   if (!current) {
@@ -709,17 +843,20 @@ function nextCard() {
       ? retryQueue.length + ' thẻ đang đếm ngược...'
       : '';
     $id('tap-hint').classList.add('hidden');
-    return;
+  } else {
+    $id('c-front').textContent = current.front;
+    setCardBack(current);
+    $id('study-progress').textContent =
+      queue.length > 0 ? queue.length + ' còn lại' : 'cuối cùng';
+    $id('tap-hint').classList.remove('hidden');
   }
 
-  $id('c-front').textContent = current.front;
-  setCardBack(current);
-  $id('study-progress').textContent =
-    queue.length > 0 ? queue.length + ' còn lại' : 'cuối cùng';
+  // Flip back to reveal new content
+  doFlipBack(null);
 }
 
 function reveal() {
-  if (!current) return;
+  if (!current || cardTransitioning) return;
   if (!flipped) {
     flipped = true;
     $id('cf-inner').classList.add('flipped');
@@ -756,7 +893,7 @@ function flashPrev() {
 }
 
 function rate(q) {
-  if (!current) return;
+  if (!current || cardTransitioning) return;
   const s = getSRS()[current.id];
   const isReview = s && s.reps > 0;
   const mins = intervalForRating(current.id, q);
