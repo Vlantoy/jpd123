@@ -122,10 +122,8 @@
     </div>
 
     <div id="rating-bar" class="rating-bar">
-      <button class="rate-btn r-again" data-score="0">Lại<br><small id="ri-0">1 phút</small></button>
-      <button class="rate-btn r-hard"  data-score="2">Khó<br><small id="ri-2">1 phút</small></button>
-      <button class="rate-btn r-good"  data-score="3">Ổn<br><small id="ri-3">5 phút</small></button>
-      <button class="rate-btn r-easy"  data-score="5">Dễ<br><small id="ri-5">30 phút</small></button>
+      <button class="rate-btn r-again" data-score="0">Chưa ổn<br><small id="ri-0">1 phút</small></button>
+      <button class="rate-btn r-good"  data-score="4">Ổn<br><small id="ri-4">5 phút</small></button>
     </div>
     <div id="flash-bar" class="flash-bar">
       <button id="flash-prev-btn" class="flash-nav-btn" disabled>←</button>
@@ -186,16 +184,22 @@
           <h3>🃏 Dùng thẻ (chế độ Học SRS)</h3>
           <p>Nhấn vào thẻ hoặc <b>Space</b> để lật. Sau khi lật, chấm điểm:</p>
           <ul>
-            <li><b style="color:#c0392b">Lại</b> — Không nhớ, ôn lại ngay sau 1 phút.</li>
-            <li><b style="color:#c0612b">Khó</b> — Còn vấp, quay lại sau vài phút.</li>
-            <li><b style="color:#27864f">Ổn</b> — Nhớ được, hệ thống hẹn lịch ôn tiếp.</li>
-            <li><b style="color:#1a76c0">Dễ</b> — Nhớ rất rõ, hẹn lại lâu hơn.</li>
+            <li><b style="color:#c0392b">Chưa ổn</b> — Chưa nhớ, ôn lại sau 1 phút.</li>
+            <li><b style="color:#27864f">Ổn</b> — Đã nhớ, hệ thống tự hẹn lịch ôn tiếp (càng đúng nhiều lần, khoảng cách càng dài).</li>
           </ul>
           <p style="color:#aaa;font-size:12px;margin-top:4px">Số nhỏ dưới mỗi nút = thời gian ôn tiếp theo.</p>
         </section>
         <section>
           <h3>🃏 Dùng thẻ (chế độ Xem thẻ)</h3>
           <p>Lật tự do, không chấm điểm. Dùng <b>← →</b> hoặc nút mũi tên để chuyển thẻ.</p>
+        </section>
+        <section>
+          <h3>✨ AI đặt câu ví dụ (trong Ngữ pháp)</h3>
+          <p>Trong phần <b>Ngữ pháp</b>, <b>bôi chọn</b> bất kỳ đoạn chữ Nhật nào (ví dụ: một mẫu câu, trợ từ, động từ…). Panel sẽ hiện ra — nhấn <b>✨ Sinh câu ví dụ</b> để AI tạo một câu minh hoạ kèm romaji và bản dịch tiếng Việt.</p>
+          <ul>
+            <li>Nhấn <b>🔄 Đặt câu khác</b> để lấy câu mới.</li>
+            <li>Kết quả được lưu cache — lần sau bôi cùng đoạn sẽ hiện ngay.</li>
+          </ul>
         </section>
         <section>
           <h3>🔊 Phát âm</h3>
@@ -205,7 +209,7 @@
           <h3>💡 Phím tắt</h3>
           <ul>
             <li><b>Space</b> — Lật thẻ</li>
-            <li><b>1 / 2 / 3 / 4</b> — Lại / Khó / Ổn / Dễ</li>
+            <li><b>1</b> — Chưa ổn &nbsp;·&nbsp; <b>2</b> — Ổn</li>
             <li><b>← →</b> — Chuyển thẻ (chế độ Xem thẻ)</li>
           </ul>
         </section>
@@ -213,7 +217,19 @@
     </div>
   </div>
 
+  <!-- ═══════════════ GEMINI LOOKUP PANEL ═══════════════ -->
+  <button id="gemini-trigger" class="gemini-trigger hidden" type="button">📝 Đặt câu</button>
+  <div id="gemini-panel" class="gemini-panel hidden">
+    <div class="gp-header">
+      <span class="gp-title" id="gp-title">Ví dụ</span>
+      <button id="gp-close" class="gp-close" title="Đóng">✕</button>
+    </div>
+    <div class="gp-selected" id="gp-selected"></div>
+    <div class="gp-body" id="gp-body"></div>
+  </div>
+
   <script src="vocab_data.js?v=2"></script>
+  <script src="gemini_keys.js"></script>
   <script src="app.js"></script>
   <div id="debug-panel" class="debug-panel hidden"></div>
 </body>

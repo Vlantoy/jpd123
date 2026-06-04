@@ -9,3 +9,9 @@ Thumbs.db
 
 # Editor
 .vscode/
+
+# noob assistant memory
+noob.md
+
+# Secrets — Gemini API keys (local only)
+gemini_keys.js

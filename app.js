@@ -66,8 +66,10 @@ function applyRating(id, q) {
 }
 
 // ── Data loading ─────────────────────────────────────────────
+// Chỉ lấy vocab thuộc các bài đang học (4-7)
+const ACTIVE_LESSONS = new Set(['Lesson_04','Lesson_05','Lesson_06','Lesson_07']);
 async function loadVocab() {
-  return VOCAB_DATA;
+  return VOCAB_DATA.filter(v => !v.lesson || ACTIVE_LESSONS.has(v.lesson));
 }
 
 async function loadKanji() {
@@ -117,17 +119,373 @@ function showView(id) {
   $id(id).classList.add('active');
 }
 
-// Flip card back to front instantly (no animation — avoids revealing new card's back)
+// ── Sound effects (Web Audio, no external files) ──────────────
+let _audioCtx = null;
+function getAudioCtx() {
+  if (_audioCtx) return _audioCtx;
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    _audioCtx = new AC();
+  } catch { return null; }
+  return _audioCtx;
+}
+// type: 'pass' (Ổn — bright two-note up), 'fail' (Chưa ổn — soft down), 'flip' (reveal click)
+function playSound(type) {
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+  if (ctx.state === 'suspended') { try { ctx.resume(); } catch {} }
+  const now = ctx.currentTime;
+  const play = (freq, start, dur, gain = 0.08, wave = 'sine') => {
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = wave;
+    osc.frequency.setValueAtTime(freq, now + start);
+    g.gain.setValueAtTime(0, now + start);
+    g.gain.linearRampToValueAtTime(gain, now + start + 0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + start + dur);
+    osc.connect(g).connect(ctx.destination);
+    osc.start(now + start);
+    osc.stop(now + start + dur + 0.02);
+  };
+  if (type === 'pass') {
+    // E5 → A5 (bright, pleasant)
+    play(659.25, 0,    0.12, 0.07, 'triangle');
+    play(880.00, 0.08, 0.18, 0.07, 'triangle');
+  } else if (type === 'fail') {
+    // A4 → E4 (soft down, not punishing)
+    play(440.00, 0,    0.10, 0.06, 'sine');
+    play(329.63, 0.07, 0.18, 0.06, 'sine');
+  } else if (type === 'flip') {
+    // Short click — single tick
+    play(720, 0, 0.05, 0.04, 'square');
+  }
+}
+
+// ── Gemini API (key pool + cache) ─────────────────────────────
+// Keys load từ gemini_keys.js (gitignored). Nếu thiếu file → mảng rỗng, Gemini features tắt.
+const GEMINI_KEYS = (typeof window !== 'undefined' && Array.isArray(window.GEMINI_KEYS)) ? window.GEMINI_KEYS : [];
+const GEMINI_MODEL = 'gemini-2.0-flash';
+const GEMINI_CACHE_KEY = 'jpflash.geminiCache';
+const GEMINI_KEY_IDX_KEY = 'jpflash.geminiKeyIdx';
+const GEMINI_CACHE_MAX = 500;
+
+function getGeminiKeyIdx() {
+  const v = parseInt(localStorage.getItem(GEMINI_KEY_IDX_KEY) || '0', 10);
+  return isNaN(v) ? 0 : v % GEMINI_KEYS.length;
+}
+function setGeminiKeyIdx(i) {
+  localStorage.setItem(GEMINI_KEY_IDX_KEY, String(i % GEMINI_KEYS.length));
+}
+
+function loadGeminiCache() {
+  try { return JSON.parse(localStorage.getItem(GEMINI_CACHE_KEY) || '{}'); }
+  catch { return {}; }
+}
+function saveGeminiCache(c) {
+  // LRU prune if too big
+  const entries = Object.entries(c);
+  if (entries.length > GEMINI_CACHE_MAX) {
+    entries.sort((a, b) => (a[1].ts || 0) - (b[1].ts || 0));
+    const trimmed = Object.fromEntries(entries.slice(-GEMINI_CACHE_MAX));
+    localStorage.setItem(GEMINI_CACHE_KEY, JSON.stringify(trimmed));
+  } else {
+    localStorage.setItem(GEMINI_CACHE_KEY, JSON.stringify(c));
+  }
+}
+function normalizeText(s) {
+  return (s || '').trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+// Call Gemini with auto key rotation on rate limit / quota errors.
+// Returns parsed text on success, throws on hard failure.
+const GEMINI_MODELS_FALLBACK = ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-2.5-flash-lite', 'gemini-flash-latest'];
+
+async function callGemini(prompt, sysInstruction) {
+  if (!GEMINI_KEYS.length) throw new Error('Không có Gemini API key — kiểm tra file gemini_keys.js');
+  const startIdx = getGeminiKeyIdx();
+  let lastErr = null;
+  const errLog = [];
+  for (const model of GEMINI_MODELS_FALLBACK) {
+    for (let attempt = 0; attempt < GEMINI_KEYS.length; attempt++) {
+      const idx = (startIdx + attempt) % GEMINI_KEYS.length;
+      const key = GEMINI_KEYS[idx];
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+      try {
+        const body = {
+          contents: [{ role: 'user', parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.7, maxOutputTokens: 512, responseMimeType: 'text/plain' },
+        };
+        if (sysInstruction) {
+          body.systemInstruction = { parts: [{ text: sysInstruction }] };
+        }
+        if (window.dbg && window.dbg.geminiTrace) {
+          console.log('[Gemini→] model=', model, 'key=', idx, '\nSYSTEM:\n', sysInstruction || '(none)', '\nUSER:\n', prompt);
+        }
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) {
+          const txt = await res.text();
+          const msg = `[${model}] key${idx} HTTP ${res.status}: ${txt.slice(0, 150)}`;
+          errLog.push(msg);
+          lastErr = new Error(msg);
+          if (res.status === 429 || res.status === 403) {
+            setGeminiKeyIdx(idx + 1);
+          }
+          continue;
+        }
+        const data = await res.json();
+        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!text) {
+          errLog.push(`[${model}] key${idx} empty response`);
+          lastErr = new Error('Empty response');
+          continue;
+        }
+        if (window.dbg && window.dbg.geminiTrace) {
+          console.log('[Gemini←] raw response:\n', text);
+        }
+        // Success — remember this key
+        setGeminiKeyIdx(idx);
+        return text;
+      } catch (err) {
+        const msg = `[${model}] key${idx} ${err.message || err}`;
+        errLog.push(msg);
+        lastErr = err;
+      }
+    }
+  }
+  console.warn('[Gemini] all attempts failed:', errLog);
+  throw lastErr || new Error('All Gemini keys/models failed');
+}
+
+// Pick a small vocab pool (~25 items) — prioritize items whose kana/kanji appear
+// in the selected text, then fill with random words from allVocab + allKanji.
+function pickVocabPool(text) {
+  const POOL_SIZE = 25;
+  const must = []; // matched in selected text — Gemini PHẢI dùng
+  const may = [];  // random fill — Gemini có thể tham khảo
+  const seen = new Set();
+  const pushTo = (arr, it) => {
+    const k = (it.front || '') + '|' + (it.kanji || '');
+    if (seen.has(k)) return;
+    seen.add(k);
+    arr.push(it);
+  };
+  // 1) MUST: vocab/kanji whose front/kanji appears in selected text
+  for (const v of allVocab) {
+    if ((v.front && text.includes(v.front)) || (v.kanji && text.includes(v.kanji))) pushTo(must, v);
+  }
+  for (const k of allKanji) {
+    if (k.front && text.includes(k.front)) pushTo(must, { front: k.back || '', kanji: k.front, back: k.meaning });
+  }
+  // 2) MAY: random vocab to fill up to POOL_SIZE
+  const remaining = POOL_SIZE - must.length;
+  if (remaining > 0 && allVocab.length) {
+    const shuffled = allVocab.slice().sort(() => Math.random() - 0.5);
+    for (const v of shuffled) {
+      if (may.length >= remaining) break;
+      pushTo(may, v);
+    }
+  }
+  return { must, may };
+}
+
+// Extract the first balanced JSON object from a noisy string (handles trailing
+// garbage, markdown fences, escaped quotes). Returns parsed object or null.
+function extractFirstJsonObject(s) {
+  if (!s) return null;
+  let t = String(s).replace(/```(?:json)?/gi, '').trim();
+  const start = t.indexOf('{');
+  if (start < 0) return null;
+  let depth = 0, inStr = false, esc = false;
+  for (let i = start; i < t.length; i++) {
+    const ch = t[i];
+    if (esc) { esc = false; continue; }
+    if (inStr) {
+      if (ch === '\\') { esc = true; continue; }
+      if (ch === '"') { inStr = false; }
+      continue;
+    }
+    if (ch === '"') { inStr = true; continue; }
+    if (ch === '{') depth++;
+    else if (ch === '}') {
+      depth--;
+      if (depth === 0) {
+        const candidate = t.slice(start, i + 1);
+        try { return JSON.parse(candidate); } catch { return null; }
+      }
+    }
+  }
+  return null;
+}
+
+function formatVocabPool(pool) {
+  return pool.map(v => {
+    const jp = v.kanji ? `${v.kanji}(${v.front})` : v.front;
+    return `- ${jp}: ${v.back}`;
+  }).join('\n');
+}
+
+// System instruction cho Gemini — đặt ở đây để model ƯU TIÊN tuân thủ format.
+const GRAMMAR_SYS_INSTRUCTION = `Bạn là trợ lý đặt câu tiếng Nhật cho người học sơ-trung cấp (trình độ N5-N4, giáo trình Minna no Nihongo).
+
+=== QUY TẮC NỘI DUNG (QUAN TRỌNG HƠN FORMAT) ===
+- Câu PHẢI có Ý NGHĨA THỰC TẾ, mô tả một tình huống đời sống hợp lý mà người Nhật có thể nói/viết hằng ngày (ở nhà, ở trường, công ty, đi chơi, mua sắm, ăn uống...).
+- Câu PHẢI minh hoạ ĐÚNG cấu trúc ngữ pháp trong đoạn được bôi chọn — đó là MỤC TIÊU chính. Nếu đoạn được chọn là một mẫu câu (ví dụ ～てください, ～たいです, ～から), câu ví dụ phải dùng đúng mẫu đó ở vị trí then chốt.
+- CẤM TUYỆT ĐỐI câu vô nghĩa, phi lý, siêu thực, hoặc ghép từ vựng gượng ép chỉ để chèn đủ từ trong danh sách. Ví dụ KHÔNG hợp lệ: "Con mèo học tiếng Nhật ở ngân hàng", "Cái bàn ăn cơm với cuốn sách", "Hôm qua tôi sẽ đi chợ ngày mai".
+- Chủ ngữ, động từ, tân ngữ phải khớp nhau về logic (người làm việc của người, vật vô tri không tự hành động, thời gian nhất quán...).
+- Văn phong tự nhiên như người Nhật bản xứ nói — không dịch word-for-word từ tiếng Việt.
+- Độ dài 8-18 từ. Ưu tiên ngắn gọn, rõ ý hơn là dài dòng.
+- Nếu phải chọn giữa "dùng thêm 1 từ trong danh sách" và "câu tự nhiên có nghĩa", LUÔN chọn câu tự nhiên có nghĩa.
+
+=== QUY TẮC FORMAT (BẮT BUỘC) ===
+- Trả về CHÍNH XÁC 3 dòng plain text, không hơn không kém.
+- Dòng 1 bắt đầu bằng "JP: " rồi đến câu tiếng Nhật (có kanji + kana, kết thúc bằng 。 hoặc ？ hoặc ！).
+- Dòng 2 bắt đầu bằng "Romaji: " rồi đến phiên âm romaji thường (chữ thường, có khoảng trắng giữa các từ).
+- Dòng 3 bắt đầu bằng "VN: " rồi đến bản dịch tiếng Việt tự nhiên.
+- TUYỆT ĐỐI KHÔNG dùng JSON, array, markdown (**, *, \`, -, #), HTML, dấu nháy bao quanh câu, hay bất kỳ ký tự trang trí nào.
+- KHÔNG thêm dòng giải thích, tiêu đề, lời chào, ghi chú, ví dụ phụ.
+- KHÔNG xuống dòng giữa câu — mỗi dòng JP/Romaji/VN nằm trọn trên 1 dòng.
+
+=== VÍ DỤ OUTPUT HỢP LỆ ===
+JP: 毎朝コーヒーを飲んでから会社へ行きます。
+Romaji: maiasa koohii o nonde kara kaisha e ikimasu.
+VN: Mỗi sáng tôi uống cà phê rồi mới đi làm.`;
+
+// Lookup a Japanese grammar structure / phrase — returns { sentence: {jp, romaji, vn}, fromCache }.
+// force=true bypasses cache (and writes fresh result back).
+async function lookupGrammar(text, force = false) {
+  const key = normalizeText(text);
+  if (!key) throw new Error('Empty text');
+  const cache = loadGeminiCache();
+  if (!force && cache[key]) {
+    return { sentence: cache[key].sentence, fromCache: true };
+  }
+  const { must, may } = pickVocabPool(text);
+  const mustStr = must.length ? formatVocabPool(must) : '(không có)';
+  const maxMay = Math.max(0, 20 - must.length);
+  const maySubset = may.slice(0, maxMay);
+  const mayStr = maySubset.length ? formatVocabPool(maySubset) : '(không có)';
+  // Số từ MUST yêu cầu dùng: tối thiểu 1, tối đa 3 (tránh nhồi nhét gượng ép)
+  const mustQuota = must.length === 0 ? 0 : Math.min(3, Math.max(1, Math.ceil(must.length / 3)));
+  const mustRule = must.length === 0
+    ? '- Không có từ bắt buộc — hãy chọn 1-2 từ trong DANH SÁCH B nếu phù hợp ngữ cảnh tự nhiên. Nếu không từ nào hợp, KHÔNG ép — ưu tiên câu có nghĩa hơn.'
+    : `- Ưu tiên dùng ${mustQuota} từ/kanji từ DANH SÁCH A NẾU chúng hợp ngữ cảnh tự nhiên. NHƯNG nếu ép vào sẽ làm câu vô nghĩa/gượng ép, hãy dùng ít hơn (1 từ cũng được) — câu CÓ NGHĨA quan trọng hơn việc chèn đủ từ.\n- Có thể dùng thêm từ trong DANH SÁCH B nếu phù hợp.\n- Tránh dùng từ Hán-Nhật xa lạ ngoài 2 danh sách trên trừ khi thật sự cần.`;
+  const variantHint = force ? `\n\nLƯU Ý: hãy đặt câu KHÁC hẳn lần trước, ngữ cảnh mới lạ — NHƯNG vẫn phải tuân thủ ràng buộc từ vựng ở trên VÀ trả về đúng 3 dòng format JP/Romaji/VN, KHÔNG markdown, KHÔNG giải thích.` : '';
+  const prompt = `Bạn là trợ lý tiếng Nhật. Người học vừa bôi chọn đoạn sau từ tài liệu ngữ pháp:
+
+"${text}"
+
+=== DANH SÁCH A — TỪ/KANJI BẮT BUỘC ƯU TIÊN (xuất hiện trong đoạn được chọn) ===
+${mustStr}
+
+=== DANH SÁCH B — TỪ VỰNG THAM KHẢO (học viên đang học) ===
+${mayStr}
+
+=== RÀNG BUỘC TỪ VỰNG ===
+${mustRule}
+
+Hãy đặt ĐÚNG 1 câu ví dụ ngắn gọn (10-20 từ), tự nhiên, đúng ngữ pháp, dùng đúng cấu trúc trong đoạn được chọn.${variantHint}
+
+=== OUTPUT RULES (BẮT BUỘC) ===
+- Trả về CHÍNH XÁC 3 dòng, không hơn không kém.
+- Mỗi dòng bắt đầu bằng đúng nhãn: "JP:", "Romaji:", "VN:" (theo đúng thứ tự này).
+- KHÔNG dùng markdown (không **bold**, không *italic*, không backtick, không bullet, không số thứ tự).
+- KHÔNG thêm dòng giải thích, ghi chú, tiêu đề, lời chào.
+- KHÔNG bọc câu trong dấu nháy hay dấu ngoặc.
+
+Ví dụ output hợp lệ:
+JP: 私は毎日日本語を勉強します。
+Romaji: watashi wa mainichi nihongo o benkyou shimasu.
+VN: Tôi học tiếng Nhật mỗi ngày.
+
+Bây giờ hãy trả lời theo đúng format trên:`;
+  const raw = await callGemini(prompt);
+  const sentence = parsePlainSentence(raw);
+  if (!sentence || !sentence.jp) {
+    throw new Error('Gemini trả về sai format: ' + String(raw).slice(0, 120));
+  }
+  cache[key] = { sentence, ts: Date.now() };
+  saveGeminiCache(cache);
+  return { sentence, fromCache: false };
+}
+
+// Parse Gemini's 3-line plain-text response into {jp, romaji, vn}.
+// Tolerant: strips markdown (** __ * ` ), bullet/number prefixes, code fences,
+// and accepts label variants (JP/Jap/Japanese/日本語/Nhật, Romaji/ローマ/Âm, VN/Việt/Viet).
+function parsePlainSentence(raw) {
+  if (!raw) return null;
+  // Remove fenced code blocks entirely.
+  let text = String(raw).replace(/```[\s\S]*?```/g, '').trim();
+  // Strip markdown bold/italic markers globally (keep the inner text).
+  text = text.replace(/\*\*([^*]+)\*\*/g, '$1').replace(/__([^_]+)__/g, '$1');
+  const out = { jp: '', romaji: '', vn: '' };
+  const lines = text.split(/\r?\n/)
+    .map(l => l.trim())
+    // Strip leading bullets/numbers: "- ", "* ", "1. ", "1) ", "• "
+    .map(l => l.replace(/^(?:[-*•]\s+|\d+[.)]\s+)/, ''))
+    // Strip stray leading/trailing * or ` from a single line
+    .map(l => l.replace(/^[*`_~]+|[*`_~]+$/g, '').trim())
+    .filter(Boolean);
+  for (const line of lines) {
+    const m = line.match(/^([^:：]{1,25})\s*[:：]\s*(.+)$/);
+    if (!m) continue;
+    const label = m[1].toLowerCase().trim();
+    const val = m[2].trim().replace(/^["'`<\[(（]+|["'`>\])）]+$/g, '').trim();
+    if (!val) continue;
+    if (!out.jp && (label.startsWith('jp') || label.startsWith('jap') || label.includes('日本') || label.includes('nhật') || label === 'câu')) out.jp = val;
+    else if (!out.romaji && (label.startsWith('rom') || label.includes('ローマ') || label.includes('âm') || label.includes('phiên'))) out.romaji = val;
+    else if (!out.vn && (label.startsWith('vn') || label.startsWith('vie') || label.startsWith('việt') || label.startsWith('viet') || label.startsWith('ngh') || label.startsWith('dịch') || label.startsWith('dich'))) out.vn = val;
+  }
+  // Fallback A: no JP label — pick first line containing kanji/kana.
+  if (!out.jp) {
+    for (const line of lines) {
+      if (/[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]/.test(line)) {
+        out.jp = line.replace(/^[^:：]{1,25}[:：]\s*/, '').replace(/^["'`<\[(（]+|["'`>\])）]+$/g, '').trim();
+        break;
+      }
+    }
+  }
+  // Fallback B: no romaji — pick a line that is mostly ASCII letters but is NOT the VN line.
+  if (!out.romaji) {
+    for (const line of lines) {
+      const stripped = line.replace(/^[^:：]{1,25}[:：]\s*/, '').trim();
+      if (!stripped || stripped === out.jp || stripped === out.vn) continue;
+      // ASCII-ish + no Vietnamese diacritics + no kanji/kana → likely romaji.
+      if (/^[A-Za-z0-9\s.,!?'"-]+$/.test(stripped)) { out.romaji = stripped; break; }
+    }
+  }
+  return out;
+}
+
+// Flip card back to front with a quick animation, then run callback.
+// Important: animation finishes BEFORE swapping content, otherwise the new
+// card's back text would flash through during the flip.
 function doFlipBack(onDone) {
   const inner = $id('cf-inner');
-  if (inner.classList.contains('flipped')) {
-    inner.style.transitionDuration = '0s';
-    inner.classList.remove('flipped');
-    void inner.offsetWidth; // force reflow so the 0s duration is committed
-    inner.style.transitionDuration = '';
+  if (!inner.classList.contains('flipped')) {
+    cardTransitioning = false;
+    if (onDone) onDone();
+    return;
   }
-  cardTransitioning = false;
-  if (onDone) onDone();
+  const FAST = 180; // ms — quick but visible flip
+  inner.style.transitionDuration = FAST + 'ms';
+  inner.classList.remove('flipped');
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    inner.removeEventListener('transitionend', finish);
+    inner.style.transitionDuration = '';
+    cardTransitioning = false;
+    if (onDone) onDone();
+  };
+  inner.addEventListener('transitionend', finish);
+  // Safety fallback in case transitionend never fires
+  setTimeout(finish, FAST + 80);
 }
 
 // Flip card back to front, calling cb when done
@@ -253,16 +611,11 @@ function renderListRow(container, item, knownIds) {
   if (isKnown)        { btnText = '\u2713 Bi\u1ebft'; btnClass = 'li-known-btn known'; }
   else if (isMature)  { btnText = 'Qu\u00ean r\u1ed3i'; btnClass = 'li-known-btn mature-forget'; }
   else                { btnText = 'Bi\u1ebft r\u1ed3i'; btnClass = 'li-known-btn'; }
-  const chip = statusChipInfo(item.id);
+  const peek = (item.back || '').replace(/"/g, '&quot;');
+  row.setAttribute('data-peek', peek);
   row.innerHTML =
     '<div class="li-badge ' + lvl + '"></div>' +
-    '<div class="li-text">' +
-      '<div class="li-front">' + item.front + '</div>' +
-      '<div class="li-back">' + (item.type === 'kanji' && item.meaning
-        ? '<span class="kanji-reading" data-meaning="' + item.meaning.replace(/"/g, '&quot;') + '">' + item.back + '</span>'
-        : item.back) + '</div>' +
-      '<span class="li-status ' + chip.cls + '">' + chip.text + '</span>' +
-    '</div>' +
+    '<div class="li-front">' + item.front + '</div>' +
     '<button class="' + btnClass + '">' + btnText + '</button>';
   row.addEventListener('click', e => {
     if (e.target.closest('.li-known-btn')) return;
@@ -428,7 +781,7 @@ function renderListGrouped(items) {
       const someSubSel = subItems.some(i => selectedIds.has(i.id));
 
       const sh = document.createElement('div');
-      sh.className = 'sub-group-header open';
+      sh.className = 'sub-group-header';
 
       const sgCb = document.createElement('input');
       sgCb.type = 'checkbox';
@@ -458,7 +811,7 @@ function renderListGrouped(items) {
       sh.appendChild(sgArrow);
 
       const si = document.createElement('div');
-      si.className = 'sub-group-items';
+      si.className = 'sub-group-items hidden';
 
       sh.addEventListener('click', e => {
         if (e.target === sgCb) return;
@@ -610,7 +963,7 @@ function intervalForRating(id, q) {
   }
   // Learning card — track step progress
   const step = sessionSRS[id]?.step ?? 0;
-  if (q === 0) return 0;                          // Again → immediate re-queue
+  if (q === 0) return LEARN_STEPS[0];             // Chưa ổn → countdown 1 phút (không xuất hiện ngay)
   if (q === 2) return LEARN_STEPS[0];             // Hard → back to step 0 (1 min)
   if (q === 5) return null;                       // Easy → graduate now
   const next = step + 1;
@@ -636,7 +989,7 @@ function formatSRSInterval(days) {
   return days + ' ng\u00e0y';
 }
 function updateRatingLabels(id) {
-  [[0,0],[2,2],[3,3],[5,5]].forEach(([score, q]) => {
+  [[0,0],[4,4]].forEach(([score, q]) => {
     const el = $id('ri-' + score);
     if (!el) return;
     const mins = intervalForRating(id, q);
@@ -826,22 +1179,13 @@ function renderRetryTray() {
   }).join('');
 }
 
-function nextCard() {
-  $id('rating-bar').classList.remove('visible');
-  $id('flash-bar').classList.remove('visible');
-  flipped = false;
-  $id('c-level-badge').textContent = '';
-  $id('c-level-badge').className = 'c-level-badge';
-
-  // Determine next card and update content before flipping
+// Swap card content (front/back/progress) without any animation.
+function swapToNextContent() {
   cardShownAt = Date.now();
   current = queue.shift() ?? null;
-
   if (!current) {
     $id('c-front').textContent = '✓ Xong rồi!';
-    $id('study-progress').textContent = retryQueue.length > 0
-      ? retryQueue.length + ' thẻ đang đếm ngược...'
-      : '';
+    $id('study-progress').textContent = '';
     $id('tap-hint').classList.add('hidden');
   } else {
     $id('c-front').textContent = current.front;
@@ -850,15 +1194,70 @@ function nextCard() {
       queue.length > 0 ? queue.length + ' còn lại' : 'cuối cùng';
     $id('tap-hint').classList.remove('hidden');
   }
+}
 
-  // Flip back to reveal new content
-  doFlipBack(null);
+// Animate the current card OUT in `dir` ('left'|'right'|'up'), then swap
+// content, then animate the new card IN. If dir is null, fall back to
+// the quick flip-back behavior (used when card hasn't been flipped yet).
+function nextCard(dir) {
+  $id('rating-bar').classList.remove('visible');
+  $id('flash-bar').classList.remove('visible');
+  $id('c-level-badge').textContent = '';
+  $id('c-level-badge').className = 'c-level-badge';
+
+  const cf = $id('card-flip');
+  const inner = $id('cf-inner');
+
+  // No exit direction OR card not flipped → quick flip-back fallback
+  if (!dir || !inner.classList.contains('flipped')) {
+    doFlipBack(() => {
+      swapToNextContent();
+      flipped = false;
+      // Subtle enter animation for the new card
+      cf.classList.remove('card-enter');
+      void cf.offsetWidth;
+      cf.classList.add('card-enter');
+      setTimeout(() => cf.classList.remove('card-enter'), 280);
+    });
+    return;
+  }
+
+  // Swipe exit: add class, wait for animation end, then swap + enter
+  cardTransitioning = true;
+  const swipeClass = 'swipe-' + dir;
+  cf.classList.add(swipeClass);
+
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    inner.removeEventListener('animationend', finish);
+    // Swap content while card is off-screen / invisible
+    cf.classList.remove(swipeClass);
+    // Reset flip state silently (no transition) so new card shows front
+    inner.style.transitionDuration = '0s';
+    inner.classList.remove('flipped');
+    flipped = false;
+    void inner.offsetWidth;
+    inner.style.transitionDuration = '';
+    swapToNextContent();
+    // Enter animation for new card
+    cf.classList.remove('card-enter');
+    void cf.offsetWidth;
+    cf.classList.add('card-enter');
+    setTimeout(() => cf.classList.remove('card-enter'), 280);
+    cardTransitioning = false;
+  };
+  inner.addEventListener('animationend', finish);
+  // Safety fallback (CSS anim is .28s)
+  setTimeout(finish, 360);
 }
 
 function reveal() {
   if (!current || cardTransitioning) return;
   if (!flipped) {
     flipped = true;
+    playSound('flip');
     $id('cf-inner').classList.add('flipped');
     $id('tap-hint').classList.add('hidden');
     if (!isFlashcardMode) {
@@ -920,10 +1319,7 @@ function rate(q) {
   }
   saveSessionSRS(); // persist step progress across sessions
 
-  if (mins === 0) {
-    // Again on learning card: insert right after next
-    queue.splice(1, 0, current);
-  } else if (mins !== null) {
+  if (mins !== null) {
     retryQueue.push({ item: current, dueAt: Date.now() + mins * 60000 });
     retryPanelOpen = true; // auto-expand so user sees the queue immediately
     startRetryTimer();
@@ -931,7 +1327,9 @@ function rate(q) {
     saveRetryQueue(); // persist so countdown survives if user exits
   }
   refreshStats();
-  nextCard();
+  playSound(q === 0 ? 'fail' : 'pass');
+  const dir = q === 0 ? 'left' : 'right';
+  nextCard(dir);
 }
 
 function speakCard() {
@@ -1024,6 +1422,177 @@ function renderGrammar() {
     det.append(sum, body);
     c.appendChild(det);
   });
+}
+
+// ── Grammar selection → Gemini lookup ─────────────────────────
+let _grammarSelectionTimer = null;
+let _lastLookupKey = '';
+
+function bindGrammarSelection() {
+  const c = $id('grammar-content');
+  if (!c) return;
+  const handler = () => {
+    clearTimeout(_grammarSelectionTimer);
+    _grammarSelectionTimer = setTimeout(() => {
+      const sel = window.getSelection();
+      if (!sel || sel.isCollapsed) return;
+      const text = sel.toString().trim();
+      if (text.length < 2 || text.length > 200) return;
+      // Only trigger if selection contains Japanese chars
+      if (!/[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]/.test(text)) return;
+      // Must be within grammar-content
+      const anchor = sel.anchorNode;
+      if (!anchor || !c.contains(anchor.nodeType === 1 ? anchor : anchor.parentNode)) return;
+      // Open panel in IDLE state — do NOT call API until user clicks the button.
+      openGeminiPanelIdle(text);
+    }, 250);
+  };
+  c.addEventListener('mouseup', handler);
+  c.addEventListener('touchend', handler);
+}
+
+// Open the Gemini panel with the selected text but DO NOT call the API yet.
+// User must click the "Sinh câu ví dụ" button to actually generate.
+function openGeminiPanelIdle(text) {
+  const panel = $id('gemini-panel');
+  const selEl = $id('gp-selected');
+  const bodyEl = $id('gp-body');
+  const titleEl = $id('gp-title');
+  panel.classList.remove('hidden');
+  selEl.textContent = text;
+  titleEl.innerHTML = 'Ví dụ';
+  // Check cache so we can show a hint that this text is already cached.
+  const cache = loadGeminiCache();
+  const cached = cache[normalizeText(text)];
+  const btnLabel = cached ? '⚡ Xem câu đã lưu' : '✨ Sinh câu ví dụ';
+  bodyEl.innerHTML =
+    '<div class="gp-idle">' +
+      '<button id="gp-go" class="gp-regen-btn" type="button">' + btnLabel + '</button>' +
+      (cached ? '' : '<div class="gp-hint">Bấm nút trên để gọi Gemini đặt 1 câu ví dụ dùng đoạn đã chọn.</div>') +
+    '</div>';
+  const btn = $id('gp-go');
+  if (btn) btn.addEventListener('click', () => showGeminiPanel(text, false));
+}
+
+async function showGeminiPanel(text, force = false) {
+  const panel = $id('gemini-panel');
+  const selEl = $id('gp-selected');
+  const bodyEl = $id('gp-body');
+  const titleEl = $id('gp-title');
+  panel.classList.remove('hidden');
+  selEl.textContent = text;
+  titleEl.innerHTML = 'Ví dụ';
+  bodyEl.innerHTML = '<div class="gp-loading"><div class="gp-spinner"></div><span>Đang sinh ví dụ...</span></div>';
+  try {
+    const { sentence, fromCache } = await lookupGrammar(text, force);
+    titleEl.innerHTML = fromCache ? 'Ví dụ <span class="gp-cache-tag">CACHE</span>' : 'Ví dụ';
+    bodyEl.innerHTML =
+      '<div class="gp-sentence">' +
+        '<div class="gp-jp">' + escapeHtml(sentence.jp) + '</div>' +
+        (sentence.romaji ? '<div class="gp-romaji">' + escapeHtml(sentence.romaji) + '</div>' : '') +
+        '<div class="gp-vn">' + escapeHtml(sentence.vn || '') + '</div>' +
+      '</div>' +
+      '<button id="gp-regen" class="gp-regen-btn" type="button">🔄 Đặt câu khác</button>';
+    const btn = $id('gp-regen');
+    if (btn) btn.addEventListener('click', () => showGeminiPanel(text, true));
+  } catch (err) {
+    bodyEl.innerHTML = '<div class="gp-error">Lỗi: ' + escapeHtml(err.message || String(err)) + '</div>' +
+      '<button id="gp-regen" class="gp-regen-btn" type="button">🔄 Thử lại</button>';
+    const btn = $id('gp-regen');
+    if (btn) btn.addEventListener('click', () => showGeminiPanel(text, true));
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[ch]);
+}
+
+// ── Card swipe gesture (study view) ────────────────────────────
+// Tap (small move) → reveal. Horizontal drag past threshold → rate.
+// Left swipe = "Chưa ổn" (0), Right swipe = "Ổn" (4).
+// Only triggers rate when card is already flipped (user has seen the answer).
+function bindCardSwipe() {
+  const cf = $id('card-flip');
+  const inner = $id('cf-inner');
+  const SWIPE_PX = 80;        // distance to commit a swipe
+  const TAP_PX = 6;           // movement under this = tap
+  let startX = 0, startY = 0;
+  let dragging = false;
+  let pointerId = null;
+  let dx = 0;
+
+  const onDown = e => {
+    if (cardTransitioning) return;
+    // Ignore touches on inner controls (speak/flash nav/rate buttons)
+    if (e.target.closest('button')) return;
+    pointerId = e.pointerId;
+    startX = e.clientX;
+    startY = e.clientY;
+    dx = 0;
+    dragging = false;
+    try { cf.setPointerCapture(pointerId); } catch {}
+  };
+
+  const onMove = e => {
+    if (pointerId === null || e.pointerId !== pointerId) return;
+    const mx = e.clientX - startX;
+    const my = e.clientY - startY;
+    if (!dragging) {
+      if (Math.abs(mx) > TAP_PX && Math.abs(mx) > Math.abs(my)) {
+        dragging = true;
+      } else if (Math.abs(my) > TAP_PX * 2) {
+        // Vertical scroll wins — cancel gesture
+        pointerId = null;
+        return;
+      } else {
+        return;
+      }
+    }
+    // Only allow horizontal drag when card is flipped (answer visible)
+    if (!flipped) return;
+    dx = mx;
+    const rot = mx / 20; // subtle tilt
+    const opacity = Math.max(0.3, 1 - Math.abs(mx) / 400);
+    inner.style.transition = 'none';
+    inner.style.transform = `rotateY(180deg) translateX(${-mx}px) rotate(${-rot}deg)`;
+    inner.style.opacity = String(opacity);
+  };
+
+  const onUp = e => {
+    if (pointerId === null || e.pointerId !== pointerId) return;
+    const myPid = pointerId;
+    pointerId = null;
+    try { cf.releasePointerCapture(myPid); } catch {}
+
+    if (!dragging) {
+      // Treat as tap → reveal
+      reveal();
+      return;
+    }
+
+    // Reset inline styles before any class-based animation kicks in
+    inner.style.transition = '';
+    inner.style.transform = '';
+    inner.style.opacity = '';
+
+    if (!flipped) return; // safety
+
+    if (Math.abs(dx) >= SWIPE_PX) {
+      // Commit rate based on direction
+      const q = dx < 0 ? 0 : 4;
+      rate(q);
+    }
+    // else: styles already cleared above → card snaps back
+    dx = 0;
+    dragging = false;
+  };
+
+  cf.addEventListener('pointerdown', onDown);
+  cf.addEventListener('pointermove', onMove);
+  cf.addEventListener('pointerup', onUp);
+  cf.addEventListener('pointercancel', onUp);
 }
 
 // ── Init ───────────────────────────────────────────────────────
@@ -1149,7 +1718,7 @@ async function init() {
 
   // ── Study
   $id('study-back').addEventListener('click', () => { saveRetryQueue(); clearRetryState(); showView('view-list'); });
-  $id('card-area').addEventListener('click', reveal);
+  bindCardSwipe();
   $id('speak-btn').addEventListener('click', e => { e.stopPropagation(); speakCard(); });
   $id('flash-prev-btn').addEventListener('click', e => { e.stopPropagation(); flashPrev(); });
   $id('flash-next-btn').addEventListener('click', e => { e.stopPropagation(); flashNext(); });
@@ -1173,6 +1742,13 @@ async function init() {
       if (e.key === 'ArrowRight') { e.preventDefault(); flashNext(); }
       if (e.key === 'ArrowLeft')  { e.preventDefault(); flashPrev(); }
     }
+    if (inStudy && !isFlashcardMode) {
+      const ratingVisible = $id('rating-bar').classList.contains('visible');
+      if (ratingVisible) {
+        if (e.key === '1') { e.preventDefault(); rate(0); }
+        if (e.key === '2') { e.preventDefault(); rate(4); }
+      }
+    }
     if (e.ctrlKey && e.shiftKey && (e.key === 'D' || e.key === 'd')) {
       e.preventDefault();
       toggleDebug();
@@ -1181,6 +1757,8 @@ async function init() {
 
   // ── Grammar
   $id('grammar-back').addEventListener('click', () => showView('view-home'));
+  bindGrammarSelection();
+  $id('gp-close').addEventListener('click', () => $id('gemini-panel').classList.add('hidden'));
 
   // ── Help modal
   const helpModal = $id('help-modal');
