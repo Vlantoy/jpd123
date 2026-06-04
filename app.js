@@ -202,7 +202,22 @@ function normalizeText(s) {
 const GEMINI_MODELS_FALLBACK = ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-2.5-flash-lite', 'gemini-flash-latest'];
 
 async function callGemini(prompt, sysInstruction) {
-  if (!GEMINI_KEYS.length) throw new Error('Không có Gemini API key — kiểm tra file gemini_keys.js');
+  // Deployed (Vercel): no local keys → dùng server-side proxy để giấu key
+  if (!GEMINI_KEYS.length) {
+    const r = await fetch('/api/gemini', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt, sysInstruction: sysInstruction || null }),
+    });
+    if (!r.ok) {
+      const e = await r.json().catch(() => ({}));
+      throw new Error(e.error || 'Proxy lỗi ' + r.status);
+    }
+    const { text } = await r.json();
+    if (!text) throw new Error('Proxy trả về rỗng');
+    return text;
+  }
+  // Local dev: gọi Gemini trực tiếp với keys từ gemini_keys.js
   const startIdx = getGeminiKeyIdx();
   let lastErr = null;
   const errLog = [];
