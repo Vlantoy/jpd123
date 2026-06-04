@@ -14,7 +14,7 @@ const VOCAB_DATA = [
   {id:'v12',type:'vocab',front:'おんせん',back:'Suối nước nóng',kanji:'温泉',lesson:'Lesson_04',sub:'Sub_02_Dac_Diem_Noi_Chon'},
   {id:'v13',type:'vocab',front:'かわ',back:'Sông',kanji:'川',lesson:'Lesson_04',sub:'Sub_02_Dac_Diem_Noi_Chon'},
   {id:'v14',type:'vocab',front:'やま',back:'Núi',kanji:'山',lesson:'Lesson_04',sub:'Sub_02_Dac_Diem_Noi_Chon'},
-  {id:'v15',type:'vocab',front:'きょうkai',back:'Nhà thờ',kanji:'教会',lesson:'Lesson_04',sub:'Sub_02_Dac_Diem_Noi_Chon'},
+  {id:'v15',type:'vocab',front:'きょうかい',back:'Nhà thờ',kanji:'教会',lesson:'Lesson_04',sub:'Sub_02_Dac_Diem_Noi_Chon'},
   {id:'v16',type:'vocab',front:'おしろ',back:'Lâu đài, thành',kanji:'お城',lesson:'Lesson_04',sub:'Sub_02_Dac_Diem_Noi_Chon'},
   {id:'v17',type:'vocab',front:'じんじゃ',back:'Đền',kanji:'神社',lesson:'Lesson_04',sub:'Sub_02_Dac_Diem_Noi_Chon'},
   {id:'v18',type:'vocab',front:'おてら',back:'Chùa',kanji:'お寺',lesson:'Lesson_04',sub:'Sub_02_Dac_Diem_Noi_Chon'},
