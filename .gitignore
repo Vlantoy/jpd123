@@ -15,3 +15,6 @@ noob.md
 
 # Secrets — Gemini API keys (local only)
 gemini_keys.js
+
+# Secrets — Groq API keys (local only)
+groq_keys.js

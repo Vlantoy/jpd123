@@ -15,10 +15,8 @@ export default async function handler(req, res) {
   if (!keys.length) return res.status(500).json({ error: 'No API keys configured on server' });
 
   const MODELS = [
-    'gemini-2.0-flash',
     'gemini-2.0-flash-lite',
     'gemini-2.5-flash-lite',
-    'gemini-flash-latest',
   ];
 
   const errLog = [];

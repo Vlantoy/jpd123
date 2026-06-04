@@ -165,7 +165,7 @@ function playSound(type) {
 // ── Gemini API (key pool + cache) ─────────────────────────────
 // Keys load từ gemini_keys.js (gitignored). Nếu thiếu file → mảng rỗng, Gemini features tắt.
 const GEMINI_KEYS = (typeof window !== 'undefined' && Array.isArray(window.GEMINI_KEYS)) ? window.GEMINI_KEYS : [];
-const GEMINI_MODEL = 'gemini-2.0-flash';
+const GEMINI_MODEL = 'gemini-2.0-flash-lite';
 const GEMINI_CACHE_KEY = 'jpflash.geminiCache';
 const GEMINI_KEY_IDX_KEY = 'jpflash.geminiKeyIdx';
 const GEMINI_CACHE_MAX = 500;
@@ -199,7 +199,7 @@ function normalizeText(s) {
 
 // Call Gemini with auto key rotation on rate limit / quota errors.
 // Returns parsed text on success, throws on hard failure.
-const GEMINI_MODELS_FALLBACK = ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-2.5-flash-lite', 'gemini-flash-latest'];
+const GEMINI_MODELS_FALLBACK = ['gemini-2.0-flash-lite', 'gemini-2.5-flash-lite'];
 
 async function callGemini(prompt, sysInstruction) {
   // Deployed (Vercel): no local keys → dùng server-side proxy để giấu key
@@ -274,6 +274,100 @@ async function callGemini(prompt, sysInstruction) {
   }
   console.warn('[Gemini] all attempts failed:', errLog);
   throw lastErr || new Error('All Gemini keys/models failed');
+}
+
+// ── Groq API (OpenAI-compatible, ưu tiên cao hơn Gemini) ─────────
+// Keys load từ groq_keys.js (gitignored). Nếu thiếu file → mảng rỗng, Groq tắt → dùng Gemini.
+const GROQ_KEYS = (typeof window !== 'undefined' && Array.isArray(window.GROQ_KEYS)) ? window.GROQ_KEYS : [];
+const GROQ_MODEL = 'llama-3.3-70b-versatile'; // 70B, đa ngôn ngữ khá nhất Groq free tier
+const GROQ_KEY_IDX_KEY = 'jpflash.groqKeyIdx';
+const GROQ_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
+
+function getGroqKeyIdx() {
+  if (!GROQ_KEYS.length) return 0;
+  const v = parseInt(localStorage.getItem(GROQ_KEY_IDX_KEY) || '0', 10);
+  return isNaN(v) ? 0 : v % GROQ_KEYS.length;
+}
+function setGroqKeyIdx(i) {
+  if (!GROQ_KEYS.length) return;
+  localStorage.setItem(GROQ_KEY_IDX_KEY, String(i % GROQ_KEYS.length));
+}
+
+// Call Groq (OpenAI-compatible). Returns text on success, throws on hard failure.
+// Rotates keys on 429/403. Caller should fallback to Gemini on throw.
+async function callGroq(prompt, sysInstruction) {
+  if (!GROQ_KEYS.length) throw new Error('No Groq keys configured');
+  const startIdx = getGroqKeyIdx();
+  let lastErr = null;
+  const errLog = [];
+  for (let attempt = 0; attempt < GROQ_KEYS.length; attempt++) {
+    const idx = (startIdx + attempt) % GROQ_KEYS.length;
+    const key = GROQ_KEYS[idx];
+    try {
+      const messages = [];
+      if (sysInstruction) messages.push({ role: 'system', content: sysInstruction });
+      messages.push({ role: 'user', content: prompt });
+      const body = {
+        model: GROQ_MODEL,
+        messages,
+        temperature: 0.7,
+        max_tokens: 512,
+      };
+      if (window.dbg && window.dbg.geminiTrace) {
+        console.log('[Groq→] model=', GROQ_MODEL, 'key=', idx, '\nSYSTEM:\n', sysInstruction || '(none)', '\nUSER:\n', prompt);
+      }
+      const res = await fetch(GROQ_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + key,
+        },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) {
+        const txt = await res.text();
+        const msg = `[Groq] key${idx} HTTP ${res.status}: ${txt.slice(0, 150)}`;
+        errLog.push(msg);
+        lastErr = new Error(msg);
+        if (res.status === 429 || res.status === 403) {
+          setGroqKeyIdx(idx + 1);
+          continue;
+        }
+        // Lỗi khác (400/404/5xx) — không retry với key khác, throw để fallback Gemini
+        break;
+      }
+      const data = await res.json();
+      const text = data?.choices?.[0]?.message?.content;
+      if (!text) {
+        errLog.push(`[Groq] key${idx} empty response`);
+        lastErr = new Error('Groq trả về rỗng');
+        continue;
+      }
+      if (window.dbg && window.dbg.geminiTrace) {
+        console.log('[Groq←] raw response:\n', text);
+      }
+      setGroqKeyIdx(idx);
+      return text;
+    } catch (err) {
+      const msg = `[Groq] key${idx} ${err.message || err}`;
+      errLog.push(msg);
+      lastErr = err;
+    }
+  }
+  console.warn('[Groq] all attempts failed:', errLog);
+  throw lastErr || new Error('All Groq keys failed');
+}
+
+// Unified LLM caller: thử Groq trước, fallback Gemini nếu Groq fail/không có key.
+async function callLLM(prompt, sysInstruction) {
+  if (GROQ_KEYS.length) {
+    try {
+      return await callGroq(prompt, sysInstruction);
+    } catch (err) {
+      console.warn('[LLM] Groq failed, fallback to Gemini:', err.message || err);
+    }
+  }
+  return await callGemini(prompt, sysInstruction);
 }
 
 // Pick a small vocab pool (~25 items) — prioritize items whose kana/kanji appear
@@ -418,7 +512,7 @@ Romaji: watashi wa mainichi nihongo o benkyou shimasu.
 VN: Tôi học tiếng Nhật mỗi ngày.
 
 Bây giờ hãy trả lời theo đúng format trên:`;
-  const raw = await callGemini(prompt);
+  const raw = await callLLM(prompt, GRAMMAR_SYS_INSTRUCTION);
   const sentence = parsePlainSentence(raw);
   if (!sentence || !sentence.jp) {
     throw new Error('Gemini trả về sai format: ' + String(raw).slice(0, 120));
