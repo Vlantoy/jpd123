@@ -1446,7 +1446,7 @@ let _lastLookupKey = '';
 function bindGrammarSelection() {
   const c = $id('grammar-content');
   if (!c) return;
-  const handler = () => {
+  const checkSelection = () => {
     clearTimeout(_grammarSelectionTimer);
     _grammarSelectionTimer = setTimeout(() => {
       const sel = window.getSelection();
@@ -1460,10 +1460,11 @@ function bindGrammarSelection() {
       if (!anchor || !c.contains(anchor.nodeType === 1 ? anchor : anchor.parentNode)) return;
       // Open panel in IDLE state — do NOT call API until user clicks the button.
       openGeminiPanelIdle(text);
-    }, 250);
+    }, 300);
   };
-  c.addEventListener('mouseup', handler);
-  c.addEventListener('touchend', handler);
+  // mouseup for desktop, selectionchange for mobile (touchend clears selection too early)
+  c.addEventListener('mouseup', checkSelection);
+  document.addEventListener('selectionchange', checkSelection);
 }
 
 // Open the Gemini panel with the selected text but DO NOT call the API yet.
