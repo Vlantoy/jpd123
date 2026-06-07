@@ -651,5 +651,19 @@ const VOCAB_DATA = [
   {id:'v649',type:'vocab',front:'おちます',back:'Rơi',kanji:'落ちます',lesson:'Lesson_15',sub:'Sub_03_Tinh_Trang_Pho_Xa'},
   {id:'v650',type:'vocab',front:'きえます',back:'(đèn) Tắt / Biến mất',kanji:'消えます',lesson:'Lesson_15',sub:'Sub_03_Tinh_Trang_Pho_Xa'},
   {id:'v651',type:'vocab',front:'こわれます',back:'Hỏng',kanji:'壊れます',lesson:'Lesson_15',sub:'Sub_03_Tinh_Trang_Pho_Xa'},
-  {id:'v652',type:'vocab',front:'よごれます',back:'Bẩn, vấy bẩn',kanji:'汚れます',lesson:'Lesson_15',sub:'Sub_03_Tinh_Trang_Pho_Xa'}
+  {id:'v652',type:'vocab',front:'よごれます',back:'Bẩn, vấy bẩn',kanji:'汚れます',lesson:'Lesson_15',sub:'Sub_03_Tinh_Trang_Pho_Xa'},
+  {id:'v653',type:'vocab',front:'じかん',back:'Giờ / Thời gian',kanji:'時間',lesson:'Lesson_04',sub:'Sub_01_Noi_Chon_Huong_Vi'},
+  {id:'v654',type:'vocab',front:'ふん',back:'Phút',kanji:'分',lesson:'Lesson_04',sub:'Sub_01_Noi_Chon_Huong_Vi'},
+  {id:'v655',type:'vocab',front:'じかんはん',back:'Một tiếng rưỡi',kanji:'時間半',lesson:'Lesson_04',sub:'Sub_01_Noi_Chon_Huong_Vi'},
+  {id:'v656',type:'vocab',front:'どのくらい',back:'Bao lâu',kanji:'どのくらい',lesson:'Lesson_04',sub:'Sub_01_Noi_Chon_Huong_Vi'},
+  {id:'v657',type:'vocab',front:'よくない',back:'Không tốt',kanji:'よくない',lesson:'Lesson_04',sub:'Sub_02_Dac_Diem_Noi_Chon'},
+  {id:'v658',type:'vocab',front:'はれ',back:'Nắng',kanji:'晴れ',lesson:'Lesson_04',sub:'Sub_03_Thoi_Tiet_Va_Mon_An'},
+  {id:'v659',type:'vocab',front:'こんげつ',back:'Tháng này',kanji:'今月',lesson:'Lesson_05',sub:'Sub_01_Ke_Hoach_Ngay_Nghi'},
+  {id:'v660',type:'vocab',front:'らいげつ',back:'Tháng sau',kanji:'来月',lesson:'Lesson_05',sub:'Sub_01_Ke_Hoach_Ngay_Nghi'},
+  {id:'v661',type:'vocab',front:'りんご',back:'Quả táo',kanji:'りんご',lesson:'Lesson_06',sub:'Sub_02_Lua_Chon_Quan_An'},
+  {id:'v662',type:'vocab',front:'いちご',back:'Quả dâu',kanji:'いちご',lesson:'Lesson_06',sub:'Sub_02_Lua_Chon_Quan_An'},
+  {id:'v663',type:'vocab',front:'つまらない',back:'Chán',kanji:'つまらない',lesson:'Lesson_06',sub:'Sub_03_Mon_An_Va_Quyet_Dinh'},
+  {id:'v664',type:'vocab',front:'ずっと',back:'Hơn/Kém rất nhiều',kanji:'ずっと',lesson:'Lesson_06',sub:'Sub_01_Ru_Re_Di_Choi'},
+  {id:'v665',type:'vocab',front:'バーベキュー',back:'Tiệc nước ngoài trời',kanji:'バーベキュー',lesson:'Lesson_06',sub:'Sub_02_Lua_Chon_Quan_An'},
+  {id:'v666',type:'vocab',front:'そうしましょう',back:'Làm như thế đi',kanji:'そうしましょう',lesson:'Lesson_06',sub:'Sub_03_Mon_An_Va_Quyet_Dinh'}
 ];
