@@ -1441,56 +1441,111 @@ function rate(q) {
   nextCard(dir);
 }
 
+// Mobile-friendly TTS: must call speak()/audio.play() SYNCHRONOUSLY in user gesture.
+// iOS Safari + Chrome Android block any async-deferred audio start.
+let _ttsUnlocked = false;
+let _ttsVoicesReady = false;
+let _ttsAudioEl = null; // reuse single <audio> element (helps iOS)
+
+function unlockTTSOnce() {
+  if (_ttsUnlocked) return;
+  _ttsUnlocked = true;
+  // Prime speechSynthesis with a silent utterance inside this gesture
+  try {
+    const u = new SpeechSynthesisUtterance('');
+    u.volume = 0;
+    speechSynthesis.speak(u);
+  } catch {}
+  // Prime audio element (iOS unlocks <audio> per element on first user-gesture play)
+  try {
+    _ttsAudioEl = new Audio();
+    _ttsAudioEl.preload = 'auto';
+  } catch {}
+  // Trigger voiceschanged so getVoices() populates on iOS
+  if (typeof speechSynthesis !== 'undefined' && !_ttsVoicesReady) {
+    speechSynthesis.onvoiceschanged = () => { _ttsVoicesReady = true; };
+  }
+}
+
 function speakCard() {
   if (!current) return;
+  unlockTTSOnce(); // ← critical: must be FIRST inside the click handler
+
   const raw = current.front.replace(/[（(].*?[）)]/g, '').trim();
   const btn = $id('speak-btn');
-
-  // Visual feedback
   btn.textContent = '⏳';
   const resetBtn = () => { btn.textContent = '🔊'; };
 
   const voices = speechSynthesis.getVoices();
-  const jp = voices.find(v => v.lang && v.lang.startsWith('ja'));
+  const jp = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('ja'));
 
+  // Strategy: try Web Speech FIRST if ja voice exists (works on Android Chrome, desktop).
+  // On iOS the Japanese voice ("Kyoko") is usually present after first use; if not, fall back to Google TTS.
   if (jp) {
-    // Native Japanese voice available
-    const utt = new SpeechSynthesisUtterance(raw);
-    utt.voice = jp;
-    utt.lang = 'ja-JP';
-    utt.onstart = () => { btn.textContent = '🔈'; };
-    utt.onend   = resetBtn;
-    utt.onerror = e => { console.warn('[TTS] error:', e.error); resetBtn(); speakViaAudio(raw, resetBtn); };
-    speechSynthesis.cancel();
-    speechSynthesis.speak(utt);
-  } else {
-    // No Japanese voice — fall back to Google TTS audio
-    console.info('[TTS] No ja voice found, using Google TTS fallback');
-    speakViaAudio(raw, resetBtn);
+    try {
+      const utt = new SpeechSynthesisUtterance(raw);
+      utt.voice = jp;
+      utt.lang = 'ja-JP';
+      utt.rate = 0.95;
+      utt.onstart = () => { btn.textContent = '🔈'; };
+      utt.onend   = resetBtn;
+      utt.onerror = e => {
+        console.warn('[TTS] speechSynthesis error:', e.error);
+        speakViaAudio(raw, resetBtn);
+      };
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utt);
+      // iOS sometimes silently drops the utterance — guard with timeout
+      setTimeout(() => {
+        if (!speechSynthesis.speaking && !speechSynthesis.pending && btn.textContent === '⏳') {
+          console.info('[TTS] speechSynthesis silent on mobile, falling back to audio');
+          speakViaAudio(raw, resetBtn);
+        }
+      }, 600);
+      return;
+    } catch (e) {
+      console.warn('[TTS] speak() threw:', e);
+    }
   }
+
+  console.info('[TTS] No ja voice, using Google TTS audio fallback');
+  speakViaAudio(raw, resetBtn);
 }
 
 function speakViaAudio(text, onDone) {
   const btn = $id('speak-btn');
   const url = 'https://translate.google.com/translate_tts?ie=UTF-8&q='
     + encodeURIComponent(text) + '&tl=ja&client=tw-ob';
-  const audio = new Audio();
-  audio.crossOrigin = 'anonymous';
-  audio.oncanplaythrough = () => {
-    btn.textContent = '🔈';
-    audio.play().catch(e => { console.warn('[TTS] play blocked:', e); if (onDone) onDone(); });
-  };
-  audio.onended  = () => { if (onDone) onDone(); };
-  audio.onerror  = e => {
-    console.warn('[TTS] Audio fallback failed:', e);
+
+  // Reuse the audio element unlocked in unlockTTSOnce() — iOS only honors play()
+  // on an element that was created/touched inside a user gesture.
+  const audio = _ttsAudioEl || new Audio();
+  _ttsAudioEl = audio;
+  // NOTE: do NOT set crossOrigin — Google's translate_tts does not return CORS headers,
+  // so setting it would mark the response opaque and cause iOS to refuse playback.
+
+  audio.onplaying = () => { btn.textContent = '🔈'; };
+  audio.onended   = () => { if (onDone) onDone(); };
+  audio.onerror   = () => {
+    console.warn('[TTS] Google TTS audio failed (likely CORS/network on mobile)');
     if (onDone) onDone();
-    // Last resort: speak with any available voice
-    const utt = new SpeechSynthesisUtterance(text);
-    utt.lang = 'ja-JP';
-    speechSynthesis.cancel();
-    speechSynthesis.speak(utt);
+    // Last resort: any voice
+    try {
+      const utt = new SpeechSynthesisUtterance(text);
+      utt.lang = 'ja-JP';
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utt);
+    } catch {}
   };
   audio.src = url;
+  // Call play() SYNCHRONOUSLY — required by mobile autoplay policy.
+  const p = audio.play();
+  if (p && typeof p.then === 'function') {
+    p.catch(err => {
+      console.warn('[TTS] audio.play() blocked:', err && err.name, err && err.message);
+      if (onDone) onDone();
+    });
+  }
 }
 
 // ── Grammar ────────────────────────────────────────────────────
